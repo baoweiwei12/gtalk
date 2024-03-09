@@ -1,0 +1,21 @@
+用户: include
+时间: 2024-01-04T01:29:51.744Z
+消息: 写一篇扩频通信的论文
+
+用户: include
+时间: 2024-01-04T01:31:47.116Z
+消息: 详细论文
+
+用户: include
+时间: 2024-01-04T01:34:28.556Z
+消息: 参考Proakis, J. G., & Salehi, M. (2007). Digital Communications. McGraw-Hill Higher Education.
+Freeman, R.L. (2005). Fundamentals of Telecommunications. Wiley-IEEE Press.进一步扩展研究内容和深入细节并配上原理图片
+
+用户: include
+时间: 2024-01-04T01:39:57.432Z
+消息: 参考Simon, M.K., Omura, J.K., Scholtz, R.A., & Levitt, B.K. (1994). Spread Spectrum Communications Handbook. McGraw-Hill.再次丰富内容
+
+用户: include
+时间: 2024-01-04T01:40:37.916Z
+消息: 参考Simon, M.K., Omura, J.K., Scholtz, R.A., & Levitt, B.K. (1994). Spread Spectrum Communications Handbook. McGraw-Hill.再次丰富内容并配图
+

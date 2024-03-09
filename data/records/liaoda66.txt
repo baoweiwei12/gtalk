@@ -1,0 +1,3483 @@
+用户: liaoda66
+时间: 2024-01-02T03:01:01.314Z
+消息: void Hwi_Mem_E_Initial_0(void)
+{/* Mode Entry Module: 控制系统时钟选择 */
+	uint8_t index = 0;
+   
+	/*====================================================
+	Auxiliary Clock 0
+	- motor control clock MC_PLL_CLK   DIV0    DE0
+	- SWG clock 					   DIV1    DE1
+	====================================================*/
+	CGM.AC0_SC.B.SELCTL			    = AC0SC_CLKSRC_INT;		// Aux0 clock source select
+	CGM.AC0_DC0_3.B.DIV0 		    = 0; 					// Aux0 clock divider   0 = 1:1;  1 = 1:2;  2 = 1:3 ... 15 = 1:16
+	CGM.AC0_DC0_3.B.DE0			    = AC0DC_DIVIDER_ENABLE;	// Aux0 clock divider enable
+
+	CGM.AC0_DC0_3.B.DIV1 		    = 3; 					// Aux0 clock divider   0 = 1:1;  1 = 1:2;  2 = 1:3 ... 15 = 1:16
+	CGM.AC0_DC0_3.B.DE1			    = AC0DC_DIVIDER_ENABLE;	// Aux0 clock divider enable
+
+
+	/*====================================================
+	Auxiliary Clock 2 (FlexCan clock) configuration
+	====================================================*/
+	CGM.AC2_SC.B.SELCTL			    = AC2SC_CLKSRC_SYSPLL;
+	CGM.AC2_DC0_3.B.DIV0 		    = 0;				   // Aux2 clock divider	0 = 1:1;  1 = 1:2;	2 = 1:3 ... 15 = 1:16
+	CGM.AC2_DC0_3.B.DE0			    = AC2DC_DIVIDER_ENABLE;
+
+	/*====================================================
+	Auxiliary Clock 3 Clock source for FMPLL0
+	====================================================*/
+	CGM.AC3_SC.B.SELCTL			    = 1;				   // 8MHz XSC
+
+	// Clear all reset flags to avoid staying in SAFE mode
+	RGM.FES.R					    = 0xFFFF;
+	// External reset as short
+	RGM.FESS.B.SS_EXR               = 0x1;
+	RGM.FBRE.B.BE_EXR               = 0x1;
+
+	/*====================================================
+		Modes Configurations
+	====================================================*/
+	// enable modes below
+	ME.MEN.B.DRUN				   = ME_MODE_DRUN_ENABLED;
+	ME.MEN.B.SAFE				   = ME_MODE_SAFE_ENABLED;
+	ME.MEN.B.RESET_FUNC			   = ME_MODE_RESET_ENABLED;
+
+	// DRUN mode configuration
+	ME.DRUN_MC.B.FLAON			   = DRUN_DFLASH_NORMAL_MODE;
+	ME.DRUN_MC.B.PLL0ON			   = DRUN_SYSPLL_OFF;		   // PLL0 disabled
+	ME.DRUN_MC.B.PLL1ON			   = DRUN_SECPLL_OFF;		   // PLL1 disabled
+	ME.DRUN_MC.B.XOSCON			   = DRUN_XOSC_ON;			   // Switch on external osc.
+	ME.DRUN_MC.B.IRCOSCON		   = DRUN_INTOSC_ON;		   // Switch on internal osc.
+	ME.DRUN_MC.B.SYSCLK			   = SYSCLK_SRC_OSC;		   // select internal osc for system clock
+
+	CGM.CMU_0_CSR.B.RCDIV		   = 3;
+	// to avoid CMU reset in case of Fmosc<Frcosc   
+	CGM.CMU_0_LFREFR_A.B.LFREF_A   = 0x1;
+	CGM.CMU_0_HFREFR_A.B.HFREF_A   = 0xFFE;
+
+	// Enable Periphs in default running mode
+	// Enable Periphs in all running modes
+	ME.RUN_PC[0].R				   = 0x00000008;
+
+	// Enable Periphs in low power modes
+	ME.LP_PC[0].R				   = 0x00000500;
+
+	// Re-enter in DRUN mode to update the configuration    
+	ME.MCTL.R					   = MEM_RUN_MODE_KEY(0);   // DRUN Mode & Key
+	ME.MCTL.R					   = MEM_RUN_MODE_INVERTED_KEY(0);   // DRUN Mode & Key
+
+	//ME_GS Wait for external osc to stabilize.
+	while(ME.GS.B.S_XOSC==0){};
+
+	//waiting for end of transaction
+	//timer = 1000;
+	//while(ME.GS.B.S_MTRANS == 1 || timer>0) {asm("nop");timer -=1;}
+	while(ME.GS.B.S_MTRANS == 1){};
+
+	//ME_GS Check DRUN mode has successfully been entered
+	while(ME.GS.B.S_CURRENT_MODE != 3 ){};
+}
+
+用户: liaoda66
+时间: 2024-01-02T03:01:20.702Z
+消息: 请用中文分析
+
+用户: liaoda66
+时间: 2024-01-02T06:30:39.910Z
+消息:  Hwi_Mem_E_Initial_0是什么
+
+用户: liaoda66
+时间: 2024-01-03T01:16:49.297Z
+消息:     uint32_t curr_addr;
+
+    Flash_Sector_Number_T sector_no;
+    
+    sector_no = Hwi_Flash_E_Get_Sector_Number(start_addr);
+    for(;sector_no <= Hwi_Flash_E_Get_Sector_Number((start_addr + size - 1)); sector_no++)
+    {
+        curr_addr = Hwi_Flash_E_Get_Start_Addr_By_Sector_Number(sector_no);
+        Hwi_Flash_E_SetLock(curr_addr, true);
+    }
+
+用户: liaoda66
+时间: 2024-01-03T01:16:59.261Z
+消息:     uint32_t curr_addr;
+
+    Flash_Sector_Number_T sector_no;
+    
+    sector_no = Hwi_Flash_E_Get_Sector_Number(start_addr);
+    for(;sector_no <= Hwi_Flash_E_Get_Sector_Number((start_addr + size - 1)); sector_no++)
+    {
+        curr_addr = Hwi_Flash_E_Get_Start_Addr_By_Sector_Number(sector_no);
+        Hwi_Flash_E_SetLock(curr_addr, true);
+    }
+
+用户: liaoda66
+时间: 2024-01-03T01:17:14.810Z
+消息: 请用中文分析
+
+用户: liaoda66
+时间: 2024-01-03T01:33:42.884Z
+消息: 翻译成中文
+
+用户: liaoda66
+时间: 2024-01-03T01:33:51.161Z
+消息: Erase  on  the  first  block  of  low 
+address space which was full filled 
+with data of 0xAAAAAAAA.
+
+用户: liaoda66
+时间: 2024-01-03T01:53:56.837Z
+消息: #ifdef __cplusplus
+extern "C" {
+#endif
+
+
+用户: liaoda66
+时间: 2024-01-03T01:54:29.112Z
+消息: /* Memory initialization */
+__declspec(section ".init") __asm void INIT_Derivative(void);
+
+/* Write one MMU Table Entry */
+__declspec(section ".init") __asm void WriteMMUTableEntry( void );
+
+/* Initialize the needed MMU Table entries */
+__declspec(section ".init") __asm void __initMMU(void);
+
+
+用户: liaoda66
+时间: 2024-01-03T01:56:23.264Z
+消息: MMU表项是什么
+
+用户: liaoda66
+时间: 2024-01-03T01:58:28.439Z
+消息: extern long L2SRAM_LOCATION; 
+#ifndef LOCKSTEP_MODE 
+extern long L2SRAM_LOCATION_P1;
+#endif
+
+用户: liaoda66
+时间: 2024-01-03T02:01:56.979Z
+消息: __asm void INIT_Derivative(void) 
+{
+nofralloc
+#ifdef LOCKSTEP_MODE // e200 register init needed for LSM mode
+	/* until now, the code has used(set) the following registers LR, R1, R2, R13, R3, R31, R30
+	 and they should not altered */
+	xor  r0, r0, r0
+	evmergelo r0,r0,r0
+
+	evmergelo r1,r0,r1 //used by runtime - should preserve lower 32bits
+	evmergelo r2,r0,r2 //used by runtime - should preserve lower 32bits
+	evmergelo r3,r0,r3 //used by runtime - should preserve lower 32bits
+	
+	evmergelo r4,r0,r0
+	evmergelo r5,r0,r0
+	evmergelo r6,r0,r0
+	evmergelo r7,r0,r0
+	evmergelo r8,r0,r0
+	evmergelo r9,r0,r0
+	evmergelo r10,r0,r0
+	evmergelo r11,r0,r0
+	evmergelo r12,r0,r0
+	
+	evmergelo r13,r0,r13 //used by runtime - should preserve lower 32bits
+
+	evmergelo r14,r0,r0
+	evmergelo r15,r0,r0
+	evmergelo r16,r0,r0
+	evmergelo r17,r0,r0
+	evmergelo r18,r0,r0
+	evmergelo r19,r0,r0
+	evmergelo r20,r0,r0
+	evmergelo r21,r0,r0
+	evmergelo r22,r0,r0
+	evmergelo r23,r0,r0
+	evmergelo r24,r0,r0
+	evmergelo r25,r0,r0
+	evmergelo r26,r0,r0
+	evmergelo r27,r0,r0
+	evmergelo r28,r0,r0
+	evmergelo r29,r0,r0
+	
+	evmergelo r30,r0,r30 //used by runtime - should preserve lower 32bits
+	evmergelo r31,r0,r31 //used by runtime - should preserve lower 32bits
+
+	// 2.  32-bit DEAR (spr 61)
+	mtspr 61,r0         //DEAR
+
+	//3.  32-bit SPRG0-9 (spr 272-279, 604 & 605)
+
+	mtspr 272,r0        //SPRG0-7
+	mtspr 273,r0
+	mtspr 274,r0
+	mtspr 275,r0
+	mtspr 276,r0
+	mtspr 277,r0
+	mtspr 278,r0
+	mtspr 279,r0
+
+	mtspr 604,r0         //SPRG8-9
+	mtspr 605,r0
+
+	//4.  32-bit USPRG0 (spr 256)
+
+	mtspr 256,r0         //USPRG0
+
+	//5.  32-bit SRR0 (spr 26), SRR1 (spr 27), CSRR0 (spr58), CSRR1 (spr59),
+	//		DSRR0 (spr 574), DSRR1 (spr 575), MCSRR0 (spr570), MCSRR1 (spr571)
+
+	mtspr 26,r0          //SRR0-1
+	mtspr 27,r0
+	mtspr 58,r0          //CSRR0-1
+	mtspr 59,r0
+	mtspr 570,r0         //MCSRR0-1
+	mtspr 571,r0 
+	mtspr 574,r0         //DSRR0-1 
+	mtspr 575,r0      
+    
+	//6.  32-bit IVPR (spr 63)
+
+	mtspr 63,r0          //IVPR
+	mtspr 62,r0          //ESR
+	mtspr 340,r0         //TCR
+	mtspr 512,r0         //SPEFSCR
+	mtspr 1,r0           //XER
+	mtspr 256,r0         //USPRG0 
+ 
+
+	//32-bit IVOR0-15 (spr 400 - 415), IVOR 32-35 (spr 528 - 531)
+
+	mtspr 400,r0         //IVOR0-15
+	mtspr 401,r0
+	mtspr 402,r0
+	mtspr 403,r0   
+	mtspr 404,r0
+	mtspr 405,r0
+	mtspr 406,r0
+	mtspr 407,r0
+	mtspr 408,r0
+	mtspr 409,r0
+	mtspr 410,r0
+	mtspr 411,r0
+	mtspr 412,r0
+	mtspr 413,r0
+	mtspr 414,r0
+	mtspr 415,r0
+
+	mtspr 528,r0         //IVOR32-34 (IVOR35 not in Leopard)
+	mtspr 529,r0
+	mtspr 530,r0
+	
+	//mtspr 531,r0		 //IVOR35 KOMODO ONLY
+
+	//8.  32-bit MCAR (spr 573)
+
+	mtspr 573,r0         //MCAR
+ 
+	//9. 32-bit TBL, TBU (spr 284, 285)
+
+	mtspr 284,r0         //TBL
+	mtspr 285,r0         //TBU
+ 
+	//10. 32-bit DEC, DECAR (spr 22, 54)
+
+	mtspr 22,r0          //DEC
+	mtspr 54,r0          //DECAR
+
+	//11. 64-bit DVC1, DVC2 (spr 318, 319)
+	//Note most debug registers are reset by POR so initialization is not required.
+
+	mtspr 318,r0         //DVC1
+	mtspr 319,r0         //DVC2
+
+	//12. 32-bit DBCNT (spr 562)
+
+	mtspr 562,r0         //DBCNT
+	
+	// initialize MAS0 - MAS6; actual TLB configuration done later
+	mtmas0 r0
+	mtmas1 r0
+	mtmas2 r0
+	mtmas3 r0
+	mtmas4 r0
+	// no MAS5
+	mtmas6 r0
+	
+	// init ACC
+	evmra r0, r4
+	evmra r0, r4
+	
+	mtcrf 0xFF,r0 // CFR
+	mtspr 9,r0 // COUNT
+#endif // e200 register init not needed for DPM mode
+
+	/* Don't have a stack yet, save the return address in a register */
+	mflr     r26;
+	bl __initMMU;
+	mtlr r26;
+
+用户: liaoda66
+时间: 2024-01-03T02:40:38.869Z
+消息: bool Hwi_Flash_E_SetLock_BootSector(bool lockstate)
+{
+   bool                   return_code;
+   Flash_Sector_Number_T  sector_number;
+   uint32_t               current_lock;
+   uint32_t               sector_selector;
+   
+   return_code = false;
+   sector_number = Flash_B0_F0;
+   sector_selector = 1;
+   
+   if (sector_number <= Flash_B0_F7) 
+   {
+       /* Bank 0 Code Flash */
+       if (FLASH.LML.B.LME == 0) 
+       {
+           FLASH.LML.R = HWI_FLASH_LML_PWD;
+       }
+       if (FLASH.SLL.B.SLE == 0) 
+       {
+           FLASH.SLL.R = HWI_FLASH_SLL_PWD;
+       }
+
+       current_lock = FLASH.LML.R;
+        if(lockstate)
+        {
+           current_lock |= sector_selector;
+        }
+        else
+        {
+           current_lock &= ~sector_selector;
+        }
+       FLASH.LML.R = current_lock;
+       FLASH.SLL.R = current_lock;
+       return_code = true;
+   }
+}
+
+用户: liaoda66
+时间: 2024-01-03T02:47:08.383Z
+消息: static const Flash_Memory_Map_T Flash_Memory_Map[Flash_Number_of_Sectors] =
+{
+    //   start address            size           Sector Number 
+    // Low Address Space
+    {     0x00000000,          FLASH_KB(16),      Flash_B0_F0 },
+    {     0x00004000,          FLASH_KB(48),      Flash_B0_F1 },
+    {     0x00010000,          FLASH_KB(48),      Flash_B0_F2 },
+    {     0x0001C000,          FLASH_KB(16),      Flash_B0_F3 },
+    {     0x00020000,          FLASH_KB(64),      Flash_B0_F4 },
+    {     0x00030000,          FLASH_KB(64),      Flash_B0_F5 },
+    // Mid Address Space
+    {     0x00040000,          FLASH_KB(128),     Flash_B0_F6 },
+    {     0x00060000,          FLASH_KB(128),     Flash_B0_F7 },
+    // High Address Space
+    {     0x00080000,          FLASH_KB(256),     Flash_B0_F8 },
+    {     0x000C0000,          FLASH_KB(256),     Flash_B0_F9 },
+};
+
+用户: liaoda66
+时间: 2024-01-03T03:08:03.007Z
+消息: bool Hwi_Flash_E_SetLock_BootSector(bool lockstate)
+{
+   bool                   return_code;
+   Flash_Sector_Number_T  sector_number;
+   uint32_t               current_lock;
+   uint32_t               sector_selector;
+   
+   return_code = false;
+   sector_number = Flash_B0_F0;
+   sector_selector = 1;
+   
+   if (sector_number <= Flash_B0_F7) 
+   {
+       /* Bank 0 Code Flash */
+       if (FLASH.LML.B.LME == 0) 
+       {
+           FLASH.LML.R = HWI_FLASH_LML_PWD;
+       }
+       if (FLASH.SLL.B.SLE == 0) 
+       {
+           FLASH.SLL.R = HWI_FLASH_SLL_PWD;
+       }
+
+       current_lock = FLASH.LML.R;
+        if(lockstate)
+        {
+           current_lock |= sector_selector;
+        }
+        else
+        {
+           current_lock &= ~sector_selector;
+        }
+       FLASH.LML.R = current_lock;
+       FLASH.SLL.R = current_lock;
+       return_code = true;
+   }
+}
+
+用户: liaoda66
+时间: 2024-01-03T03:15:45.996Z
+消息: 用中文
+
+用户: liaoda66
+时间: 2024-01-03T03:17:41.969Z
+消息: void HAL_E_Lock_Flash(uint32_t start_addr, uint32_t size)
+{
+/*   
+    uint32_t curr_addr;
+
+    Flash_Sector_Number_T sector_no;
+    
+    sector_no = Hwi_Flash_E_Get_Sector_Number(start_addr);
+    for(;sector_no <= Hwi_Flash_E_Get_Sector_Number((start_addr + size - 1)); sector_no++)
+    {
+        curr_addr = Hwi_Flash_E_Get_Start_Addr_By_Sector_Number(sector_no);
+        Hwi_Flash_E_SetLock(curr_addr, true);
+    }
+*/    
+    Hwi_Flash_E_SetLock_BootSector(true);/* lock boot sector (32KB) */
+}这是调用的地方
+
+用户: liaoda66
+时间: 2024-01-03T03:19:01.809Z
+消息: 锁定扇区有什么用
+
+用户: liaoda66
+时间: 2024-01-03T03:28:35.647Z
+消息: typedef struct FLASH_struct_tag {
+
+                                        /* Module Configuration Register */
+      FLASH_MCR_32B_tag MCR;               /* offset: 0x0000 size: 32 bit */
+                   /* LML - Low/Mid Address Space Block Locking Register */
+      FLASH_LML_32B_tag LML;               /* offset: 0x0004 size: 32 bit */
+                      /* HBL - High Address Space Block Locking Register */
+      FLASH_HBL_32B_tag HBL;               /* offset: 0x0008 size: 32 bit */
+         /* SLL - Secondary Low/Mid Address Space Block Locking Register */
+      FLASH_SLL_32B_tag SLL;               /* offset: 0x000C size: 32 bit */
+                    /* LMS - Low/Mid Address Space Block Select Register */
+      FLASH_LMS_32B_tag LMS;               /* offset: 0x0010 size: 32 bit */
+                       /* HBS - High Address Space Block Select Register */
+      FLASH_HBS_32B_tag HBS;               /* offset: 0x0014 size: 32 bit */
+                                               /* ADR - Address Register */
+      FLASH_ADR_32B_tag ADR;               /* offset: 0x0018 size: 32 bit */
+      union {
+                              /* Platform Flash Configuration Register 0 */
+         FLASH_PFCR0_32B_tag PFCR0;        /* offset: 0x001C size: 32 bit */
+
+                                        /* Bus Interface Unit Register 0 */
+         FLASH_BIU0_32B_tag BIU0;          /* offset: 0x001C size: 32 bit */
+
+      };
+
+用户: liaoda66
+时间: 2024-01-03T03:29:51.283Z
+消息: The Low/Mid Address Block Locking Register (LML) provides a means  to protect blocks from being 
+modified. These bits, along with bits in the Secondary LLOCK (SLL), determine if the block is locked 
+from program or erase. An “OR” of LML  and SLL determine the final lock status.翻译
+
+用户: liaoda66
+时间: 2024-01-03T03:36:30.122Z
+消息: Hwi_Flash_E_SetLock_BootSector(true)，为什么直接使用true当参数
+
+用户: liaoda66
+时间: 2024-01-03T03:38:22.438Z
+消息: 结合static const Flash_Memory_Map_T Flash_Memory_Map[Flash_Number_of_Sectors] =
+{
+    //   start address            size           Sector Number 
+    // Low Address Space
+    {     0x00000000,          FLASH_KB(16),      Flash_B0_F0 },
+    {     0x00004000,          FLASH_KB(48),      Flash_B0_F1 },
+    {     0x00010000,          FLASH_KB(48),      Flash_B0_F2 },
+    {     0x0001C000,          FLASH_KB(16),      Flash_B0_F3 },
+    {     0x00020000,          FLASH_KB(64),      Flash_B0_F4 },
+    {     0x00030000,          FLASH_KB(64),      Flash_B0_F5 },
+    // Mid Address Space
+    {     0x00040000,          FLASH_KB(128),     Flash_B0_F6 },
+    {     0x00060000,          FLASH_KB(128),     Flash_B0_F7 },
+    // High Address Space
+    {     0x00080000,          FLASH_KB(256),     Flash_B0_F8 },
+    {     0x000C0000,          FLASH_KB(256),     Flash_B0_F9 },
+};
+分析bool Hwi_Flash_E_SetLock(uint32_t in_address, bool lockstate)
+{
+    bool                   return_code;
+    Flash_Sector_Number_T  sector_number;
+    uint32_t               current_lock;
+    uint32_t               sector_selector;
+
+    return_code     = false;
+    sector_number   = Hwi_Flash_E_Get_Sector_Number(in_address);
+    sector_selector = Hwi_Flash_I_Select_Sector(0,in_address);
+
+    if (sector_number <= Flash_B0_F7) 
+    {// low mid address
+        /* Bank 0 Code Flash */
+        if (FLASH.LML.B.LME == 0) 
+        {
+            FLASH.LML.R = HWI_FLASH_LML_PWD;
+        }
+        if (FLASH.SLL.B.SLE == 0) 
+        {
+            FLASH.SLL.R = HWI_FLASH_SLL_PWD;
+        }
+
+        current_lock = FLASH.LML.R;
+         if(lockstate)
+         {
+            current_lock |= sector_selector;
+         }
+         else
+         {
+            current_lock &= ~sector_selector;
+         }
+        FLASH.LML.R = current_lock;
+        FLASH.SLL.R = current_lock;
+        
+        return_code = true;
+    }else if (sector_number <= Flash_B0_F9) 
+    {// high address
+       /* Bank 0 Code Flash */
+       if (FLASH.HBL.B.HBE == 0) 
+       {
+           FLASH.HBL.R = HWI_FLASH_HBL_PWD;
+       }
+       
+       current_lock = FLASH.HBL.R;
+       if(lockstate)
+       {
+          current_lock |= sector_selector;
+       }
+       else
+       {
+          current_lock &= ~sector_selector;
+       }
+       FLASH.HBL.R = current_lock;
+       
+       return_code = true;    
+    }
+    
+    return return_code;
+}
+
+用户: liaoda66
+时间: 2024-01-03T03:39:29.720Z
+消息: 结合static const Flash_Memory_Map_T Flash_Memory_Map[Flash_Number_of_Sectors] =
+{
+    //   start address            size           Sector Number 
+    // Low Address Space
+    {     0x00000000,          FLASH_KB(16),      Flash_B0_F0 },
+    {     0x00004000,          FLASH_KB(48),      Flash_B0_F1 },
+    {     0x00010000,          FLASH_KB(48),      Flash_B0_F2 },
+    {     0x0001C000,          FLASH_KB(16),      Flash_B0_F3 },
+    {     0x00020000,          FLASH_KB(64),      Flash_B0_F4 },
+    {     0x00030000,          FLASH_KB(64),      Flash_B0_F5 },
+    // Mid Address Space
+    {     0x00040000,          FLASH_KB(128),     Flash_B0_F6 },
+    {     0x00060000,          FLASH_KB(128),     Flash_B0_F7 },
+    // High Address Space
+    {     0x00080000,          FLASH_KB(256),     Flash_B0_F8 },
+    {     0x000C0000,          FLASH_KB(256),     Flash_B0_F9 },
+};
+分析bool Hwi_Flash_E_SetLock(uint32_t in_address, bool lockstate)
+{
+    bool                   return_code;
+    Flash_Sector_Number_T  sector_number;
+    uint32_t               current_lock;
+    uint32_t               sector_selector;
+
+    return_code     = false;
+    sector_number   = Hwi_Flash_E_Get_Sector_Number(in_address);
+    sector_selector = Hwi_Flash_I_Select_Sector(0,in_address);
+
+    if (sector_number <= Flash_B0_F7) 
+    {// low mid address
+        /* Bank 0 Code Flash */
+        if (FLASH.LML.B.LME == 0) 
+        {
+            FLASH.LML.R = HWI_FLASH_LML_PWD;
+        }
+        if (FLASH.SLL.B.SLE == 0) 
+        {
+            FLASH.SLL.R = HWI_FLASH_SLL_PWD;
+        }
+
+        current_lock = FLASH.LML.R;
+         if(lockstate)
+         {
+            current_lock |= sector_selector;
+         }
+         else
+         {
+            current_lock &= ~sector_selector;
+         }
+        FLASH.LML.R = current_lock;
+        FLASH.SLL.R = current_lock;
+        
+        return_code = true;
+    }else if (sector_number <= Flash_B0_F9) 
+    {// high address
+       /* Bank 0 Code Flash */
+       if (FLASH.HBL.B.HBE == 0) 
+       {
+           FLASH.HBL.R = HWI_FLASH_HBL_PWD;
+       }
+       
+       current_lock = FLASH.HBL.R;
+       if(lockstate)
+       {
+          current_lock |= sector_selector;
+       }
+       else
+       {
+          current_lock &= ~sector_selector;
+       }
+       FLASH.HBL.R = current_lock;
+       
+       return_code = true;    
+    }
+    
+    return return_code;
+}
+
+用户: liaoda66
+时间: 2024-01-03T03:43:30.166Z
+消息: 结合static const Flash_Memory_Map_T Flash_Memory_Map[Flash_Number_of_Sectors] =
+{
+    //   start address            size           Sector Number 
+    // Low Address Space
+    {     0x00000000,          FLASH_KB(16),      Flash_B0_F0 },
+    {     0x00004000,          FLASH_KB(48),      Flash_B0_F1 },
+    {     0x00010000,          FLASH_KB(48),      Flash_B0_F2 },
+    {     0x0001C000,          FLASH_KB(16),      Flash_B0_F3 },
+    {     0x00020000,          FLASH_KB(64),      Flash_B0_F4 },
+    {     0x00030000,          FLASH_KB(64),      Flash_B0_F5 },
+    // Mid Address Space
+    {     0x00040000,          FLASH_KB(128),     Flash_B0_F6 },
+    {     0x00060000,          FLASH_KB(128),     Flash_B0_F7 },
+    // High Address Space
+    {     0x00080000,          FLASH_KB(256),     Flash_B0_F8 },
+    {     0x000C0000,          FLASH_KB(256),     Flash_B0_F9 },
+};分析bool Hwi_Flash_E_SetLock_BootSector(bool lockstate)
+{
+   bool                   return_code;
+   Flash_Sector_Number_T  sector_number;
+   uint32_t               current_lock;
+   uint32_t               sector_selector;
+   
+   return_code = false;
+   sector_number = Flash_B0_F0;
+   sector_selector = 1;
+   
+   if (sector_number <= Flash_B0_F7) 
+   {
+       /* Bank 0 Code Flash */
+       if (FLASH.LML.B.LME == 0) 
+       {
+           FLASH.LML.R = HWI_FLASH_LML_PWD;
+       }
+       if (FLASH.SLL.B.SLE == 0) 
+       {
+           FLASH.SLL.R = HWI_FLASH_SLL_PWD;
+       }
+
+       current_lock = FLASH.LML.R;
+        if(lockstate)
+        {
+           current_lock |= sector_selector;
+        }
+        else
+        {
+           current_lock &= ~sector_selector;
+        }
+       FLASH.LML.R = current_lock;
+       FLASH.SLL.R = current_lock;
+       return_code = true;
+   }
+}
+
+用户: liaoda66
+时间: 2024-01-03T03:50:27.596Z
+消息: 初始化必须在主函数中进行吗
+
+用户: liaoda66
+时间: 2024-01-03T03:51:29.191Z
+消息: bool Hwi_Flash_E_SetLock_BootSector(bool lockstate)
+{
+   bool                   return_code;
+   Flash_Sector_Number_T  sector_number;
+   uint32_t               current_lock;
+   uint32_t               sector_selector;
+   
+   return_code = false;
+   sector_number = Flash_B0_F0;
+   sector_selector = 1;
+   
+   if (sector_number <= Flash_B0_F7) 
+   {
+       /* Bank 0 Code Flash */
+       if (FLASH.LML.B.LME == 0) 
+       {
+           FLASH.LML.R = HWI_FLASH_LML_PWD;
+       }
+       if (FLASH.SLL.B.SLE == 0) 
+       {
+           FLASH.SLL.R = HWI_FLASH_SLL_PWD;
+       }
+
+       current_lock = FLASH.LML.R;
+        if(lockstate)
+        {
+           current_lock |= sector_selector;
+        }
+        else
+        {
+           current_lock &= ~sector_selector;
+        }
+       FLASH.LML.R = current_lock;
+       FLASH.SLL.R = current_lock;
+       return_code = true;
+   }
+}最后面少了给return有什么影响
+
+用户: liaoda66
+时间: 2024-01-03T03:53:04.402Z
+消息: bool Hwi_Flash_E_SetLock_BootSector(bool lockstate)
+{
+   bool                   return_code;
+   Flash_Sector_Number_T  sector_number;
+   uint32_t               current_lock;
+   uint32_t               sector_selector;
+   
+   return_code = false;
+   sector_number = Flash_B0_F0;
+   sector_selector = 1;
+   
+   if (sector_number <= Flash_B0_F7) 
+   {
+       /* Bank 0 Code Flash */
+       if (FLASH.LML.B.LME == 0) 
+       {
+           FLASH.LML.R = HWI_FLASH_LML_PWD;
+       }
+       if (FLASH.SLL.B.SLE == 0) 
+       {
+           FLASH.SLL.R = HWI_FLASH_SLL_PWD;
+       }
+
+       current_lock = FLASH.LML.R;
+        if(lockstate)
+        {
+           current_lock |= sector_selector;
+        }
+        else
+        {
+           current_lock &= ~sector_selector;
+        }
+       FLASH.LML.R = current_lock;
+       FLASH.SLL.R = current_lock;
+       return_code = true;
+   }
+}最后面少了给return有什么影响
+
+用户: liaoda66
+时间: 2024-01-03T03:54:38.731Z
+消息: 这里一定要有一个bool类型的返回值吗
+
+用户: liaoda66
+时间: 2024-01-04T07:24:29.700Z
+消息: ms-dos
+
+用户: liaoda66
+时间: 2024-01-04T07:39:23.606Z
+消息: #error怎么用
+
+用户: liaoda66
+时间: 2024-01-04T07:48:52.232Z
+消息: #progma
+
+用户: liaoda66
+时间: 2024-01-04T08:45:30.563Z
+消息: ansi
+
+用户: liaoda66
+时间: 2024-01-04T08:47:16.656Z
+消息: 用中文与我交流
+
+用户: liaoda66
+时间: 2024-01-04T08:48:01.840Z
+消息: printf的作用
+
+用户: liaoda66
+时间: 2024-01-04T08:48:32.898Z
+消息: 没有屏幕怎么打印
+
+用户: liaoda66
+时间: 2024-01-05T01:00:54.243Z
+消息: static vuint8_t APA_AngReqExceedDct(void)
+{
+	int32_t 	APATargetAngle = 0;
+	vint32_t	TargetAngleRequest = 0;//
+	vint32_t	SteeringAngle = 0;
+	static vint32_t	LastApaTargetAngReq = 0;//
+	static vuint8_t	APA_AngReqExceed = 0;
+	static vuint8_t ApaAngGradCnt = 0;
+	static vuint8_t ApaAngGradFlg = 0;
+	static vuint8_t ApaAngGradTimeCnt = 0;
+	static vuint8_t	APA_AngReqExceedCnt = 0;
+ 
+	APATargetAngle	= -((int32_t)(((int16_t)(CAN_APS.ADAS_APS_PDC_SWAngCtl.w*10)) - 9000));
+	SteeringAngle	 = ((int32_t)(((int16_t)(AngThm.s16AngleWheel))))<<16;
+
+	TargetAngleRequest = (APATargetAngle<<16);
+
+	if(++ApaAngGradTimeCnt >= 12)
+	{
+		if(F32Abs(F32Abs(TargetAngleRequest) - F32Abs(SteeringAngle)) > FRAC32(513.0/3276.8))
+		{
+			if(++ApaAngGradCnt >= 2)
+			{
+				ApaAngGradFlg = 1;
+				ApaAngGradCnt = 0;
+			}
+			else
+			{
+				//ApaAngGradFlg = 0;
+			}
+		}
+		if(F32Abs(F32Abs(TargetAngleRequest) - F32Abs(SteeringAngle)) < FRAC32(100.0/3276.8))
+		{
+			ApaAngGradCnt = 0;
+			ApaAngGradFlg = 0;
+		}
+		ApaAngGradTimeCnt = 0;
+	}
+	
+	if((F32Abs(TargetAngleRequest) > FRAC32(525.0/3276.8))|| ((((uint32_t)CAN_APS.ADAS_APS_PDC_MaxSWAngSpeedLimit)*4) > 505)
+		|| (ApaAngGradFlg == 1))
+	{
+		APA_AngReqExceedCnt++;
+		if(APA_AngReqExceedCnt > 11)
+		{
+			APA_AngReqExceed = 1;
+		}
+	}
+	else
+	{
+		APA_AngReqExceedCnt = 0;
+		APA_AngReqExceed = 0;
+	}
+
+	LastApaTargetAngReq = TargetAngleRequest;
+	
+	return APA_AngReqExceed;
+}
+
+
+
+用户: liaoda66
+时间: 2024-01-05T01:01:10.303Z
+消息: 用中文分析
+
+用户: liaoda66
+时间: 2024-01-05T01:05:25.258Z
+消息: 揣测一下各变量的含义。详细解释
+
+用户: liaoda66
+时间: 2024-01-05T01:38:06.332Z
+消息: int16_t cntrRemain = 300;
+int32_t TargetAngleTem = 0,CurrentCoeff = FRAC32(0.4);
+int32_t APACoeff = 6;
+void APA_Ctrl_Mode(APA_Ctrl_Object *pa,SWLIBS_2Syst *pi,uint8_t *CtrlMode,int32_t Motor_Speed,int32_t i_EPSReq)
+{
+	static int32_t Abs_Speed_Req = 0;
+
+	if(APACoeff <= 0)
+	{
+		APACoeff = 1;
+	}
+	else if(APACoeff > 20)
+	{
+		APACoeff = 20;
+	}
+	else
+	{
+	    ;
+	}
+	if(pa->EPS_CtrlStopEnable == 1)
+	{
+		TargetAngleTem	= 0; 
+	}
+	else
+	{
+		TargetAngleTem	= (int32_t)(((int16_t)(CanCtrl.r16AngleRequest.w)) - 30000);
+	}
+
+	pa->TargetAngleRequest = (TargetAngleTem<<16);
+	
+	if(pa->TargetAngleRequest > Angle_Limit)
+	{
+		pa->TargetAngleRequest = Angle_Limit;
+	}
+	else if(pa->TargetAngleRequest < F32Neg(Angle_Limit))
+	{
+		pa->TargetAngleRequest = F32Neg(Angle_Limit);
+	}
+	else
+	{
+		;
+	}
+	
+	pa->SteeringAngle	 = ((int32_t)(((int16_t)(AngThm.s16AngleWheel))))<<16;
+	
+	if(pa->EPS_CtrlStopEnable == 1)
+	{
+		pa->TargetAngleSpeedRequest	= FRAC32(1000.0/7500);
+	}
+	else
+	{
+		pa->TargetAngleSpeedRequest	= ((int32_t)(((uint32_t)CanCtrl.u8AngleSpdReq)*SpdReq_Coeff/9))*FRAC32(1.0/7500);
+	}
+	
+	/*	remove after speed test */
+	if (*CtrlMode == 4)
+	{
+		if(pa->TargetAngleRequest > Angle_Limit)//0x15180000 = (540.0*10)<<16
+		{
+			pa->TargetAngle	= Angle_Limit;
+		}
+		else if(pa->TargetAngleRequest < (0 -Angle_Limit))//0xEAE80000 = (-540.0*10)<<16
+		{
+			pa->TargetAngle	= 0 -Angle_Limit;
+		}
+		else
+		{
+			pa->TargetAngle		= pa->TargetAngleRequest;
+		}
+
+		pa->TargetAngleRamp		= GFLIB_Ramp(pa->TargetAngle,&APA_AngleRamp);
+		pa->Angle_Err			= F32SubSat(pa->TargetAngleRamp,pa->SteeringAngle);
+			
+		if(F32Abs(pa->Angle_Err) <= APAErrAngle)  
+		{
+			pa->Angle_Err 		= 0;
+		}
+	
+		Speed_Req 		= pa->Angle_Err/2;
+		
+		Abs_Speed_Req	= F32Abs(Speed_Req);
+
+		Abs_Speed_Req	= Abs_Speed_Req*APACoeff;
+		if(Abs_Speed_Req > RemainSpeed)
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest;
+		}
+		else if(Abs_Speed_Req <= RemainSpeed)
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest/(RemainSpeed>>15)*(Abs_Speed_Req>>15);
+		
+			if((Abs_Speed_Req < MinSpeed)&&(Abs_Speed_Req != 0))
+			{
+				Abs_Speed_Req = MinSpeed;
+			}
+		}
+		else
+		{
+		    ;
+		}
+		
+		if(Abs_Speed_Req > (pa->TargetAngleSpeedRequest))
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest;
+		}
+
+		if(pa->TargetAngleSpeedRequest == 0)
+		{
+			Abs_Speed_Req = 0;
+		}
+		
+		if(Speed_Req > 0)
+		{
+			Speed_Req	= Abs_Speed_Req;
+		}
+		else
+		{
+			Speed_Req	= F32Neg(Abs_Speed_Req);
+		}
+		
+ 		Speed_Req_Ramp	= GFLIB_Ramp(Speed_Req,&APA_speedRamp);
+ 
+		Speed_Err		= F32SubSat(Speed_Req_Ramp,Motor_Speed);
+		pi->s32Arg2		= GFLIB_ControllerPIpAW(Speed_Err,&APA_speedPI);
+		
+		if(pi->s32Arg2	> FRAC32(119.0/238.0))
+		{
+			pi->s32Arg2 = FRAC32(118.9/238.0);
+		}		
+		pi->s32Arg2	= F32Mul(pi->s32Arg2*2,CurrentCoeff);
+  	}
+  	else
+  	{
+  		SpeedDownRampCntr	= cntrRemain;
+  	}
+	
+	/*  remove after speed test */
+  	if (*CtrlMode == 5)
+	{
+		if(F32SubSat(pi->s32Arg2,i_EPSReq) > APAMinCurrent)
+		{
+			pi->s32Arg2	-= APALimitCurrent;
+		}
+		else if(F32SubSat(pi->s32Arg2,i_EPSReq) < (-APAMinCurrent))
+		{
+			pi->s32Arg2	+= APALimitCurrent;
+		}
+		else
+		{
+			*CtrlMode		= 3;
+		}
+
+		/* 退出位置环模式之后，PID积分清零 */
+		//	APA_speedPI.s32InK_1			= 0;
+		//	APA_speedPI.s32IntegPartK_1		= 0;
+		//	APA_speedPI.u16LimitFlag		= 0;
+		/*  清除角度误差标志 */
+	}	和上面那段代码有什么区别
+
+用户: liaoda66
+时间: 2024-01-05T01:54:16.735Z
+消息: int32_t TargetAngleTem = 0,CurrentCoeff = FRAC32(0.5);
+int32_t APACoeff = 2;
+void APA_Ctrl_Mode(APA_Ctrl_Object *pa,SWLIBS_2Syst *pi,uint8_t *CtrlMode,int32_t Motor_Speed,int32_t i_EPSReq)
+{
+	int32_t Abs_Speed_Req = 0;
+	static int32_t TempSpeedReq=0,Speed_Req0=0;
+	static uint32_t APA_AngleSpd_Limited=0;
+
+	if(APACoeff <= 0)
+	{
+		APACoeff=1;
+	}
+	else if(APACoeff > 20)
+	{
+		APACoeff = 20;
+	}
+
+	TargetAngleTem	= -((int32_t)(((int16_t)(CAN_APS.ADAS_APS_PDC_SWAngCtl.w*10)) - 9000));
+
+	pa->TargetAngleRequest = (TargetAngleTem<<16);
+	
+	if(pa->TargetAngleRequest >FRAC32(520.0/3276.8))
+	{
+		pa->TargetAngleRequest =FRAC32(520.0/3276.8);
+	}
+	else if(pa->TargetAngleRequest < FRAC32(-520.0/3276.8))
+	{
+		pa->TargetAngleRequest =FRAC32(-520.0/3276.8);
+	}
+	pa->SteeringAngle	 = ((int32_t)(((int16_t)(AngThm.s16AngleWheel))))<<16;
+	
+	if((((uint32_t)CAN_APS.ADAS_APS_PDC_MaxSWAngSpeedLimit)*4) < 515)
+	{
+		APA_AngleSpd_Limited = ((uint32_t)CAN_APS.ADAS_APS_PDC_MaxSWAngSpeedLimit)*4;
+	}
+	else
+	{
+		APA_AngleSpd_Limited = 515;
+	}
+	
+	if(((((uint32_t)CAN_APS.ADAS_APS_PDC_MaxSWAngSpeedLimit)*4) < 450) &&((((uint32_t)CAN_APS.ADAS_APS_PDC_MaxSWAngSpeedLimit)*4) >= 350))
+	{
+		APA_AngleSpd_Limited = 550;
+	}
+	else if(((((uint32_t)CAN_APS.ADAS_APS_PDC_MaxSWAngSpeedLimit)*4) <= 350) &&((((uint32_t)CAN_APS.ADAS_APS_PDC_MaxSWAngSpeedLimit)*4) >= 200))
+	{
+		APA_AngleSpd_Limited = 600;
+	}
+	else if((((uint32_t)CAN_APS.ADAS_APS_PDC_MaxSWAngSpeedLimit)*4) <= 200)
+	{
+		APA_AngleSpd_Limited = 650;
+	}
+	else
+	{
+		APA_AngleSpd_Limited = 513;
+		//APA_AngleSpd_Limited = ((uint32_t)CAN_APS.ADAS_APS_PDC_MaxSWAngSpeedLimit)*4;
+	}
+	
+	pa->TargetAngleSpeedRequest	= ((int32_t)(((uint32_t)APA_AngleSpd_Limited)))*FRAC32(3.43/7500);
+	
+	/*	Entry APA mode */
+	if((*CtrlMode == PositionControl)&&(pa->APA_Ctrl_Enabled == true))
+	{
+		if(pa->TargetAngleRequest > FRAC32(515.0/3276.8))//0x15180000 = (540.0*10)<<16
+		{
+			pa->TargetAngle	= FRAC32(515.0/3276.8);
+		}
+		else if(pa->TargetAngleRequest < (FRAC32(-515.0/3276.8)))//0xEAE80000 = (-540.0*10)<<16
+		{
+			pa->TargetAngle	=  FRAC32(-515.0/3276.8);
+		}
+		else
+		{
+			pa->TargetAngle		= pa->TargetAngleRequest;
+		}
+
+		pa->TargetAngleRamp		= GFLIB_Ramp(pa->TargetAngle,&APA_AngleRamp);
+		pa->Angle_Err			= F32SubSat(pa->TargetAngleRamp,pa->SteeringAngle);
+			
+		if(F32Abs(pa->Angle_Err) <= APAErrAngle)  
+		{
+			pa->Angle_Err 		= 0;
+		}
+		else if(pa->Angle_Err > 0)
+		{
+			pa->Angle_Err 	= pa->Angle_Err - APAErrAngle;
+		}
+		else if(pa->Angle_Err < 0)
+		{
+			pa->Angle_Err 	= pa->Angle_Err + APAErrAngle;
+		}
+		else
+		{
+			
+		}
+	
+		Speed_Req 		= pa->Angle_Err/2;
+		
+		if((F32Abs(pa->TargetAngleRamp) <= FRAC32(60.0/3276.8)) && (F32Abs(pa->TargetAngleRamp) > FRAC32(45.0/3276.8)))
+		{
+			APA_speedPI.s16IntegGainShift = -4;
+			APA_speedPI.s32IntegGain = FRAC32(0.546678);
+		}
+		else if((F32Abs(pa->TargetAngleRamp) <= FRAC32(45.0/3276.8)) && (F32Abs(pa->TargetAngleRamp) > FRAC32(30.0/3276.8)))
+		{
+			APA_speedPI.s16IntegGainShift = -5;
+			APA_speedPI.s32IntegGain = FRAC32(0.846678);
+		}
+		else if((F32Abs(pa->TargetAngleRamp) <= FRAC32(30.0/3276.8)) && (F32Abs(pa->TargetAngleRamp) > FRAC32(0.0/3276.8)))
+		{
+			APA_speedPI.s16IntegGainShift = -5;
+			APA_speedPI.s32IntegGain = FRAC32(0.846678);
+		}
+		else
+		{
+			APA_speedPI.s16IntegGainShift = -2;
+			APA_speedPI.s32IntegGain = FRAC32(0.296678);
+		}
+		
+		Abs_Speed_Req	= F32Abs(Speed_Req);
+
+		Abs_Speed_Req	= Abs_Speed_Req*APACoeff;
+		if(Abs_Speed_Req > RemainSpeed)
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest;
+		}
+
+		else if(Abs_Speed_Req <= RemainSpeed)
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest/(RemainSpeed>>15)*(Abs_Speed_Req>>15);
+		
+			//if((Abs_Speed_Req < MinSpeed)&&(Abs_Speed_Req != 0))
+			//{
+			//	Abs_Speed_Req = MinSpeed;
+			//}
+		}
+		
+		if(Abs_Speed_Req > (pa->TargetAngleSpeedRequest))
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest;
+		}
+		
+
+		if(pa->TargetAngleSpeedRequest == 0)
+		{
+			Abs_Speed_Req = 0;
+		}
+		
+		if(Speed_Req > 0)
+		{
+			Speed_Req	= Abs_Speed_Req;
+		}
+		else
+		{
+			Speed_Req	= F32Neg(Abs_Speed_Req);
+		}
+		
+ 		Speed_Req_Ramp	= GFLIB_Ramp(Speed_Req,&APA_speedRamp);
+ 
+		Speed_Err		= F32SubSat(Speed_Req_Ramp,Motor_Speed);
+		pi->s32Arg2	= GFLIB_ControllerPIpAW(Speed_Err,&APA_speedPI);
+		
+		if(pi->s32Arg2	> FRAC32(119.0/238.0))
+		{
+			pi->s32Arg2 = FRAC32(118.9/238.0);
+		}
+		else if(pi->s32Arg2	< FRAC32(-119.0/238.0))
+		{
+			pi->s32Arg2 = FRAC32(-118.9/238.0);
+		}
+		else
+		{
+			pi->s32Arg2	= F32Mul(pi->s32Arg2*2,CurrentCoeff);
+		}
+  	}
+
+	/* Exit Position Mode */
+  	if (*CtrlMode == PositionControlTemp)
+	{
+		if(F32SubSat(pi->s32Arg2,i_EPSReq) > APAMinCurrent)
+		{
+			pi->s32Arg2	-= APALimitCurrent;
+		}
+		else if(F32SubSat(pi->s32Arg2,i_EPSReq) < (-APAMinCurrent))
+		{
+			pi->s32Arg2	+= APALimitCurrent;
+		}
+		else
+		{
+			*CtrlMode		= TorqueControl;
+		}
+
+		/* 閫€鍑轰綅缃幆妯″紡涔嬪悗锛孭ID绉垎娓呴浂 */
+		APA_speedPI.s32InK_1			= 0;
+		APA_speedPI.s32IntegPartK_1		= 0;
+		APA_speedPI.u16LimitFlag		= 0;
+		/*  娓呴櫎瑙掑害璇樊鏍囧織 */
+	}	
+  	pa->LastTargetAng = pa->TargetAngle	;
+}
+和void APA_Ctrl_Mode(APA_Ctrl_Object *pa,SWLIBS_2Syst *pi,uint8_t *CtrlMode,int32_t Motor_Speed,int32_t i_EPSReq)
+{
+	static int32_t Abs_Speed_Req = 0;
+
+	if(APACoeff <= 0)
+	{
+		APACoeff = 1;
+	}
+	else if(APACoeff > 20)
+	{
+		APACoeff = 20;
+	}
+	else
+	{
+	    ;
+	}
+	if(pa->EPS_CtrlStopEnable == 1)
+	{
+		TargetAngleTem	= 0; 
+	}
+	else
+	{
+		TargetAngleTem	= (int32_t)(((int16_t)(CanCtrl.r16AngleRequest.w)) - 30000);
+	}
+
+	pa->TargetAngleRequest = (TargetAngleTem<<16);
+	
+	if(pa->TargetAngleRequest > Angle_Limit)
+	{
+		pa->TargetAngleRequest = Angle_Limit;
+	}
+	else if(pa->TargetAngleRequest < F32Neg(Angle_Limit))
+	{
+		pa->TargetAngleRequest = F32Neg(Angle_Limit);
+	}
+	else
+	{
+		;
+	}
+	
+	pa->SteeringAngle	 = ((int32_t)(((int16_t)(AngThm.s16AngleWheel))))<<16;
+	
+	if(pa->EPS_CtrlStopEnable == 1)
+	{
+		pa->TargetAngleSpeedRequest	= FRAC32(1000.0/7500);
+	}
+	else
+	{
+		pa->TargetAngleSpeedRequest	= ((int32_t)(((uint32_t)CanCtrl.u8AngleSpdReq)*SpdReq_Coeff/9))*FRAC32(1.0/7500);
+	}
+	
+	/*	remove after speed test */
+	if (*CtrlMode == 4)
+	{
+		if(pa->TargetAngleRequest > Angle_Limit)//0x15180000 = (540.0*10)<<16
+		{
+			pa->TargetAngle	= Angle_Limit;
+		}
+		else if(pa->TargetAngleRequest < (0 -Angle_Limit))//0xEAE80000 = (-540.0*10)<<16
+		{
+			pa->TargetAngle	= 0 -Angle_Limit;
+		}
+		else
+		{
+			pa->TargetAngle		= pa->TargetAngleRequest;
+		}
+
+		pa->TargetAngleRamp		= GFLIB_Ramp(pa->TargetAngle,&APA_AngleRamp);
+		pa->Angle_Err			= F32SubSat(pa->TargetAngleRamp,pa->SteeringAngle);
+			
+		if(F32Abs(pa->Angle_Err) <= APAErrAngle)  
+		{
+			pa->Angle_Err 		= 0;
+		}
+	
+		Speed_Req 		= pa->Angle_Err/2;
+		
+		Abs_Speed_Req	= F32Abs(Speed_Req);
+
+		Abs_Speed_Req	= Abs_Speed_Req*APACoeff;
+		if(Abs_Speed_Req > RemainSpeed)
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest;
+		}
+		else if(Abs_Speed_Req <= RemainSpeed)
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest/(RemainSpeed>>15)*(Abs_Speed_Req>>15);
+		
+			if((Abs_Speed_Req < MinSpeed)&&(Abs_Speed_Req != 0))
+			{
+				Abs_Speed_Req = MinSpeed;
+			}
+		}
+		else
+		{
+		    ;
+		}
+		
+		if(Abs_Speed_Req > (pa->TargetAngleSpeedRequest))
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest;
+		}
+
+		if(pa->TargetAngleSpeedRequest == 0)
+		{
+			Abs_Speed_Req = 0;
+		}
+		
+		if(Speed_Req > 0)
+		{
+			Speed_Req	= Abs_Speed_Req;
+		}
+		else
+		{
+			Speed_Req	= F32Neg(Abs_Speed_Req);
+		}
+		
+ 		Speed_Req_Ramp	= GFLIB_Ramp(Speed_Req,&APA_speedRamp);
+ 
+		Speed_Err		= F32SubSat(Speed_Req_Ramp,Motor_Speed);
+		pi->s32Arg2		= GFLIB_ControllerPIpAW(Speed_Err,&APA_speedPI);
+		
+		if(pi->s32Arg2	> FRAC32(119.0/238.0))
+		{
+			pi->s32Arg2 = FRAC32(118.9/238.0);
+		}		
+		pi->s32Arg2	= F32Mul(pi->s32Arg2*2,CurrentCoeff);
+  	}
+  	else
+  	{
+  		SpeedDownRampCntr	= cntrRemain;
+  	}
+	
+	/*  remove after speed test */
+  	if (*CtrlMode == 5)
+	{
+		if(F32SubSat(pi->s32Arg2,i_EPSReq) > APAMinCurrent)
+		{
+			pi->s32Arg2	-= APALimitCurrent;
+		}
+		else if(F32SubSat(pi->s32Arg2,i_EPSReq) < (-APAMinCurrent))
+		{
+			pi->s32Arg2	+= APALimitCurrent;
+		}
+		else
+		{
+			*CtrlMode		= 3;
+		}
+
+		/* 退出位置环模式之后，PID积分清零 */
+		//	APA_speedPI.s32InK_1			= 0;
+		//	APA_speedPI.s32IntegPartK_1		= 0;
+		//	APA_speedPI.u16LimitFlag		= 0;
+		/*  清除角度误差标志 */
+	}	
+的区别
+
+用户: liaoda66
+时间: 2024-01-05T02:09:08.036Z
+消息: 控制模式的区别
+
+用户: liaoda66
+时间: 2024-01-05T02:09:51.387Z
+消息: 请结合具体代码
+
+用户: liaoda66
+时间: 2024-01-05T02:12:37.275Z
+消息: SpeedDownRampCntr是什么
+
+用户: liaoda66
+时间: 2024-01-05T02:13:11.513Z
+消息: cntrRemain是300
+
+用户: liaoda66
+时间: 2024-01-05T02:15:20.215Z
+消息: 两段代码在限制条件上有什么区别
+
+用户: liaoda66
+时间: 2024-01-05T02:17:07.614Z
+消息: APACoeff被初始化为6
+
+用户: liaoda66
+时间: 2024-01-05T02:17:40.843Z
+消息: if(APACoeff <= 0)
+	{
+		APACoeff = 1;
+	}
+	else if(APACoeff > 20)
+	{
+		APACoeff = 20;
+	}
+	else
+	{
+	    ;
+	}
+
+用户: liaoda66
+时间: 2024-01-05T02:26:38.848Z
+消息: void EPSIOCtrl(uint8_t EngFault,uint8_t AtState,Switch_State_Object *pSwitch)
+{
+	if((AtState != STATE_FAULT) && (Pin_IGLock == 1) && (FirstCheck.RelayOnDone == 1))
+	{
+		SC_State.PowerRelayStatus = 1;	/* Enable PowerRelay */
+	}
+	else
+	{
+		SC_State.PowerRelayStatus = 0;	/* Disable PowerRelay */
+		flexpwm0_disable_outputs();
+	}
+	
+	
+	/* 当有点火信号、发动机转速信号时，开启点火锁*/
+	if(pSwitch->SwitchState == true)
+	{
+		SC_State.EPS_Switch_state	= 1;
+		APACtrl.EPS_CtrlStopEnable	= 0;
+		IGLock_ON();
+	}
+
+	else
+	{
+		SC_State.EPS_Switch_state 	= 0;
+		APACtrl.EPS_CtrlStopEnable	= 1;
+	}
+
+	if(APACtrl.EPS_CtrlStopReady == 1)	
+	{
+		SC_State.IGSwitchOffDelay++;
+	}
+	else
+	{
+		SC_State.IGSwitchOffDelay = 0;
+	}
+		
+	if(SC_State.IGSwitchOffDelay >= 8000)
+	{
+		IGLock_OFF();
+		SC_State.IGSwitchOffDelay = 8000;
+		mc_mode_reset();
+	}
+
+}中APACtrl.EPS_CtrlStopEnable	= 0，这个值有作用域限制吗
+
+用户: liaoda66
+时间: 2024-01-05T02:28:18.221Z
+消息: 这是个结构体中的成员，一般不是要求函数内的变量作用域都限制在函数内吗，为什么其它函数里面在使用这个变量的值
+
+用户: liaoda66
+时间: 2024-01-05T02:53:16.900Z
+消息: 那结构体中的一个成员在多个函数中被多次修改，不是容易出错吗
+
+用户: liaoda66
+时间: 2024-01-05T02:54:30.032Z
+消息: 如何传递副本
+
+用户: liaoda66
+时间: 2024-01-05T03:19:15.513Z
+消息: 什么是线控
+
+用户: liaoda66
+时间: 2024-01-05T06:18:58.996Z
+消息: tFrac32		Angle_Limit		= FRAC32(525.0/3276.8);//--
+
+用户: liaoda66
+时间: 2024-01-05T06:19:12.180Z
+消息: tFrac32		Angle_Limit		= FRAC32(525.0/3276.8);//--
+
+用户: liaoda66
+时间: 2024-01-05T06:19:26.771Z
+消息: tFrac32		Angle_Limit		= FRAC32(525.0/3276.8);//--
+
+用户: liaoda66
+时间: 2024-01-05T06:19:45.507Z
+消息: tFrac32		Angle_Limit		= FRAC32(525.0/3276.8);//--
+
+用户: liaoda66
+时间: 2024-01-05T06:19:51.708Z
+消息: 1
+
+用户: liaoda66
+时间: 2024-01-05T06:20:08.647Z
+消息: 请用中文与我交流
+
+用户: liaoda66
+时间: 2024-01-05T06:20:13.376Z
+消息: tFrac32		Angle_Limit		= FRAC32(525.0/3276.8);//
+
+用户: liaoda66
+时间: 2024-01-05T06:20:29.348Z
+消息: #define FRAC32(x)           ((tFrac32) ((x) < (FRACT_MAX) ? ((x) >= FRACT_MIN ? (x)*0x80000000 : 0x80000000) : 0x7fffffff))
+
+用户: liaoda66
+时间: 2024-01-05T06:21:19.540Z
+消息: 是的
+
+用户: liaoda66
+时间: 2024-01-05T06:23:12.461Z
+消息: 这个三元运算符的判断顺序是什么
+
+用户: liaoda66
+时间: 2024-01-05T07:09:27.061Z
+消息: Description	Resource	Path	Location	Type
+No library file found matching 'libE:/Workspace/ECU04Z/branches/ER005/ ECU04Z_E_ER005_LOTUS_3.5T_APPSW/Sources/MCLIB/ MCLIB_MPC560xP_BETA094[1].PPCEABI.V.UC.a{.dylib|.a}' or 'E:/Workspace/ECU04Z/ branches/ER005/ECU04Z_E_ER005_LOTUS_3.5T_APPSW/Sources/MCLIB/ MCLIB_MPC560xP_BETA094[1].PPCEABI.V.UC.a'	ECU04Z_E_ER005_LOTUS_3.5T_APPSW		 	C/C++ Problem是什么意思
+
+
+用户: liaoda66
+时间: 2024-01-06T03:13:55.285Z
+消息: void pos_error(void)
+{
+	uint16_t cnt = 0;
+	uint16_t luw_MotorAngleValtemp = 0;
+	static int16_t temp = 0 ,TempOffset = 0; 
+	luw_MotorAngleVal = g_PospeData;
+	pos_raw = luw_MotorAngleVal.angle & 0xfff;
+	cnt = (pos_raw >> 7);
+	TempOffset = (cnt<<7);
+
+	temp =error[cnt] + (error[cnt+1] - error[cnt])*(pos_raw - TempOffset)/128;
+	luw_MotorAngleValtemp = (uint16_t) (pos_raw + temp);
+	if (luw_MotorAngleValtemp >= 4095)
+	{
+		luw_MotorAngleValtemp -= 4095;
+	}
+	else if (luw_MotorAngleValtemp < 0)
+	{
+		luw_MotorAngleValtemp += 4095;
+	}
+	else
+	{
+		;
+	}
+	luw_MotorAngleVal.angle = luw_MotorAngleValtemp;
+	pos_last = luw_MotorAngleVal.angle&0xfff;//luw_MotorAngleValtemp;
+	//pos_error = pos_last - pos_raw;
+},其中int16_t error[33] = Angleerror，且#define Angleerror {-1,-3,-5,-6,-6,-5,-4,-2,-1,1,2,4,5,5,3,1,-2,-3,-5,-6,-6,-6,-4,-2,-1,0,3,3,5,4,3,0,-1}，试着分析这段代码的内容
+
+用户: liaoda66
+时间: 2024-01-06T03:15:48.144Z
+消息: 我需要进一步解释	temp =error[cnt] + (error[cnt+1] - error[cnt])*(pos_raw - TempOffset)/128;
+	luw_MotorAngleValtemp = (uint16_t) (pos_raw + temp);的意思，已知与角度补偿相关
+
+用户: liaoda66
+时间: 2024-01-06T03:17:51.723Z
+消息: 右移七位是缩小多少
+
+用户: liaoda66
+时间: 2024-01-06T03:25:45.965Z
+消息: 	uint16_t cnt = 0;
+	uint16_t luw_MotorAngleValtemp = 0;
+	static int16_t temp = 0 ,TempOffset = 0; 
+	luw_MotorAngleVal = g_PospeData;
+	pos_raw = luw_MotorAngleVal.angle & 0xfff;
+	cnt = (pos_raw >> 7);
+	TempOffset = (cnt<<7);，执行完之后TempOffset不是只有12位了吗
+
+用户: liaoda66
+时间: 2024-01-08T01:01:06.476Z
+消息: 请用中文与我交流
+
+用户: liaoda66
+时间: 2024-01-08T01:01:28.837Z
+消息: excel宏是什么
+
+用户: liaoda66
+时间: 2024-01-08T01:03:52.819Z
+消息: c和c++的区别有多大
+
+用户: liaoda66
+时间: 2024-01-08T02:18:45.035Z
+消息: void APA_Mode(int32_t MotorSpeed,int32_t iQReq,uint8_t *CtrlMode,APA_Ctrl_Object *pa,APA_State_Object *psta,CAN_EPS_1_Object *pes1,CAN_APS_Object *pcc)
+{
+	APA_Status_Output(pes1,pcc);
+	APA_Ctrl_Output(pes1,pcc);
+	APA_Intervention_Detect();
+}
+
+
+用户: liaoda66
+时间: 2024-01-08T02:29:15.347Z
+消息: Description	Resource	Path	Location	Type
+identifier 'CAN_CDCU_CTRL_Object' redeclared as 'void'	EPS_APA.c	/ECU04T_E_ER005_LOTUS_3.5T_APPSW/Sources/E0xx/E011	line 164	C/C++ Problem
+
+
+用户: liaoda66
+时间: 2024-01-08T02:56:18.199Z
+消息: Description	Resource	Path	Location	Type
+illegal function definition	EPS_APA.h	/ECU04T_E_ER005_LOTUS_3.5T_APPSW/Sources/E0xx/E011	line 169	C/C++ Problem
+
+
+用户: liaoda66
+时间: 2024-01-08T03:21:13.885Z
+消息: typedef struct
+{
+	uint8_t		LKA_Enable;
+	uint8_t		LKA_DisReq;
+	uint8_t		LKA_EnaReq;
+	uint8_t		APA_Enable;
+	uint8_t		APA_DisReq;
+	uint8_t		APA_EnaReq;
+	
+	uint8_t		Car_Type;
+}CAN_ADAS_Config_Object;/* */
+/*
+
+用户: liaoda66
+时间: 2024-01-08T03:21:46.659Z
+消息: 这些变量可能来自can总线对吗
+
+用户: liaoda66
+时间: 2024-01-08T05:28:53.735Z
+消息: Description	Resource	Path	Location	Type
+ expression syntax error implicit arithmetic conversion from 'int' to 'unsigned char'	EPS_APA.c	/ECU04T_E_ER005_LOTUS_3.5T_APPSW/Sources/E0xx/E011	line 364	C/C++ Problem
+
+
+用户: liaoda66
+时间: 2024-01-08T05:58:13.293Z
+消息: if(pa->EPS_CtrlStopEnable == 1)为什么报了Description	Resource	Path	Location	Type
+undefined identifier 'pa'	EPS_APA.c	/ECU04T_E_ER005_LOTUS_3.5T_APPSW/Sources/E0xx/E011	line 415	C/C++ Problem
+
+
+用户: liaoda66
+时间: 2024-01-08T06:22:17.480Z
+消息: void APA_Ctrl_Mode(APA_Ctrl_Object *pa,SWLIBS_2Syst *pi,uint8_t *CtrlMode,int32_t Motor_Speed,int32_t i_EPSReq)
+{
+	static int32_t Abs_Speed_Req = 0;
+
+	if(APACoeff <= 0)
+	{
+		APACoeff = 1;
+	}
+	else if(APACoeff > 20)
+	{
+		APACoeff = 20;
+	}
+	else
+	{
+	    ;
+	}
+	if(pa->EPS_CtrlStopEnable == 1)
+	{
+		TargetAngleTem	= 0; 
+	}
+	else
+	{
+		TargetAngleTem	= (int32_t)(((int16_t)(CanCtrl.r16AngleRequest.w)) - 30000);
+	}
+
+	pa->TargetAngleRequest = (TargetAngleTem<<16);
+	
+	if(pa->TargetAngleRequest > Angle_Limit)
+	{
+		pa->TargetAngleRequest = Angle_Limit;
+	}
+	else if(pa->TargetAngleRequest < F32Neg(Angle_Limit))
+	{
+		pa->TargetAngleRequest = F32Neg(Angle_Limit);
+	}
+	else
+	{
+		;
+	}
+	
+	pa->SteeringAngle	 = ((int32_t)(((int16_t)(AngThm.s16AngleWheel))))<<16;
+	
+	if(pa->EPS_CtrlStopEnable == 1)
+	{
+		pa->TargetAngleSpeedRequest	= FRAC32(1000.0/7500);
+	}
+	else
+	{
+		pa->TargetAngleSpeedRequest	= ((int32_t)(((uint32_t)CanCtrl.u8AngleSpdReq)*SpdReq_Coeff/9))*FRAC32(1.0/7500);
+	}
+	
+	/*	remove after speed test */
+	if (*CtrlMode == 4)
+	{
+		if(pa->TargetAngleRequest > Angle_Limit)//0x15180000 = (540.0*10)<<16
+		{
+			pa->TargetAngle	= Angle_Limit;
+		}
+		else if(pa->TargetAngleRequest < (0 -Angle_Limit))//0xEAE80000 = (-540.0*10)<<16
+		{
+			pa->TargetAngle	= 0 -Angle_Limit;
+		}
+		else
+		{
+			pa->TargetAngle		= pa->TargetAngleRequest;
+		}
+
+		pa->TargetAngleRamp		= GFLIB_Ramp(pa->TargetAngle,&APA_AngleRamp);
+		pa->Angle_Err			= F32SubSat(pa->TargetAngleRamp,pa->SteeringAngle);
+			
+		if(F32Abs(pa->Angle_Err) <= APAErrAngle)  
+		{
+			pa->Angle_Err 		= 0;
+		}
+	
+		Speed_Req 		= pa->Angle_Err/2;
+		
+		Abs_Speed_Req	= F32Abs(Speed_Req);
+
+		Abs_Speed_Req	= Abs_Speed_Req*APACoeff;
+		if(Abs_Speed_Req > RemainSpeed)
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest;
+		}
+		else if(Abs_Speed_Req <= RemainSpeed)
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest/(RemainSpeed>>15)*(Abs_Speed_Req>>15);
+		
+			if((Abs_Speed_Req < MinSpeed)&&(Abs_Speed_Req != 0))
+			{
+				Abs_Speed_Req = MinSpeed;
+			}
+		}
+		else
+		{
+		    ;
+		}
+		
+		if(Abs_Speed_Req > (pa->TargetAngleSpeedRequest))
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest;
+		}
+
+		if(pa->TargetAngleSpeedRequest == 0)
+		{
+			Abs_Speed_Req = 0;
+		}
+		
+		if(Speed_Req > 0)
+		{
+			Speed_Req	= Abs_Speed_Req;
+		}
+		else
+		{
+			Speed_Req	= F32Neg(Abs_Speed_Req);
+		}
+		
+ 		Speed_Req_Ramp	= GFLIB_Ramp(Speed_Req,&APA_speedRamp);
+ 
+		Speed_Err		= F32SubSat(Speed_Req_Ramp,Motor_Speed);
+		pi->s32Arg2		= GFLIB_ControllerPIpAW(Speed_Err,&APA_speedPI);
+		
+		if(pi->s32Arg2	> FRAC32(119.0/238.0))
+		{
+			pi->s32Arg2 = FRAC32(118.9/238.0);
+		}		
+		pi->s32Arg2	= F32Mul(pi->s32Arg2*2,CurrentCoeff);
+  	}
+  	else
+  	{
+  		SpeedDownRampCntr	= cntrRemain;
+  	}
+	
+	/*  remove after speed test */
+  	if (*CtrlMode == 5)
+	{
+		if(F32SubSat(pi->s32Arg2,i_EPSReq) > APAMinCurrent)
+		{
+			pi->s32Arg2	-= APALimitCurrent;
+		}
+		else if(F32SubSat(pi->s32Arg2,i_EPSReq) < (-APAMinCurrent))
+		{
+			pi->s32Arg2	+= APALimitCurrent;
+		}
+		else
+		{
+			*CtrlMode		= 3;
+		}
+
+	
+		//	APA_speedPI.s32InK_1			= 0;
+		//	APA_speedPI.s32IntegPartK_1		= 0;
+		//	APA_speedPI.u16LimitFlag		= 0;
+
+
+	}	
+}这是函数1
+
+用户: liaoda66
+时间: 2024-01-08T06:24:08.044Z
+消息: 为什么函数编译时说pa、Motor_Speed未定义
+
+用户: liaoda66
+时间: 2024-01-08T06:52:30.146Z
+消息: Description	Resource	Path	Location	Type
+undefined: 'LKA_Status_Output' Referenced from 'LKA_Mode' in EPS_ADAS_c.obj	ECU04T_E_ER005_LOTUS_3.5T_APPSW		 	C/C++ Problem
+
+
+用户: liaoda66
+时间: 2024-01-08T06:57:48.496Z
+消息: Description	Resource	Path	Location	Type
+undefined: 'VCUCAN_Err' Referenced from 'faultDetection' in ECU04Z_5643L_APP_V1_0_c.obj	ECU04T_E_ER005_LOTUS_3.5T_APPSW		 	C/C++ Problem
+
+
+用户: liaoda66
+时间: 2024-01-08T07:02:03.194Z
+消息: Description	Resource	Path	Location	Type
+undefined: 'EPS_ADAS_Config' Referenced from 'EPS_CAN' in CAN_Vehicle_c.obj	ECU04T_E_ER005_LOTUS_3.5T_APPSW		 	C/C++ Problem
+
+
+用户: liaoda66
+时间: 2024-01-08T07:04:28.728Z
+消息: Description	Resource	Path	Location	Type
+undefined: 'EPS_CANRX_Ctrl' Referenced from 'EPS_CAN' in CAN_Vehicle_c.obj	ECU04T_E_ER005_LOTUS_3.5T_APPSW		 	C/C++ Problem
+
+
+用户: liaoda66
+时间: 2024-01-08T07:04:39.549Z
+消息: Description	Resource	Path	Location	Type
+undefined: 'EPS_CANRX_Ctrl' Referenced from 'EPS_CAN' in CAN_Vehicle_c.obj	ECU04T_E_ER005_LOTUS_3.5T_APPSW		 	C/C++ Problem
+
+
+用户: liaoda66
+时间: 2024-01-08T07:04:59.110Z
+消息: 用中文与我交流，并解释Description	Resource	Path	Location	Type
+undefined: 'EPS_CANRX_Ctrl' Referenced from 'EPS_CAN' in CAN_Vehicle_c.obj	ECU04T_E_ER005_LOTUS_3.5T_APPSW		 	C/C++ Problem
+
+
+用户: liaoda66
+时间: 2024-01-08T07:05:08.242Z
+消息: 用中文与我交流，并解释Description	Resource	Path	Location	Type
+undefined: 'EPS_CANRX_Ctrl' Referenced from 'EPS_CAN' in CAN_Vehicle_c.obj	ECU04T_E_ER005_LOTUS_3.5T_APPSW		 	C/C++ Problem
+
+
+用户: liaoda66
+时间: 2024-01-08T07:05:26.318Z
+消息: 用中文与我交流，并描述Description	Resource	Path	Location	Type
+undefined: 'EPS_CANRX_Ctrl' Referenced from 'EPS_CAN' in CAN_Vehicle_c.obj	ECU04T_E_ER005_LOTUS_3.5T_APPSW		 	C/C++ Problem
+
+
+用户: liaoda66
+时间: 2024-01-09T03:19:14.212Z
+消息: Description	Resource	Path	Location	Type
+a pointer/array type was expected for this operation instead of 'long'	ECU04Z_5643L_APP_V1.0.c	/ECU04T_E_ER005_LOTUS_3.5T_APPSW/Sources	line 1884	C/C++ Problem
+
+
+用户: liaoda66
+时间: 2024-01-09T08:13:17.892Z
+消息: void EPS_CAN_Assignin(uint8_t Ctrlmode,int32_t MotorSpd,Vehicle_Speed_Object *pv,Engine_Speed_Object *pe,SAS_state_Object *pSAS)
+
+用户: liaoda66
+时间: 2024-01-09T08:13:44.394Z
+消息: void EPS_CAN_Assignin(uint8_t Ctrlmode,int32_t MotorSpd,Vehicle_Speed_Object *pv,Engine_Speed_Object *pe,SAS_state_Object *pSAS)
+{
+
+	/* EPS控制模式由角度控制变为对齐模式时, EPS进行转角零位（中位）标定 */
+	if((CanCtrl.u8CtrlMode == 1)&&(LastCtrlMode == 0))
+	{
+		if((ReqTimes++)>=10)
+		{
+			AngleCalibrateReq = 0;
+			ReqTimes = 10;
+		}
+		else
+		{
+			AngleCalibrateReq = 1;
+		}
+	}
+	else
+	{
+		AngleCalibrateReq = 0;
+		ReqTimes = 0;
+	}
+	LastCtrlMode = CanCtrl.u8CtrlMode;
+
+用户: liaoda66
+时间: 2024-01-09T08:14:06.656Z
+消息: 这些参数在哪里使用了
+
+用户: liaoda66
+时间: 2024-01-12T06:51:09.026Z
+消息: void SAS_calibration(SWLIBS_2Syst *pir)
+
+用户: liaoda66
+时间: 2024-01-16T05:35:55.466Z
+消息: 你好，请用中文与我交流
+
+用户: liaoda66
+时间: 2024-01-16T05:36:05.920Z
+消息: #define    F_RealCurrSmall 		0x80000000 /* 45 */
+#define    F_OverRealCurrent 	0x40000000 /* 42 */
+#define    F_TorquePD			0x20000000 /* Reserved */
+#define    F_Sensor5VCircuit	0x10000000 /* Reserved */
+
+#define    F_HallCircuit		0x08000000 /* Reserved */
+#define    F_TorqueMain			0x04000000 /* 11 */
+#define    F_TorqueSub			0x02000000 /* 15 */
+
+#define    F_SensorPower5V		0x00800000 /* 14 */
+#define    F_MainSubAddError	0x00400000 /* 13 */
+#define    F_PhACurrentHigh		0x00200000 /* 43 */
+#define    F_PhBCurrentHigh		0x00100000 /* 43 */
+
+用户: liaoda66
+时间: 2024-01-16T06:21:03.409Z
+消息: WARN_TEMP_HEAT
+
+用户: liaoda66
+时间: 2024-01-16T06:21:17.797Z
+消息: 你觉得这个变量是什么意思
+
+用户: liaoda66
+时间: 2024-01-19T02:14:27.896Z
+消息: 你好
+
+用户: liaoda66
+时间: 2024-01-19T02:14:57.922Z
+消息: 请用中文与我交流，并结合你所知的汽车电子和嵌入式开发的相关知识为我解答
+
+用户: liaoda66
+时间: 2024-01-19T02:18:57.644Z
+消息: int16_t cntrRemain = 300;
+int32_t TargetAngleTem = 0,CurrentCoeff1 = FRAC32(0.44);
+int32_t APACoeff = 6;
+void APA_Ctrl_Mode(APA_Ctrl_Object *pa,SWLIBS_2Syst *pi,uint8_t *CtrlMode,int32_t Motor_Speed,int32_t i_EPSReq)
+{
+	static int32_t Abs_Speed_Req = 0;
+
+	if(APACoeff <= 0)
+	{
+		APACoeff = 1;
+	}
+	else if(APACoeff > 20)
+	{
+		APACoeff = 20;
+	}
+	else
+	{
+	    ;
+	}
+	if(pa->EPS_CtrlStopEnable == 1)
+	{
+		TargetAngleTem	= 0; 
+	}
+	else
+	{
+		TargetAngleTem	= (int32_t)(((int16_t)(CanCtrl.r16AngleRequest.w)) - 30000);
+	}
+
+	pa->TargetAngleRequest = (TargetAngleTem<<16);
+	
+	if(pa->TargetAngleRequest > Angle_Limit)
+	{
+		pa->TargetAngleRequest = Angle_Limit;
+	}
+	else if(pa->TargetAngleRequest < F32Neg(Angle_Limit))
+	{
+		pa->TargetAngleRequest = F32Neg(Angle_Limit);
+	}
+	else
+	{
+		;
+	}
+	
+	pa->SteeringAngle	 = ((int32_t)(((int16_t)(AngThm.s16AngleWheel))))<<16;
+	
+	if(pa->EPS_CtrlStopEnable == 1)
+	{
+		pa->TargetAngleSpeedRequest	= FRAC32(1000.0/7500);
+	}
+	else
+	{
+		pa->TargetAngleSpeedRequest	= ((int32_t)(((uint32_t)CanCtrl.u8AngleSpdReq)*SpdReq_Coeff/9))*FRAC32(1.0/7500);
+	}
+	
+	/*	remove after speed test */
+	if (*CtrlMode == 4)
+	{
+		if(pa->TargetAngleRequest > Angle_Limit)//0x15180000 = (540.0*10)<<16
+		{
+			pa->TargetAngle	= Angle_Limit;
+		}
+		else if(pa->TargetAngleRequest < (0 -Angle_Limit))//0xEAE80000 = (-540.0*10)<<16
+		{
+			pa->TargetAngle	= 0 -Angle_Limit;
+		}
+		else
+		{
+			pa->TargetAngle		= pa->TargetAngleRequest;
+		}
+
+		pa->TargetAngleRamp		= GFLIB_Ramp(pa->TargetAngle,&APA_AngleRamp);
+		pa->Angle_Err			= F32SubSat(pa->TargetAngleRamp,pa->SteeringAngle);
+			
+		if(F32Abs(pa->Angle_Err) <= APAErrAngle)  
+		{
+			pa->Angle_Err 		= 0;
+		}
+	
+		Speed_Req 		= pa->Angle_Err/2;
+		
+		Abs_Speed_Req	= F32Abs(Speed_Req);
+
+		Abs_Speed_Req	= Abs_Speed_Req*APACoeff;
+		if(Abs_Speed_Req > RemainSpeed)
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest;
+		}
+		else if(Abs_Speed_Req <= RemainSpeed)
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest/(RemainSpeed>>15)*(Abs_Speed_Req>>15);
+		
+			if((Abs_Speed_Req < MinSpeed)&&(Abs_Speed_Req != 0))
+			{
+				Abs_Speed_Req = MinSpeed;
+			}
+		}
+		else
+		{
+		    ;
+		}
+		
+		if(Abs_Speed_Req > (pa->TargetAngleSpeedRequest))
+		{
+			Abs_Speed_Req = pa->TargetAngleSpeedRequest;
+		}
+
+		if(pa->TargetAngleSpeedRequest == 0)
+		{
+			Abs_Speed_Req = 0;
+		}
+		
+		if(Speed_Req > 0)
+		{
+			Speed_Req	= Abs_Speed_Req;
+		}
+		else
+		{
+			Speed_Req	= F32Neg(Abs_Speed_Req);
+		}
+		
+ 		Speed_Req_Ramp	= GFLIB_Ramp(Speed_Req,&APA_speedRamp);
+ 
+		Speed_Err		= F32SubSat(Speed_Req_Ramp,Motor_Speed);
+		pi->s32Arg2		= GFLIB_ControllerPIpAW(Speed_Err,&APA_speedPI);
+		
+		if(pi->s32Arg2	> FRAC32(119.0/238.0))
+		{
+			pi->s32Arg2 = FRAC32(118.9/238.0);
+		}		
+		pi->s32Arg2	= F32Mul(pi->s32Arg2*2,CurrentCoeff1);
+  	}
+  	else
+  	{
+  		SpeedDownRampCntr	= cntrRemain;
+  	}
+	
+	/*  remove after speed test */
+  	if (*CtrlMode == 5)
+	{
+		if(F32SubSat(pi->s32Arg2,i_EPSReq) > APAMinCurrent)
+		{
+			pi->s32Arg2	-= APALimitCurrent;
+		}
+		else if(F32SubSat(pi->s32Arg2,i_EPSReq) < (-APAMinCurrent))
+		{
+			pi->s32Arg2	+= APALimitCurrent;
+		}
+		else
+		{
+			*CtrlMode		= 3;
+		}
+
+		/* 退出位置环模式之后，PID积分清零 */
+		//	APA_speedPI.s32InK_1			= 0;
+		//	APA_speedPI.s32IntegPartK_1		= 0;
+		//	APA_speedPI.u16LimitFlag		= 0;
+		/*  清除角度误差标志 */
+	}	
+}，代码中TargetAngleTem是目标角度，CurrentCoeff1是电流系数，我想根据不同的目标角度分成不同的电流系数，大致是目标角度为-100到100之间时电流系数为0.4，否则则为0.55，该如何在原有基础上增加代码
+
+用户: liaoda66
+时间: 2024-01-24T10:41:33.882Z
+消息: 请用中文与我交流
+
+用户: liaoda66
+时间: 2024-01-24T10:42:20.870Z
+消息: 控制器的pi系数和控制器系统的超调量有什么关系？
+
+用户: liaoda66
+时间: 2024-01-24T10:42:55.778Z
+消息: 超调量与稳态时间的关系
+
+用户: liaoda66
+时间: 2024-01-24T10:43:36.943Z
+消息: 控制器的响应时间和稳态时间的关系。
+
+用户: liaoda66
+时间: 2024-01-24T10:44:32.311Z
+消息: 什么是阶跃响应
+
+用户: liaoda66
+时间: 2024-01-26T02:01:41.095Z
+消息: 正弦跟随是什么
+
+用户: liaoda66
+时间: 2024-01-26T10:12:45.278Z
+消息: 请用中文与我交流
+
+用户: liaoda66
+时间: 2024-01-26T10:13:11.228Z
+消息: 	if(pa->EPS_CtrlStopEnable == 1)
+	{
+		TargetAngleTem	= 0; 
+	}
+	else
+	{
+		TargetAngleTem	= (int32_t)(((int16_t)(CanCtrl.r16AngleRequest.w)) - 30000);
+	}
+    
+	if (TargetAngleTem >= -100 & TargetAngleTem <= 100 )
+	{	
+		CurrentCoeff = FRAC32(0.4);	
+	}
+	else
+	{	
+		CurrentCoeff = FRAC32(0.65);	
+	}	
+		这段代码有什么问题吗
+
+用户: liaoda66
+时间: 2024-01-26T10:14:20.334Z
+消息: 	if(pa->EPS_CtrlStopEnable == 1)
+	{
+		TargetAngleTem	= 0; 
+	}
+	else
+	{
+		TargetAngleTem	= (int32_t)(((int16_t)(CanCtrl.r16AngleRequest.w)) - 30000);
+	}
+    
+	if (TargetAngleTem >= -100 && TargetAngleTem <= 100 )
+	{	
+		CurrentCoeff = FRAC32(0.4);	
+	}
+	else
+	{	
+		CurrentCoeff = FRAC32(0.65);	
+	}	现在还有什么问题吗
+
+用户: liaoda66
+时间: 2024-01-26T10:15:12.563Z
+消息: TargetAngleTem强制转换成int32_t后，值会变吗
+
+用户: liaoda66
+时间: 2024-01-26T10:18:49.720Z
+消息: 如果还是	if(pa->EPS_CtrlStopEnable == 1)
+	{
+		TargetAngleTem	= 0; 
+	}
+	else
+	{
+		TargetAngleTem	= (int32_t)(((int16_t)(CanCtrl.r16AngleRequest.w)) - 30000);
+	}
+    
+	if (TargetAngleTem >= -100 & TargetAngleTem <= 100 )
+	{	
+		CurrentCoeff = FRAC32(0.4);	
+	}
+	else
+	{	
+		CurrentCoeff = FRAC32(0.65);	
+	}	
+	的话，会出现什么问题
+
+用户: liaoda66
+时间: 2024-01-26T10:19:22.336Z
+消息: 按位与会产生什么影响
+
+用户: liaoda66
+时间: 2024-01-26T10:22:24.197Z
+消息: if（001&100），这个语句能通过判定吗
+
+用户: liaoda66
+时间: 2024-01-27T03:12:29.678Z
+消息: 正弦跟随响应延时
+
+用户: liaoda66
+时间: 2024-01-27T03:15:02.187Z
+消息: 在整车can网络中，最上层到最下层的延时有多大
+
+用户: liaoda66
+时间: 2024-01-27T03:16:22.031Z
+消息: 我的控制器阶跃响应延时在90ms左右，但是正弦跟随的响应延时有120ms，这是为什么
+
+用户: liaoda66
+时间: 2024-01-27T03:23:39.554Z
+消息: 频率响应
+
+用户: liaoda66
+时间: 2024-01-27T03:29:42.168Z
+消息: 正弦跟随的最小可跟随周期是什么
+
+用户: liaoda66
+时间: 2024-01-27T03:31:01.645Z
+消息: 正弦跟随的最小可跟随周期和响应延时有什么关系吗
+
+用户: liaoda66
+时间: 2024-01-27T08:05:32.564Z
+消息: fwModule.fwControllerPIp.s32PropGain        = FRAC32(0.5);
+	fwModule.fwControllerPIp.s16PropGainShift   = -4;
+	fwModule.fwControllerPIp.s32IntegGain       = FRAC32(0.5);
+	fwModule.fwControllerPIp.s16IntegGainShift  = -6;
+
+用户: liaoda66
+时间: 2024-01-27T08:05:53.470Z
+消息: fwModule.fwControllerPIp.s32PropGain        = FRAC32(0.5);
+	fwModule.fwControllerPIp.s16PropGainShift   = -4;
+	fwModule.fwControllerPIp.s32IntegGain       = FRAC32(0.5);
+	fwModule.fwControllerPIp.s16IntegGainShift  = -6;
+
+用户: liaoda66
+时间: 2024-01-27T08:25:59.152Z
+消息: #define GFLIB_ControllerPIpAW(s32InErr,pParam)\
+                    GFLIB_ControllerPIpAWANSIC(s32InErr, pParam)
+
+用户: liaoda66
+时间: 2024-01-27T08:26:27.531Z
+消息: #define GFLIB_ControllerPIpAW(s32InErr,pParam)\
+                    GFLIB_ControllerPIpAWANSIC(s32InErr, pParam)
+
+用户: liaoda66
+时间: 2024-01-27T08:27:45.053Z
+消息: 	pi->s32Arg2		= GFLIB_ControllerPIpAW(Speed_Err,&APA_speedPI);
+
+用户: liaoda66
+时间: 2024-01-27T08:28:52.763Z
+消息: 所以包含这段代码的函数在被调用的时候并不需要传递APA_speedPI参数吗
+
+用户: liaoda66
+时间: 2024-01-27T08:31:39.174Z
+消息: 在APA.c文件中初始化了APA_speedPI，在函数调用的文件中也初始化了APA_speedPI，所以在APA.c中的初始化有什么意义
+
+用户: liaoda66
+时间: 2024-01-27T08:32:48.150Z
+消息: 	APA_speedPI.s16IntegGainShift	=  (-6) ;
+
+用户: liaoda66
+时间: 2024-01-27T09:24:29.296Z
+消息: frac32（0.1）和0.1有什么区别
+
+用户: liaoda66
+时间: 2024-01-27T09:24:42.020Z
+消息: frac32（0.1）和0.1有什么区别
+
+用户: liaoda66
+时间: 2024-01-27T09:26:07.940Z
+消息: #define SPEED_PI_INTEG_GAIN_SHIFT                (-5)改成#define SPEED_PI_INTEG_GAIN_SHIFT                (-5.5)是否可行
+
+用户: liaoda66
+时间: 2024-01-27T09:26:27.796Z
+消息: #define SPEED_PI_INTEG_GAIN_SHIFT                (-5)改成#define SPEED_PI_INTEG_GAIN_SHIFT                (-5.5)是否可行
+
+用户: liaoda66
+时间: 2024-01-27T09:27:34.438Z
+消息: #define SPEED_PI_INTEG_GAIN_SHIFT                (-5)改成#define SPEED_PI_INTEG_GAIN_SHIFT                (-5.5)是否可行
+
+用户: liaoda66
+时间: 2024-01-27T09:28:05.245Z
+消息: #define SPEED_PI_INTEG_GAIN_SHIFT                (-5)改成#define SPEED_PI_INTEG_GAIN_SHIFT                (-5.5)是否可行
+
+用户: liaoda66
+时间: 2024-01-27T09:28:28.624Z
+消息: #define SPEED_PI_INTEG_GAIN_SHIFT                (-5)改成#define SPEED_PI_INTEG_GAIN_SHIFT                (-5.5)是否可行
+
+用户: liaoda66
+时间: 2024-01-27T09:29:04.554Z
+消息: #define SPEED_PI_INTEG_GAIN_SHIFT                (-5)改成#define SPEED_PI_INTEG_GAIN_SHIFT                (-5.5)是否可行
+
+用户: liaoda66
+时间: 2024-01-27T09:30:32.366Z
+消息: #define SPEED_PI_INTEG_GAIN_SHIFT (-5)改成#define SPEED_PI_INTEG_GAIN_SHIFT (-5.5)是否可行
+
+用户: liaoda66
+时间: 2024-01-27T09:31:18.679Z
+消息: #define SPEED_PI_INTEG_GAIN_SHIFT (-5)改成#define SPEED_PI_INTEG_GAIN_SHIFT (-5.5)是否可行
+
+用户: liaoda66
+时间: 2024-01-27T09:48:30.197Z
+消息: 比例调节增强对正弦跟随去腥有什么影响
+
+用户: liaoda66
+时间: 2024-01-27T09:49:15.294Z
+消息: 积分调节增强对正弦跟随去腥有什么影响
+
+用户: liaoda66
+时间: 2024-01-27T09:49:53.392Z
+消息: 比例调节增强对正弦跟随曲线有什么影响
+
+用户: liaoda66
+时间: 2024-01-27T09:50:36.772Z
+消息: 比例调节增强对正弦跟随曲线有什么影响
+
+用户: liaoda66
+时间: 2024-01-27T09:50:43.904Z
+消息: 比例调节增强对正弦跟随曲线有什么影响
+
+用户: liaoda66
+时间: 2024-01-27T09:51:03.858Z
+消息: 积分调节增强对正弦跟随曲线有什么影响
+
+用户: liaoda66
+时间: 2024-02-01T07:23:34.563Z
+消息: 11.如图所示，光滑绝缘的水平面上有一边长为L的正方形金属线框 abcd，平行边界 MN、PQ间有垂直于水平面向里的匀强磁场。已知线框的电阻为R.质量为m，线框ab
+(2子水平雨的是的久子地场品金属线椒一水平肉右的垂直于磁场边界
+-Fq=ma	的初速度y金属线框完全穿过磁场后速度大为	
+-F宏x=max	-BILt=mat	-Q=1/2(	(1)线框穿过磁场的过程中产生的焦耳热Q:	)线框在进入磁场的过程中通过金属丝横截面的电荷量q、	(2)匀强磁场的磁感应强度B的大小及线框完全进入磁场后速度v的大小:	ρ=1/2mv--1/m(	
+2=9/2=/	-BL9=m(V-40)	-329=m2	2=0/2	=3/1mx2
+
+用户: liaoda66
+时间: 2024-02-01T07:28:29.447Z
+消息: 11.如图所示，光滑绝缘的水平面上有一边长为L的正方形金属线框 abcd，平行边界 MN、PQ间有垂直于水平面向里的匀强磁场。已知线框的电阻为R.质量为m，线框ab边平行于MN,MN和PQ间的距离大于L，现给金属框一个水平向右的垂直于磁场边界的初速度v0，金属线框完全穿过磁场后速度为二分之一v0，求	(1)线框穿过磁场的过程中产生的焦耳热Q:
+（2）线框在进入磁场的过程中通过金属丝横截面的电荷量q、	
+(3)匀强磁场的磁感应强度B的大小及线框完全进入磁场后速度v的大小:
+
+用户: liaoda66
+时间: 2024-02-01T07:29:02.187Z
+消息: 11.如图所示，光滑绝缘的水平面上有一边长为L的正方形金属线框 abcd，平行边界 MN、PQ间有垂直于水平面向里的匀强磁场。已知线框的电阻为R.质量为m，线框ab边平行于MN,MN和PQ间的距离大于L，现给金属框一个水平向右的垂直于磁场边界的初速度v0，金属线框完全穿过磁场后速度为二分之一v0，求	(1)线框穿过磁场的过程中产生的焦耳热Q:
+（2）线框在进入磁场的过程中通过金属丝横截面的电荷量q、	
+(3)匀强磁场的磁感应强度B的大小及线框完全进入磁场后速度v的大小:
+
+用户: liaoda66
+时间: 2024-02-01T07:29:24.140Z
+消息: 光滑绝缘的水平面上有一边长为L的正方形金属线框 abcd，平行边界 MN、PQ间有垂直于水平面向里的匀强磁场。已知线框的电阻为R.质量为m，线框ab边平行于MN,MN和PQ间的距离大于L，现给金属框一个水平向右的垂直于磁场边界的初速度v0，金属线框完全穿过磁场后速度为二分之一v0，求	(1)线框穿过磁场的过程中产生的焦耳热Q:
+（2）线框在进入磁场的过程中通过金属丝横截面的电荷量q、	
+(3)匀强磁场的磁感应强度B的大小及线框完全进入磁场后速度v的大小:
+
+用户: liaoda66
+时间: 2024-02-05T07:33:09.903Z
+消息: 底层开发有哪些内容
+
+用户: liaoda66
+时间: 2024-02-19T01:15:30.587Z
+消息: 谢谢
+
+用户: liaoda66
+时间: 2024-02-19T01:18:32.975Z
+消息: 什么是lcf
+
+用户: liaoda66
+时间: 2024-02-19T01:18:44.473Z
+消息: lcf文件
+
+用户: liaoda66
+时间: 2024-02-19T01:19:49.288Z
+消息: 模拟机最常用的操作系统是什么
+
+用户: liaoda66
+时间: 2024-02-19T01:20:11.925Z
+消息: 模拟机的定义
+
+用户: liaoda66
+时间: 2024-02-19T01:20:49.399Z
+消息: 为什么无需部署真实环境
+
+用户: liaoda66
+时间: 2024-02-19T01:35:45.756Z
+消息: 虚拟机软件如何使用
+
+用户: liaoda66
+时间: 2024-02-19T01:48:10.928Z
+消息: #pragma push
+#pragma force_active on
+#pragma section data_type ".data_pattern" ".data_pattern"
+__declspec (section ".data_pattern") static const uint16_t DATA_PATTERN[] = 
+{
+/*place holder*/ 0xFFFF,
+/*place holder*/ 0xFFFF,
+/*place holder*/ 0xFFFF,
+/*place holder*/ 0xFFFF,
+/*place holder*/ 0xFFFF,
+/*place holder*/ 0xFFFF,
+/*SW version*/   0x0D01,
+/*presence pattern*/ 0xFACE	
+};
+#pragma force_active off
+#pragma pop
+
+/******************************************************************************
+* Dummy variables, used for calibration @80A
+******************************************************************************/
+#pragma push
+#pragma force_active on
+#pragma section data_type ".__const_data_param" ".__const_data_param"
+__declspec (section ".__const_data_param") const CAB_PARAM_T __cab_param_flash[4] =
+
+用户: liaoda66
+时间: 2024-02-19T01:48:58.537Z
+消息: 用中文帮我解释这段代码
+
+用户: liaoda66
+时间: 2024-02-19T02:37:25.622Z
+消息:  * FlexPWM0 Fault detection macros
+--------------------------------------------*/
+// Phase A,B,C Over Current - status detection (displays actual status of the pin)
+#define OC_STATUS_PHA           (((0x1<<FAULT_PHA) & (pPWM0->FSTS.B.FFPIN))>>FAULT_PHA)
+#define OC_STATUS_PHB           (((0x1<<FAULT_PHB) & (pPWM0->FSTS.B.FFPIN))>>FAULT_PHB)
+#define OC_STATUS_PHC           (((0x1<<FAULT_PHC) & (pPWM0->FSTS.B.FFPIN))>>FAULT_PHC)
+
+// DC Bus Over Voltage - status detection (displays actual status of the pin)
+#define OV_STATUS_DCB           (((0x1<<FAULT_DCBV) & (pPWM0->FSTS.B.FFPIN))>>FAULT_DCBV)
+
+// Phase A,B,C Over Current - flag detection (remains set until manually reset)
+#define OC_FLAG_PHA             (((0x1<<FAULT_PHA) & (pPWM0->FSTS.B.FFLAG))>>FAULT_PHA)
+#define OC_FLAG_PHB             (((0x1<<FAULT_PHB) & (pPWM0->FSTS.B.FFLAG))>>FAULT_PHB)
+#define OC_FLAG_PHC             (((0x1<<FAULT_PHC) & (pPWM0->FSTS.B.FFLAG))>>FAULT_PHC)
+
+// DC Bus Over Voltage - flag detection (remains set until manually reset)
+#define OV_FLAG_DCB             (((0x1<<FAULT_DCBV) & (pPWM0->FSTS.B.FFLAG))>>FAULT_DCBV)
+
+用户: liaoda66
+时间: 2024-02-19T08:47:19.761Z
+消息: 帮我写一篇检察人员观看《第二十条》心得体会，600字
+
+用户: liaoda66
+时间: 2024-02-21T00:15:52.220Z
+消息: ################################################
+# Initialize the core registers: reset timers,
+# MMU, set SPE support and set IVORs.
+################################################
+proc init_z4 {ivpr} {
+    global GPR_GROUP
+    global SPR_GROUP
+    global booke_vle
+    global TLB1_GROUP
+
+       # reset watch dog timer
+    reg ${SPR_GROUP}TCR = 0x0
+
+    # TLB entry 0: base address = 0x0000_0000, 4GB, not guarded, cache inhibited, access all
+    if {$booke_vle == "vle"} {
+        # VLE page
+        reg ${TLB1_GROUP}MMU_CAM0 = 0xB0000008FE0800000000000000000001
+    } else {
+        # BOOKE page
+        reg ${TLB1_GROUP}MMU_CAM0 = 0xB0000008FC0800000000000000000001
+    }
+
+    # set IVPR vector base table high 16-bit and IVOR0 lower 16-bit
+    set ivor0 0x[format %x [expr $ivpr & 0xFFFF]]
+    reg ${SPR_GROUP}IVPR = 0x[format %x [expr $ivpr & 0xFFFF0000]]
+    # Initiliaze only the first 16 IVORs
+    for {set i 0} {$i < 16} {incr i} {
+        # The IVOR branch table must have a 16 byte aligment.
+        reg ${SPR_GROUP}IVOR${i} %d = [expr $ivor0 + $i * 0x10]
+    }
+
+    # enable SPE and Debug interrupts
+    reg ${SPR_GROUP}MSR = 0x2002000
+}
+
+用户: liaoda66
+时间: 2024-02-21T00:25:16.899Z
+消息: （${SPR_GROUP}TCR）是什么
+
+用户: liaoda66
+时间: 2024-02-21T00:26:22.791Z
+消息: lcf文件
+
+用户: liaoda66
+时间: 2024-02-21T00:28:19.307Z
+消息: 内存地址和物理地址
+
+用户: liaoda66
+时间: 2024-02-21T00:31:45.403Z
+消息: 物理地址要比内存地址大吗
+
+用户: liaoda66
+时间: 2024-02-21T00:36:00.441Z
+消息: flash和ram
+
+用户: liaoda66
+时间: 2024-02-21T01:36:21.001Z
+消息: 域名和服务器
+
+用户: liaoda66
+时间: 2024-02-21T01:37:30.168Z
+消息: 云服务器
+
+用户: liaoda66
+时间: 2024-02-21T01:49:55.421Z
+消息: 如何做一个网站
+
+用户: liaoda66
+时间: 2024-02-21T01:51:02.500Z
+消息: 自建网站是怎么被搜索引擎搜到的
+
+用户: liaoda66
+时间: 2024-02-21T01:53:23.449Z
+消息: 什么是网站托管
+
+用户: liaoda66
+时间: 2024-02-21T02:05:20.816Z
+消息: 怎么确定自己搭好的网站能被浏览器打开
+
+用户: liaoda66
+时间: 2024-02-21T02:06:15.743Z
+消息: 如果不兼容该如何修改
+
+用户: liaoda66
+时间: 2024-02-21T02:15:25.191Z
+消息: 静态网站
+
+用户: liaoda66
+时间: 2024-02-21T02:40:36.824Z
+消息: void Eps_Basic_Ctrl_Section(tFrac32 Torque,tU16 VelSpdSect,tU16 VelSpdPositn,Basic_Ctrl_Object *pBasic,tU16 (*tab)[26],tU16 sectTab[])
+{
+	tFrac32	lastT,Tn,Point[2],xy1,xy2;
+	tU16	tempTorque,Err,*p;
+
+	tU8		i = 0,k = 0,n = 0;
+	lastT	= pBasic->BasicTorqueLPValue;
+	
+	//Low pass filter   Tn = CurrentValue*k + LastValue*(1-k)    (0<k<1)
+	Tn		= F32AddSat(F32MulF16F16((tFrac16)(Torque>>16),pBasic->BasicTorqueLPFilterCoeff), \
+				F32MulF16F16((tFrac16)(lastT>>16),F16SubSat(FRAC16(1.0),pBasic->BasicTorqueLPFilterCoeff)));
+	//save Torque Value Last
+	pBasic->BasicTorqueLPValue= Tn;
+	
+	//get Torque look up table value     BasicLookupTabTorque = Tn(Torque???) + (Torque - Tn)*BasicDiffCoeff
+	//pBasic->BasicLookupTabTorque = F32AddSat(Torque , F32MulSatF16F16(pBasic->BasicDiffCoeff, (tFrac16)(F32SubSat(Torque,Tn)>>16)));
+	pBasic->BasicLookupTabTorque = F32AddSat(Torque , F32MulSatF16F16(pBasic->BasicDiffCoeff, F16ShlSat((tFrac16)(F32SubSat(Torque,Tn)>>16),2)));
+
+	tempTorque	= (tU16)(F32AbsSat(pBasic->BasicLookupTabTorque) >> 20);
+
+	//Look up table for basic current
+	if(VelSpdSect == 16)
+	{
+		Err = 1;
+	}
+	else
+	{
+		Err = sectTab[VelSpdSect+1] - sectTab[VelSpdSect];
+		
+		if(sectTab[VelSpdSect+1] <= sectTab[VelSpdSect])
+		{
+			Err = 1;
+		}
+	}
+
+	for(i=0;i<2;i++)
+	{
+		p = tab[VelSpdSect+i];
+		
+		for(k=0;k<PointNumber;k++)
+		{
+			n = 2*k;
+			if(tempTorque < (*(p+n)<<2))
+			{
+				break;
+			}
+			
+			n = n + 2;		
+		}
+		
+		if(n == 0)
+		{
+			Point[i]	=	0;
+		}
+		else if(n >= (PointNumber*2))
+		{
+			Point[i] = *(p+n-1) << 16;
+		}
+		else
+		{
+			/*Point1=y1 +(y2-y1)* (x-x1)/(x2-x1) */	
+			//xy1 = (y2-y1)*(x-x1)	
+			xy1 = F32MulF16F16(F16SubSat(*(p+n+1),*(p+n-1)),F16SubSat(tempTorque, *(p+n-2)<<2));
+			
+			//xy2 = xy1/(x2-x1)
+			xy2 = F32DivF32F16(xy1,F16SubSat(*(p+n)<<2, *(p+n-2)<<2));
+			
+			//Point1=y1 + xy2
+			Point[i] = F32AddSat(*(p+n-1)<<16,xy2);
+		}
+	}
+
+	lastT	=	((((Point[0] >> 16)*(Err - VelSpdPositn) + (Point[1] >> 16)*VelSpdPositn) << 5)/Err)<<12;
+
+	if(Torque > 0) 
+	{
+		pBasic->BasicCtrlResult	=	lastT;
+	}
+	else if(Torque < 0)
+	{
+		pBasic->BasicCtrlResult	=	F32Neg(lastT);
+	}
+	else
+	{
+		pBasic->BasicCtrlResult	=	0;
+	}
+}
+
+用户: liaoda66
+时间: 2024-02-21T02:41:29.673Z
+消息: 请尽可能详细解释
+
+用户: liaoda66
+时间: 2024-02-21T02:53:22.602Z
+消息: BasicTorqueLPValue是什么
+
+用户: liaoda66
+时间: 2024-02-22T08:08:52.198Z
+消息: tempRate = (-pInertia->f32SensorpdRate);
+
+用户: liaoda66
+时间: 2024-02-22T08:16:28.574Z
+消息: tempRate*TabResult
+
+用户: liaoda66
+时间: 2024-02-22T08:32:10.698Z
+消息: 	TabResult = ((inertia_tab[0][VelSpdSect]*(Err - VelSpdPositn) + inertia_tab[0][VelSpdSect + 1]*VelSpdPositn)/Err);
+
+用户: liaoda66
+时间: 2024-02-22T08:48:18.547Z
+消息: err是什么
+
+用户: liaoda66
+时间: 2024-02-22T08:49:49.255Z
+消息: Eps_Inertia_Ctrl_Section(sensor1.Vpd,SpeedSection,SpeedPosition,&iInertia,
+						__cab_param_ram.INERTIA_COEFF_TAB,__cab_param_ram.Speed_Section_TAB);
+
+用户: liaoda66
+时间: 2024-02-22T08:50:49.083Z
+消息: __declspec (section ".__cabdata_ram") static CAB_PARAM_T __cab_param_ram;
+
+用户: liaoda66
+时间: 2024-02-22T08:52:46.805Z
+消息: 所以可以手动修改这个表的值吗
+
+用户: liaoda66
+时间: 2024-02-22T08:55:30.142Z
+消息: 可以通过上位机修改配置对吗
+
+用户: liaoda66
+时间: 2024-02-22T08:55:44.888Z
+消息: 可以通过上位机修改参数配置对吗
+
+用户: liaoda66
+时间: 2024-02-22T08:56:57.922Z
+消息: 什么是插值
+
+用户: liaoda66
+时间: 2024-02-23T01:00:12.513Z
+消息: #define Default_Inertia04U_Ctrl_Object {1,FRAC16(0.95),FRAC16(0.0002),FRAC16(0.09),FRAC16(0.14),FRAC16(10.0/I_MAX),0}带入到typedef	struct{
+	volatile tU8 				InertiaCtrlEn;                              		
+	volatile tS16 				InertiaGainCoeff;                           		
+	volatile tS16 				InertiaDeadTrqRate;                         		
+	volatile tS16 				TrqFilterFactor;                            		
+	volatile tS16 				TrqRateFilterFactor;                       			 
+	volatile tFrac16			InertiaMaxVal;
+	volatile tFrac32			f32InertCtrlResult;
+	
+}Inertia04U_Ctrl_Object;中，InertiaCtrlEn是什么值
+
+用户: liaoda66
+时间: 2024-02-23T01:05:17.229Z
+消息: void Eps_Inertia_Ctrl_Section(tFrac32 Tpd,tU16 VelSpdSect,tU16 VelSpdPositn,Inertia_Ctrl_Object *pInertia,tU16 inertia_tab[2][17],tU16 sectTab[])
+{
+	static tFrac32	tempResult	= 0;
+	tFrac32	tempTpd 	= 0;
+	tFrac32	tempRate 	= 0;
+	tU16	Err			= 0;
+	static tU16	TabResult	= 0;
+	
+	tempTpd 	= Tpd;
+	
+	/* -----Yn = a*Xn +(1-a)*Yn-1----- */
+	pInertia->f32FiltSensorpd=F32Add(F32MulF16F16((tS16)(tempTpd>>16),pInertia->f16InertCtrlFactor),
+		F32MulF16F16((tS16)(pInertia->f32FiltSensorpd>>16),(FRAC16(0.99999)- pInertia->f16InertCtrlFactor)));
+	
+	/* -----Yrate = Xn - Yn----- */
+	pInertia->f32SensorpdRate = (tempTpd-pInertia->f32FiltSensorpd)>>21;
+
+	if(VelSpdSect == 16)
+	{
+		Err = 1;
+	}
+	else
+	{
+		Err = sectTab[VelSpdSect+1] - sectTab[VelSpdSect];
+		
+		if(sectTab[VelSpdSect+1] <= sectTab[VelSpdSect])
+		{
+			Err = 1;
+		}
+	}
+
+
+	/* 扭矩差值的转换*/
+	if(pInertia->f32SensorpdRate < 0)
+	{
+		tempRate = (-pInertia->f32SensorpdRate);
+	}
+	else
+	{
+		tempRate = pInertia->f32SensorpdRate;
+	}
+	
+	/* 查表*/
+	TabResult = ((inertia_tab[0][VelSpdSect]*(Err - VelSpdPositn) + inertia_tab[0][VelSpdSect + 1]*VelSpdPositn)/Err);
+	/* Iresult = Trate*Tab*Coeff，计算与扭矩值有关的惯性部分  */
+	tempResult = F32MulF16F16((tS16)(tempRate*TabResult),pInertia->f16InertCtrlCoeff)<<1;
+
+	/* 规定死区 */
+	if(tempResult < FRAC32(0.3/I_MAX))
+	{
+		tempResult = 0;
+	}
+	/* 限幅 */
+	else if(tempResult > pInertia->f32InertCtrlResultMax)
+	{
+		tempResult = pInertia->f32InertCtrlResultMax;
+	}
+	/* 查表，得出与扭矩值无关的惯性部分*/
+	tempResult += ((inertia_tab[1][VelSpdSect]*(Err - VelSpdPositn) + inertia_tab[1][VelSpdSect + 1]*VelSpdPositn)/Err)*FRAC32(0.1/I_MAX);
+
+	/* 规定惯性的方向 */
+	if(pInertia->f32SensorpdRate < 0)
+	{
+		pInertia->f32InertCtrlResult = -tempResult;
+	}
+	else
+	{
+		pInertia->f32InertCtrlResult = tempResult;	
+	}
+}和oid Eps_Inertia_Ctrl_Section_04U(tFrac32 Tpd,tU16 VelSpd,Inertia04U_Ctrl_Object *pInertiaTab,tU16 sectTab[])
+{
+	tFrac16 TempResult = 0;
+    static tFrac16 TorqueFilter = 0;
+    static tFrac16 TorqueValueRate = 0;
+    tFrac16 Torque;
+	tFrac16 y1 = 0;
+    tFrac16 y2 = 0;
+    tU16    x1 = 0;
+	tU16    x2 = 0;
+	tU8     i  = 0;
+
+	/* [ICA_REQ012]Limit vehicle speed range */
+	if (VelSpd > 169)
+	{
+		VelSpd = 169;
+	}
+	else
+	{
+
+	}
+	Torque	= (tFrac16)(Tpd>>16);
+	
+	/* [ICA_REQ013]Filtering Torque */
+	TorqueFilter = F16Add(F16Mul(Torque, pInertiaTab->TrqFilterFactor),
+			F16Mul(TorqueFilter,(FRAC16(1.0)- pInertiaTab->TrqFilterFactor)));
+	
+    /* [ICA_REQ014]Calculate rate of torque change */
+	TorqueValueRate = Torque - TorqueFilter;
+	
+	/* [ICA_REQ015]Set dead zone of  */
+	if (TorqueValueRate >= pInertiaTab->InertiaDeadTrqRate)
+	{
+		TorqueValueRate -= pInertiaTab->InertiaDeadTrqRate;
+	}
+	else if(TorqueValueRate <= -pInertiaTab->InertiaDeadTrqRate)
+	{
+		TorqueValueRate += pInertiaTab->InertiaDeadTrqRate;
+	}
+	else
+	{
+		TorqueValueRate = 0;
+	}
+	
+	/* [FCA_REQ016]Calculate Cofficient Query Parameter  */
+	for (i = 0; i < 17; i++)
+	{
+		/* Query form  */
+		if ((VelSpd >= sectTab[i])&&(VelSpd < sectTab[i+1]))
+		{
+			break;
+		}
+		else
+		{
+		}
+	}
+
+	if(i == (17 - 1))
+	{
+		i--;
+	}
+	else
+	{
+	}	
+	x1 = sectTab[i];
+	x2 = sectTab[i+1];
+	y1 = InertiaCoeffTab[0][i];
+	y2 = InertiaCoeffTab[0][i+1];
+	
+	/* [ICA_REQ017]Calculate Inertia Result  */	
+	TempResult = F16Mul(LUT1D_General_F16(x1, x2, y1,y2, VelSpd), TorqueValueRate);
+	
+	/* [ICA_REQ018]Zoom Inertia Control Section */
+	TempResult = F16Mul(TempResult, pInertiaTab->InertiaGainCoeff);
+	
+	/* [ICA_REQ019]Limit Inertia Control Section */
+	if(TempResult > pInertiaTab->InertiaMaxVal)
+	{
+		TempResult = pInertiaTab->InertiaMaxVal;
+	}
+	else if(TempResult < (-pInertiaTab->InertiaMaxVal))
+	{
+		TempResult = -pInertiaTab->InertiaMaxVal;
+	}		
+	pInertiaTab->f32InertCtrlResult = F32Mul(((tFrac32)(TempResult<<16)),FRAC32(200./238.0));
+}
+的区别
+
+用户: liaoda66
+时间: 2024-02-23T01:13:49.197Z
+消息: #define Default_Inertia04U_Ctrl_Object {1,FRAC16(0.95),FRAC16(0.0002),FRAC16(0.09),FRAC16(0.14),FRAC16(10.0/I_MAX),0}是个数组吗
+
+用户: liaoda66
+时间: 2024-02-23T01:15:12.595Z
+消息: 如果把4个值赋值给只有三个成员的结构体会怎么样
+
+用户: liaoda66
+时间: 2024-02-23T01:16:16.428Z
+消息: 2个值赋给有三个成员的结构体会怎么样
+
+用户: liaoda66
+时间: 2024-02-23T01:16:51.860Z
+消息: 2个值赋给有三个成员的数组会怎么样
+
+用户: liaoda66
+时间: 2024-02-23T01:17:20.240Z
+消息: 4个值赋给有三个成员的数组会怎么样
+
+用户: liaoda66
+时间: 2024-02-23T01:17:55.042Z
+消息: 把一个数组的值赋值给结构体是否可行
+
+用户: liaoda66
+时间: 2024-02-23T01:18:25.254Z
+消息: 数组和结构体的区别，并举例说明
+
+用户: liaoda66
+时间: 2024-02-23T02:16:49.989Z
+消息: void Eps_Mot_State(tFrac32 MotSpeed,Mot_State_Object *pMot)
+{
+		tFrac32	tempMspeed,tempPre1;
+
+		if(pMot->AccCalculateTimer++ >= 3)
+		{
+	
+			//2st filter Yn = 0.0234375*Xn + 1.77723275*Y(n-1) - 0.80078125*Y(n-2);
+			tempMspeed	= pMot->MotSpeed2orderLPValue;
+			tempPre1	= pMot->MotSpeedPre1;
+
+			pMot->MotSpeedPre2	=	pMot->MotSpeedPre1;
+			pMot->MotSpeedPre1	=	pMot->MotSpeed2orderLPValue;
+			pMot->MotSpeed2orderLPValue	=	F32AddSat(F32AddSat(F32MulF16F16(FRAC16(0.0234375), MotSpeed>>16), tempMspeed), \
+									F32SubSat(F32MulF16F16(FRAC16(0.77734375), tempMspeed>>16), F32MulF16F16(FRAC16(0.80078125), tempPre1>>16)));
+			//Low pass filter	Nn = CurrentValue*k + LastValue*(1-k)	 (0<k<1)
+			tempPre1	=	pMot->MotSpeedLPValue;
+			pMot->MotSpeedLPValuePre	=	pMot->MotSpeedLPValue;
+			tempMspeed	=	F32AddSat(F32MulF16F16((tFrac16)(pMot->MotSpeed2orderLPValue>>16),pMot->MotSpeedLPFilterCoeff), \
+						F32MulF16F16((tFrac16)(tempPre1>>16),F16SubSat(FRAC16(0.999999),pMot->MotSpeedLPFilterCoeff)));
+			pMot->MotSpeedLPValue	= tempMspeed;
+			
+			//Calculate Acceleration of Motor
+			pMot->MotAccValue = F32ShlSat(F32SubSat(tempMspeed, tempPre1),3);
+
+			pMot->AccCalculateTimer = 0;
+        }
+}
+
+
+用户: liaoda66
+时间: 2024-02-23T02:24:35.376Z
+消息: 怎么确定是递增判断
+
+用户: liaoda66
+时间: 2024-02-23T02:31:20.480Z
+消息: DeadtimeComp是什么
+
+用户: liaoda66
+时间: 2024-02-23T07:28:37.816Z
+消息: 加速热疲劳
+
+用户: liaoda66
+时间: 2024-02-23T07:36:24.988Z
+消息: 什么叫弱磁
+
+用户: liaoda66
+时间: 2024-02-23T07:36:51.264Z
+消息: 什么叫电机进弱磁
+
+用户: liaoda66
+时间: 2024-02-23T08:22:20.153Z
+消息: 细说原因
+
+用户: liaoda66
+时间: 2024-02-26T01:34:55.214Z
+消息: void	DeadtimeComp(SWLIBS_3Syst *pInOut, DeadtimeComp_T *pParam,tFrac16 pATon,tFrac16 pBTon,tFrac16 pCTon)
+{
+	register tFrac32		phA_Ton;
+	register tFrac32		phB_Ton;
+	register tFrac32		phC_Ton;
+	register tFrac32		up_lim;
+	register tFrac32		low_lim;
+	
+	up_lim = pParam->dtcLimParam.s32UpperLimit;
+	low_lim = pParam->dtcLimParam.s32LowerLimit;
+	// read PWMX inputs
+	/* read captured pwm duty cycle fbck CVAL0 catch  */
+//	phA_Ton						= (F16Sub((tFrac16)(pPWM0->SUB[0].CVAL0.R),(tFrac16)(pPWM0->SUB[0].CVAL1.R)));
+//	phB_Ton						= (F16Sub((tFrac16)(pPWM0->SUB[1].CVAL0.R),(tFrac16)(pPWM0->SUB[1].CVAL1.R)));
+//	phC_Ton						= (F16Sub((tFrac16)(pPWM0->SUB[2].CVAL0.R),(tFrac16)(pPWM0->SUB[2].CVAL1.R)));
+
+	/* calculation of the real phase duty cycles applied to motor */
+	if(pATon > 5999)
+	{
+		pParam->pwm32Fbck.s32Arg1	= (F32MulF16F16(5999,pParam->f32PwmFrek)<<3);
+	}
+	else
+	{
+		pParam->pwm32Fbck.s32Arg1	= (F32MulF16F16(pATon,pParam->f32PwmFrek)<<3);
+	}
+	if(pBTon > 5999)
+	{
+		pParam->pwm32Fbck.s32Arg2	= (F32MulF16F16(5999,pParam->f32PwmFrek)<<3);
+	}
+	else
+	{
+		pParam->pwm32Fbck.s32Arg2	= (F32MulF16F16(pBTon,pParam->f32PwmFrek)<<3);
+	}
+	if(pCTon > 5999)
+	{
+		pParam->pwm32Fbck.s32Arg3	= (F32MulF16F16(5999,pParam->f32PwmFrek)<<3);
+	}
+	else
+	{
+		pParam->pwm32Fbck.s32Arg3	= (F32MulF16F16(pCTon,pParam->f32PwmFrek)<<3);
+	}
+
+	/* calculation of the pulse width error for each phase */
+	pParam->uAbcErr.s32Arg1		= (F32Sub(pParam->pwm32K_1.s32Arg1, pParam->pwm32Fbck.s32Arg1));
+	pParam->uAbcErr.s32Arg2		= (F32Sub(pParam->pwm32K_1.s32Arg2, pParam->pwm32Fbck.s32Arg2));
+	pParam->uAbcErr.s32Arg3		= (F32Sub(pParam->pwm32K_1.s32Arg3, pParam->pwm32Fbck.s32Arg3));
+
+phA_Ton = pParam->uAbcErr.s32Arg1>>3;
+phB_Ton = pParam->uAbcErr.s32Arg2>>3;
+phC_Ton = pParam->uAbcErr.s32Arg3>>3;
+
+pParam->uAbcErr.s32Arg1	+= phA_Ton;
+pParam->uAbcErr.s32Arg2	+= phB_Ton;
+pParam->uAbcErr.s32Arg3	+= phC_Ton;
+	/* re-enable capture real PWM duty cycles on PWM_X inputs */
+//	pPWM0->SUB[0].CAPTCTRLX.B.ARMX	= 1;
+//	pPWM0->SUB[1].CAPTCTRLX.B.ARMX	= 1;
+//	pPWM0->SUB[2].CAPTCTRLX.B.ARMX	= 1;
+
+	/* Limitation of the maximal time difference */
+//	pParam->uAbcComp.s32Arg1	= GFLIB_Limit(pParam->uAbcErr.s32Arg1,&pParam->dtcLimParam);
+//	pParam->uAbcComp.s32Arg2	= GFLIB_Limit(pParam->uAbcErr.s32Arg2,&pParam->dtcLimParam);
+//	pParam->uAbcComp.s32Arg3	= GFLIB_Limit(pParam->uAbcErr.s32Arg3,&pParam->dtcLimParam);
+
+	pParam->uAbcComp.s32Arg1	= 	(pParam->uAbcErr.s32Arg1 > up_lim) ? up_lim :\
+								  	(pParam->uAbcErr.s32Arg1 < low_lim) ? low_lim :\
+								  	 pParam->uAbcErr.s32Arg1;
+	pParam->uAbcComp.s32Arg2	= 	(pParam->uAbcErr.s32Arg2 > up_lim) ? up_lim : \
+									(pParam->uAbcErr.s32Arg2 < low_lim) ? low_lim :\
+									 pParam->uAbcErr.s32Arg2;	
+	pParam->uAbcComp.s32Arg3	= 	(pParam->uAbcErr.s32Arg3 > up_lim) ? up_lim :\
+									(pParam->uAbcErr.s32Arg3 < low_lim) ? low_lim :\
+									 pParam->uAbcErr.s32Arg3;
+									
+//	pParam->uAbcComp.s32Arg1	= (pParam->uAbcComp.s32Arg1 < low_lim) ? low_lim : pParam->uAbcComp.s32Arg1;
+//	pParam->uAbcComp.s32Arg2	= (pParam->uAbcComp.s32Arg2 < low_lim) ? low_lim : pParam->uAbcComp.s32Arg2;
+//	pParam->uAbcComp.s32Arg3	= (pParam->uAbcComp.s32Arg3 < low_lim) ? low_lim : pParam->uAbcComp.s32Arg3;									
+
+	/* store required phase A duty-cycle for next calculation */
+	if(enable_Dead == 1)
+	pInOut->s32Arg1 			= F32AddSat(pInOut->s32Arg1, pParam->uAbcComp.s32Arg1);
+	if(pInOut->s32Arg1 < 0)
+		pInOut->s32Arg1 = 0;
+	pParam->pwm32K_1.s32Arg1	= pInOut->s32Arg1;
+
+	/* store required phase B duty-cycle for next calculation */
+	if(enable_Dead == 1)
+	pInOut->s32Arg2				= F32AddSat(pInOut->s32Arg2, pParam->uAbcComp.s32Arg2);
+	if(pInOut->s32Arg2 < 0)
+		pInOut->s32Arg2 = 0;
+	pParam->pwm32K_1.s32Arg2	= pInOut->s32Arg2;
+
+	/* store required phase C duty-cycle for next calculation */
+	if(enable_Dead == 1)
+	pInOut->s32Arg3 			= F32AddSat(pInOut->s32Arg3, pParam->uAbcComp.s32Arg3);
+	if(pInOut->s32Arg3 < 0)
+		pInOut->s32Arg3 = 0;
+	pParam->pwm32K_1.s32Arg3	= pInOut->s32Arg3;
+
+}
+
+用户: liaoda66
+时间: 2024-02-26T02:19:23.242Z
+消息: 请说得更详细一点
+
+用户: liaoda66
+时间: 2024-02-26T02:19:32.012Z
+消息: 请说得更详细一点
+
+用户: liaoda66
+时间: 2024-02-26T02:19:39.572Z
+消息: 请说得更详细一点
+
+用户: liaoda66
+时间: 2024-02-26T02:19:53.412Z
+消息: void	DeadtimeComp(SWLIBS_3Syst *pInOut, DeadtimeComp_T *pParam,tFrac16 pATon,tFrac16 pBTon,tFrac16 pCTon)
+{
+	register tFrac32		phA_Ton;
+	register tFrac32		phB_Ton;
+	register tFrac32		phC_Ton;
+	register tFrac32		up_lim;
+	register tFrac32		low_lim;
+	
+	up_lim = pParam->dtcLimParam.s32UpperLimit;
+	low_lim = pParam->dtcLimParam.s32LowerLimit;
+	// read PWMX inputs
+	/* read captured pwm duty cycle fbck CVAL0 catch  */
+//	phA_Ton						= (F16Sub((tFrac16)(pPWM0->SUB[0].CVAL0.R),(tFrac16)(pPWM0->SUB[0].CVAL1.R)));
+//	phB_Ton						= (F16Sub((tFrac16)(pPWM0->SUB[1].CVAL0.R),(tFrac16)(pPWM0->SUB[1].CVAL1.R)));
+//	phC_Ton						= (F16Sub((tFrac16)(pPWM0->SUB[2].CVAL0.R),(tFrac16)(pPWM0->SUB[2].CVAL1.R)));
+
+	/* calculation of the real phase duty cycles applied to motor */
+	if(pATon > 5999)
+	{
+		pParam->pwm32Fbck.s32Arg1	= (F32MulF16F16(5999,pParam->f32PwmFrek)<<3);
+	}
+	else
+	{
+		pParam->pwm32Fbck.s32Arg1	= (F32MulF16F16(pATon,pParam->f32PwmFrek)<<3);
+	}
+	if(pBTon > 5999)
+	{
+		pParam->pwm32Fbck.s32Arg2	= (F32MulF16F16(5999,pParam->f32PwmFrek)<<3);
+	}
+	else
+	{
+		pParam->pwm32Fbck.s32Arg2	= (F32MulF16F16(pBTon,pParam->f32PwmFrek)<<3);
+	}
+	if(pCTon > 5999)
+	{
+		pParam->pwm32Fbck.s32Arg3	= (F32MulF16F16(5999,pParam->f32PwmFrek)<<3);
+	}
+	else
+	{
+		pParam->pwm32Fbck.s32Arg3	= (F32MulF16F16(pCTon,pParam->f32PwmFrek)<<3);
+	}
+
+	/* calculation of the pulse width error for each phase */
+	pParam->uAbcErr.s32Arg1		= (F32Sub(pParam->pwm32K_1.s32Arg1, pParam->pwm32Fbck.s32Arg1));
+	pParam->uAbcErr.s32Arg2		= (F32Sub(pParam->pwm32K_1.s32Arg2, pParam->pwm32Fbck.s32Arg2));
+	pParam->uAbcErr.s32Arg3		= (F32Sub(pParam->pwm32K_1.s32Arg3, pParam->pwm32Fbck.s32Arg3));
+
+phA_Ton = pParam->uAbcErr.s32Arg1>>3;
+phB_Ton = pParam->uAbcErr.s32Arg2>>3;
+phC_Ton = pParam->uAbcErr.s32Arg3>>3;
+
+pParam->uAbcErr.s32Arg1	+= phA_Ton;
+pParam->uAbcErr.s32Arg2	+= phB_Ton;
+pParam->uAbcErr.s32Arg3	+= phC_Ton;
+	/* re-enable capture real PWM duty cycles on PWM_X inputs */
+//	pPWM0->SUB[0].CAPTCTRLX.B.ARMX	= 1;
+//	pPWM0->SUB[1].CAPTCTRLX.B.ARMX	= 1;
+//	pPWM0->SUB[2].CAPTCTRLX.B.ARMX	= 1;
+
+	/* Limitation of the maximal time difference */
+//	pParam->uAbcComp.s32Arg1	= GFLIB_Limit(pParam->uAbcErr.s32Arg1,&pParam->dtcLimParam);
+//	pParam->uAbcComp.s32Arg2	= GFLIB_Limit(pParam->uAbcErr.s32Arg2,&pParam->dtcLimParam);
+//	pParam->uAbcComp.s32Arg3	= GFLIB_Limit(pParam->uAbcErr.s32Arg3,&pParam->dtcLimParam);
+
+	pParam->uAbcComp.s32Arg1	= 	(pParam->uAbcErr.s32Arg1 > up_lim) ? up_lim :\
+								  	(pParam->uAbcErr.s32Arg1 < low_lim) ? low_lim :\
+								  	 pParam->uAbcErr.s32Arg1;
+	pParam->uAbcComp.s32Arg2	= 	(pParam->uAbcErr.s32Arg2 > up_lim) ? up_lim : \
+									(pParam->uAbcErr.s32Arg2 < low_lim) ? low_lim :\
+									 pParam->uAbcErr.s32Arg2;	
+	pParam->uAbcComp.s32Arg3	= 	(pParam->uAbcErr.s32Arg3 > up_lim) ? up_lim :\
+									(pParam->uAbcErr.s32Arg3 < low_lim) ? low_lim :\
+									 pParam->uAbcErr.s32Arg3;
+									
+//	pParam->uAbcComp.s32Arg1	= (pParam->uAbcComp.s32Arg1 < low_lim) ? low_lim : pParam->uAbcComp.s32Arg1;
+//	pParam->uAbcComp.s32Arg2	= (pParam->uAbcComp.s32Arg2 < low_lim) ? low_lim : pParam->uAbcComp.s32Arg2;
+//	pParam->uAbcComp.s32Arg3	= (pParam->uAbcComp.s32Arg3 < low_lim) ? low_lim : pParam->uAbcComp.s32Arg3;									
+
+	/* store required phase A duty-cycle for next calculation */
+	if(enable_Dead == 1)
+	pInOut->s32Arg1 			= F32AddSat(pInOut->s32Arg1, pParam->uAbcComp.s32Arg1);
+	if(pInOut->s32Arg1 < 0)
+		pInOut->s32Arg1 = 0;
+	pParam->pwm32K_1.s32Arg1	= pInOut->s32Arg1;
+
+	/* store required phase B duty-cycle for next calculation */
+	if(enable_Dead == 1)
+	pInOut->s32Arg2				= F32AddSat(pInOut->s32Arg2, pParam->uAbcComp.s32Arg2);
+	if(pInOut->s32Arg2 < 0)
+		pInOut->s32Arg2 = 0;
+	pParam->pwm32K_1.s32Arg2	= pInOut->s32Arg2;
+
+	/* store required phase C duty-cycle for next calculation */
+	if(enable_Dead == 1)
+	pInOut->s32Arg3 			= F32AddSat(pInOut->s32Arg3, pParam->uAbcComp.s32Arg3);
+	if(pInOut->s32Arg3 < 0)
+		pInOut->s32Arg3 = 0;
+	pParam->pwm32K_1.s32Arg3	= pInOut->s32Arg3;
+
+}
+
+用户: liaoda66
+时间: 2024-02-26T02:20:07.800Z
+消息: 你好
+
+用户: liaoda66
+时间: 2024-02-26T02:20:19.401Z
+消息: 请说得更详细一点
+
+用户: liaoda66
+时间: 2024-02-26T02:21:17.313Z
+消息: 请说得更详细一点
+
+用户: liaoda66
+时间: 2024-02-26T03:33:02.837Z
+消息: 请说得更详细一点
+
+用户: liaoda66
+时间: 2024-02-26T03:33:55.876Z
+消息: 请说得更详细一点
+
+用户: liaoda66
+时间: 2024-02-26T03:34:08.614Z
+消息: 请说得更详细一点
+
+用户: liaoda66
+时间: 2024-02-26T03:34:37.821Z
+消息: 你好
+
+用户: liaoda66
+时间: 2024-02-26T03:39:15.143Z
+消息: 请说得更详细一点
+
+用户: liaoda66
+时间: 2024-02-26T03:41:32.556Z
+消息: 请说得更详细一点
+
+用户: liaoda66
+时间: 2024-02-26T03:46:27.312Z
+消息: 请说得更详细一点
+
+用户: liaoda66
+时间: 2024-02-27T06:30:50.313Z
+消息: 请说得更详细一点
+
+用户: liaoda66
+时间: 2024-02-27T06:31:00.400Z
+消息: 	if(tempAngle > 800)
+	{
+		tempAngle = 800;
+	}
+	
+	i2 = tempAngle/50;
+	
+	k2 = tempAngle%50;
+
+	Result2	=  ((Specific_tab[1][i2]*(50 - k2) + Specific_tab[1][i2 + 1]*k2)/50);
+	
+	tempResult	=  -F32Mul(F32Mul(Result1,Result2),p->SpecificCtrlCoeff);
+
+用户: liaoda66
+时间: 2024-02-27T06:34:44.958Z
+消息: 请说详细一点
+
+用户: liaoda66
+时间: 2024-02-27T06:34:58.683Z
+消息: 请说详细一点
+
+用户: liaoda66
+时间: 2024-02-28T00:34:14.731Z
+消息: specific ctrl可能是什么
+
+用户: liaoda66
+时间: 2024-02-28T00:37:54.178Z
+消息: void EPS_Time_Transition(tFrac32 Input1,tFrac32 Input2,tU16 TimeBase,tU16 TimeDuration,Time_Transittion_Object *pt)
+{
+	tFrac32	tempResult,tempMotSpeed;
+	tU16	tempcoeff= 0;
+	tU16	Err = 0;
+	
+	pt->Time_Duration =TimeDuration/TimeBase;
+	
+	if(pt->Ctrl_State == 1)
+	{
+		pt->Current_Time++;
+		if(pt->Current_Time < duration)
+		{
+			time++;
+		}
+		else
+		{
+			time = duration;
+		}
+	}
+	else
+	{
+		if(time > 0)
+		{
+			time--;
+		}
+		else
+		{
+			time = 0;
+		}
+	}
+	
+	tempcoeff	=  (F32Add(F32Mul((int16_t)input1,(duration - time)),F32Mul((int16_t)input2,duration))/duration)<<16;
+	
+}
+
+用户: liaoda66
+时间: 2024-02-29T12:23:37.785Z
+消息: 帮我写一篇学习本单位先进检察官的心得体会，600字
+
+用户: liaoda66
+时间: 2024-02-29T12:28:15.888Z
+消息: 请帮我写一篇学习公益诉讼部门先进检察官的心得体会，接下来我会列出他的先进事迹：2024年2月28日，湖北省人民检察院召开全省检察机关队伍建设工作会议暨党风廉政建设工作会议，宜城市人民检察院检察官王刚作为襄阳市唯一代表参会，被湖北省人民检察院评为先进个人。
+王刚，男，生于 1968 年 10 月，大学文化，中共党员，现任宜城市人民检察院一级检察官、检委会委员、小河检察室主任,负责检察公益诉讼工作。
+自1994年进入检察系统起，王刚从事检察工作已逾30年，司法体制改革后，王刚进入公益诉讼检察部门工作。从事检察工作以来，该同志恪守忠诚、公正、清廉、文明检察要求，在院党组及上级业务部门的指导下，以检察之责服务宜城经济社会高质量发展。2022 年、2023年宜城检察公益诉讼考核连续两年排名襄阳市第一，被评为优秀等次，王刚本人被评为2018-2022年度全省检察机关先进个人，多次获襄阳市级和湖北省级表彰。
+自从事公益诉讼检察工作以来，王刚所在的公益诉讼部门围绕市委市政府的工作，从服务经济社会高质量发展的大局出发，共办理逾400件各类公益诉讼案件。在流域综合治理、安全生产、国土国财保护、诊疗安全、特种设备等领域，办理了华峰船舶污染案件、汉江非法修建围堤、汉江河道放牧、燃气安全、耕地占用税、医疗器械检定、游乐设施安全等一批典型案件、实现了政治效果、法律效果、社会效果的有机统一。
+在污染治理领域，宜城检察院公益诉讼部门办理华了峰船舶污染案中，秉持“绿水青山就是金山银山”的理念，多次与环保、交通、科经等部门协商，成功推动造船厂转型升级并搬迁至新场地，促使襄阳市绿色智能船舶产业落户小河临港经济区，实现了生态环境保护和经济社会发展的“双赢”。
+在安全生产领域，2022年以来，宜城检察院公益诉讼部门从先后立办燃气安全系列案件 14件，向宜城华润燃气有限公司制发社会治理。经检察机关督促，各行政机关积极履职，对 510 只违法加工燃气瓶进行了合法处置，对25处燃气管线占压进行整改，205 家燃气使用单位安装燃气报警装置，有效消除生产生活中的燃气安全风险。
+在国财保护领域，宜城检察院公益诉讼部门于2022年开展耕地占用税征收公益诉讼监督小专项活动，组织税务等五部门召开听证会，推动制定信息共享和工作配合机制。宜城检察院建立的耕地占用税法律监督模型被全市推广，并入选省院2023年大数据法律监督模型。截至2023年11月累计推动征缴税款２亿多元，该案也成功入选省院优秀典型案例。
+在诊疗安全领域，2023年，宜城检察院公益诉讼部门从医疗计量器具检定这一小项目切入，推动与市监、卫健、公检中心等部门建立协作机制，规范辖区内医疗器械检定和管理工作。截至2023年12月，已推动全市20余家医疗机构申报医疗计量器具的强制检定，累计报检500余台医疗器械，发现并依法强制报废不合格的血压计10余台，有效消除人民群众身边的诊疗安全隐患。
+除了上述案件外，近年来，王刚还办理了蛮河河道违建养殖场、木渠沟水利设施保护、小波超市食品安全、周某某非法捕捞水产品等一批典型案件，以检察之责回应人民关切。
+2024年，王刚同志将继续坚定不移服从服务发展大局、紧扣职责定位，秉持公益诉讼的法律利剑，服务于宜城市“千亿级、五十强、幸福城”目标建设，为宜城市经济社会的高质量发展贡献检察智慧与检察力量。
+
+用户: liaoda66
+时间: 2024-03-01T08:08:38.868Z
+消息: 磁化是什么
+
+用户: liaoda66
+时间: 2024-03-01T08:08:54.605Z
+消息: 会产生永久磁性吗
+
+用户: liaoda66
+时间: 2024-03-01T08:09:26.136Z
+消息: 钢铁是如何磁化的
+
+用户: liaoda66
+时间: 2024-03-01T08:16:03.904Z
+消息: 扭矩传感器有霍尔式的吗
+
+用户: liaoda66
+时间: 2024-03-01T08:16:41.870Z
+消息: 角度传感器除了霍尔式还有什么
+
+用户: liaoda66
+时间: 2024-03-01T08:18:05.350Z
+消息: 电泳
+
+用户: liaoda66
+时间: 2024-03-01T08:21:21.281Z
+消息: 特斯拉计
+
+用户: liaoda66
+时间: 2024-03-01T08:21:48.390Z
+消息: 焊缝处的磁场强度会比较大吗
+
+用户: liaoda66
+时间: 2024-03-06T00:53:16.686Z
+消息: tU16 SpeedPosition = 0;
+tU16 SpeedSection= 0;
+/***************************************************************************//*!
+* @name: 
+* @brief  ���㵱ǰ������ĳ������Σ��Լ���������е�λ��
+*
+*   
+*			
+*			
+*			
+* @param				
+*
+* @return  none
+*
+******************************************************************************/
+
+tU16 VehicleSpeedPositionCalc(tU16 VelSpeed,tU16 sectTab[])
+{
+	tU16 k = 0;
+	
+	for(k=16;k>0;k--)
+	{
+		if(VelSpeed >= sectTab[k])
+		{
+			break;
+		}
+				
+	}
+	
+	/* ��ǰ������������λ��*/
+	if(k == 16)
+	{
+		SpeedPosition = 0;
+	}
+	else
+	{
+		SpeedPosition = VelSpeed - sectTab[k];
+	}
+	
+	
+	/* ���س������ε�ֵ*/
+	return (k);
+}
+
+用户: liaoda66
+时间: 2024-03-06T02:49:17.059Z
+消息: %是什么操作符
+
+用户: liaoda66
+时间: 2024-03-06T02:49:51.016Z
+消息: 如何取商
+
+用户: liaoda66
+时间: 2024-03-06T07:02:40.470Z
+消息: typedef struct
+{
+	REG16			Torque_Duty;
+	REG16			Q_Current;
+	vuint8_t		Temperayure1;
+	vuint8_t		Temperayure2;
+	vuint8_t		ISR_Timer;
+	vint32_t		Test_Cntr;
+	vuint32_t	ISRValue;
+}TestBoard_Object;
+
+
+用户: liaoda66
+时间: 2024-03-06T07:03:02.758Z
+消息: 在嵌入式软件中，这个结构体的值是如何来的
+
+用户: liaoda66
+时间: 2024-03-06T07:03:54.807Z
+消息: 如何实现寄存器映射
+
+用户: liaoda66
+时间: 2024-03-06T07:05:50.100Z
+消息: 为什么许多功能的函数都要在前面加一个计数器，等计数到了再执行
+
+用户: liaoda66
+时间: 2024-03-06T07:06:35.259Z
+消息: void CAN_Send_ForTestBoard(void)
+{
+	static uint16_t TsendCNTR = 0;
+	U8Data	 DataT[8]={0};
+	uint8_t Temp_result=0;
+	
+	/* ����Ϊ1000�ļ����� */
+	if(++TsendCNTR >= 999)
+	{
+		TsendCNTR = 0;
+	}
+	
+	if((VehFault.B.CANBusOff == false)&&(TestMode_En == 1)&&((TsendCNTR%4)==0))
+	{
+		if(++CAN_EPS_Angle.SAS_MESSAGE_COUNT>15)
+		{
+			CAN_EPS_Angle.SAS_MESSAGE_COUNT = 0;
+		}
+		
+		
+		DataT[0].byt		= TestBoard.Q_Current.b.high;
+		DataT[1].byt		= TestBoard.Q_Current.b.low;
+		DataT[2].byt		= TestBoard.Torque_Duty.b.high;
+		DataT[3].byt		= TestBoard.Torque_Duty.b.low;
+		DataT[4].byt		= TestBoard.Temperayure1;
+		DataT[5].byt		= TestBoard.Temperayure2;
+
+		DataT[6].b04.b03	= CAN_EPS_Angle.SAS_MESSAGE_COUNT&0x0F;
+		
+		Temp_result = (uint8_t)((DataT[0].byt+DataT[1].byt+DataT[2].byt+DataT[3].byt+DataT[4].byt)&0xFF);
+		
+		CAN_EPS_Angle.u8CheckSum = (uint8_t)(Temp_result^0xFF);
+		
+		DataT[7].byt	= CAN_EPS_Angle.u8CheckSum;
+		
+		CAN_Send_StandardFrameForTestBoard((uint8_t *)DataT);
+
+	}
+	else
+	{
+		FLEXCAN0.BUF[4].MSG_CS.B.CODE =0x9; 
+	}
+}
+
+用户: liaoda66
+时间: 2024-03-06T07:08:48.147Z
+消息:     if(++TestMode_Timer >= 20020)
+    {    		
+		TestMode_Timer = 20020;
+    }
+  
+   	/* For Main Loop and ADC data Count */
+    if(++FOCISRCntr >= 10)
+    {    		
+	    bMainCtrlBegin	= true;
+        FOCISRCntr		= 0;		
+    }  
+
+用户: liaoda66
+时间: 2024-03-06T07:35:49.517Z
+消息: 	Temp_result = (uint8_t)((DataT[0].byt+DataT[1].byt+DataT[2].byt+DataT[3].byt+DataT[4].byt)&0xFF);
+		
+		CAN_EPS_Angle.u8CheckSum = (uint8_t)(Temp_result^0xFF);
+		
+		DataT[7].byt	= CAN_EPS_Angle.u8CheckSum;
+		
+		CAN_Send_StandardFrameForTestBoard((uint8_t *)DataT);
+
+	}
+	else
+	{
+		FLEXCAN0.BUF[4].MSG_CS.B.CODE =0x9; 
+	}
+}
+

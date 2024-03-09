@@ -1,0 +1,138 @@
+用户: huang657921610
+时间: 2024-01-04T09:23:24.378Z
+消息: 帮我来个自画像
+
+用户: huang657921610
+时间: 2024-01-05T01:57:28.176Z
+消息: 我想做一个工作总结，帮我出一个PPT模板
+
+用户: huang657921610
+时间: 2024-01-05T02:17:55.289Z
+消息: 请给我可以下载的模板链接
+
+用户: huang657921610
+时间: 2024-01-05T02:45:14.800Z
+消息: 你是按键精灵作者，是一个精通编制精简代码的作者，帮我看看这个代码有什么问题Sub 输入坐标准备()
+  
+    返回主界面
+    Delay 1000
+    地图
+    TracePrint "点击地图"
+    左键点击封装 1010,551
+    TracePrint "准备输入X坐标"
+    Delay 500
+    For 8
+        Delay 100
+        dm.keypress 8
+        TracePrint "删除数据"
+    Next
+    Delay 500
+    keylist 分割单独坐标(0), 0, 15
+    Delay 1000
+    左键点击封装 1141,550
+    TracePrint "准备输入y坐标"
+    Delay 1500
+    For 8
+        Delay 100
+        dm.keypress 8
+        TracePrint "删除数据"
+    Next
+    Delay 1500
+    keylist 分割单独坐标(1), 0, 15
+    Delay 1000
+    地图前往 
+    
+    
+        Dim startTime, elapsedTime, remainTime
+    remainTime = 3 * 60
+    Do While True
+        startTime = Timer ' 记录开始时间
+        TracePrint "您选中在测试中"
+        ' 日常任务界面
+        侦察
+        elapsedTime = Timer - startTime ' 计算经过的时间
+        remainTime = remainTime - elapsedTime ' 减去实际时间，计算剩余时间
+        If remainTime <= 0 Then
+            remainTime = 0 ' 确保剩余时间不会为负数
+            Exit Do ' 如果倒计时结束，退出循环
+        End If
+        ' 显示倒计时提示框
+        'MsgBox "下一次执行将在 " & remainTime \ 60 & " 分钟后进行 ", vbOKOnly + vbInformation, "提示"
+        Delay (remainTime Mod 60) * 1000 ' 延迟余下的时间
+        remainTime = 3 * 60 ' 重置剩余时间，进入下一个循环
+    Loop
+    TracePrint "程序结束"
+    
+    
+End Sub
+
+
+用户: huang657921610
+时间: 2024-01-05T02:45:42.153Z
+消息: 优化建议
+
+用户: huang657921610
+时间: 2024-01-05T02:46:06.724Z
+消息: 帮我做成代码
+
+用户: huang657921610
+时间: 2024-01-05T02:55:26.380Z
+消息: 以下是图表的类型：
+
+1. **柱状图语法** - 下面是以图像markdown格式显示的javascript柱状图示例：
+
+![pollinations](https://www.quickchart.io/chart?c=%7Btype%3A%27bar%27%2Cdata%3A%7Blabels%3A%5B%27Q1%27%2C%27Q2%27%2C%27Q3%27%2C%27Q4%27%5D%2Cdatasets%3A%5B%7Blabel%3A%27%E7%94%A8%E6%88%B7%27%2Cdata%3A%5B50%2C60%2C70%2C180%5D%7D%2C%7Blabel%3A%27%E6%94%B6%E5%85%A5%27%2Cdata%3A%5B100%2C200%2C300%2C400%5D%7D%5D%7D%7D)
+
+2. **饼图语法** - 下面是以图像markdown格式显示的javascript饼图示例：
+
+![pollinations](https://www.quickchart.io/chart?c=%7B%22type%22%3A%22outlabeledPie%22%2C%22data%22%3A%7B%22labels%22%3A%5B%22%E4%B8%80%22%2C%22%E4%BA%8C%22%2C%22%E4%B8%89%22%5D%2C%22datasets%22%3A%5B%7B%22backgroundColor%22%3A%5B%22%23FF3784%22%2C%22%2336A2EB%22%2C%22%234BC0C0%22%5D%2C%22data%22%3A%5B1%2C2%2C3%5D%7D%5D%7D%2C%22options%22%3A%7B%22plugins%22%3A%7B%22legend%22%3Afalse%2C%22outlabels%22%3A%7B%22text%22%3A%22%25l%25p%22%2C%22color%22%3A%22white%22%2C%22stretch%22%3A35%2C%22font%22%3A%7B%22resizable%22%3Atrue%2C%22minSize%22%3A12%2C%22maxSize%22%3A18%7D%7D%7D%7D%7D)
+
+3. **折线图语法** - 下面是以图像markdown格式显示的javascript折线图示例：
+
+![pollinations](https://www.quickchart.io/chart?c=%7Btype%3A%27line%27%2Cdata%3A%7Blabels%3A%5B%27%E4%B8%80%E6%9C%88%27%2C%27%E4%BA%8C%E6%9C%88%27%2C%27%E4%B8%89%E6%9C%88%27%2C%27%E5%9B%9B%E6%9C%88%27%2C%27%E4%BA%94%E6%9C%88%27%2C%27%E5%85%AD%E6%9C%88%27%2C%27%E4%B8%83%E6%9C%88%27%5D%2Cdatasets%3A%5B%7Blabel%3A%27%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E9%9B%86%27%2Cdata%3A%5B93%2C-29%2C-17%2C-8%2C73%2C98%2C40%5D%2Cfill%3Afalse%2C%7D%2C%7Blabel%3A%27%E6%88%91%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E6%95%B0%E6%8D%AE%E9%9B%86%27%2Cfill%3Afalse%2Cdata%3A%5B20%2C85%2C-79%2C93%2C27%2C-81%2C-22%5D%7D%2C%5D%2C%7D%2C%7D)
+
+**你的任务** - 将用户提出的任何问题显示为图表。
+
+**规则** - 必须始终选择柱状图、饼图或折线图，并将用户提出的问题转换为其中一种图表的图像markdown。
+
+始终将用户提出的问题显示为图表。
+
+在第一次回复中说：“我是一个图表生成器。”
+
+然后，始终等待用户输入。
+
+用户: huang657921610
+时间: 2024-01-05T08:46:59.804Z
+消息: TOLERANCE					
+				翻译成中文
+
+用户: huang657921610
+时间: 2024-01-05T10:39:02.045Z
+消息: 序号	物料编码	名称	规格	型号	封装形式	供应商	材料单价	数量	仓位	领用记录				领用记录				领用记录				领用记录				领用记录				领用记录				领用记录				领用记录				领用记录			
+										用量	领用日期	用途	领用人	用量	领用日期	用途	领用人	用量	领用日期	用途	领用人	用量	领用日期	用途	领用人	用量	领用日期	用途	领用人	用量	领用日期	用途	领用人	用量	领用日期	用途	领用人	用量	领用日期	用途	领用人	用量	领用日期	用途	领用人
+1	WL/DZ0028	LED	9.0-9.3V 100mA 1W 130-135LM 5300-6000K 80MIN 57R5 120℃	W	LED_2835		0.005	20	D1-1	20	2023/10/20	入库	黄秩培																																
+2		灯板	XLB-FNTV1-9-7004-DB-C V1.0A					48	E1-01	48	2023/10/20	入库	黄秩培																																
+3		灯板	XLB-FNAV1-H13-DB-C V1.0A					0	E1-02	48	2023/10/20	入库	黄秩培	-48	2023/11/14	样品制作	李娟																												
+4		灯板	XLB-B6-T15-DB-C V1.0					432	E1-03	432	2023/10/20	入库	黄秩培																																
+5		驱动板	XLB-WD7-DS-QD V1.0					12	E1-04	12	2023/10/20	入库	黄秩培																																
+6		驱动板	XLB-HB5-9007-QD V1.0					12	E1-05	12	2023/10/20	入库	黄秩培																																
+7		驱动板	XLB-D3-H7-QD V1.0					78	E1-06	78	2023/10/20	入库	黄秩培																																
+8		LED	1835 R 3-5LM 2.2-2.4V 620-625NM	R				100	D1-2	100	2023/10/20	入库	黄秩培																																
+这个帮我做到表格形式
+
+用户: huang657921610
+时间: 2024-01-05T10:39:56.966Z
+消息: 不对，要做成EXCEL表格
+
+用户: huang657921610
+时间: 2024-01-05T10:41:02.608Z
+消息: 序号	物料编码	名称	规格	型号	封装形式	供应商	材料单价	数量	仓位
+									
+1	WL/DZ0028	LED	9.0-9.3V 100mA 1W 130-135LM 5300-6000K 80MIN 57R5 120℃	W	LED_2835	未知	0.005	20	D1-1
+这个帮我做到表格形式，就是我可以复制成EXCEL表格
+
+用户: huang657921610
+时间: 2024-01-05T10:47:47.975Z
+消息: OK，现在你是EXCEL宏程序大师，刚刚输出的表格我已经粘贴在“研发物料库”工作表内，现在我想在“Sheet1”工作表第四行输出以下信息341	50102010013	电阻	100K 0805-5% NTC B=4200K 155℃	100K	R-0805	佰拓微	0.002	45	C1-88
+我想用宏程序把信息录入到“研发物料库”工作表内，帮我写一个宏程序代码，我用 的是WPS OFFICE 2013软件
+

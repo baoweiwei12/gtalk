@@ -1,0 +1,251 @@
+用户: poka
+时间: 2024-01-09T05:45:29.277Z
+消息: 发动机最优扭矩怎么得到的
+
+用户: poka
+时间: 2024-01-09T05:46:08.810Z
+消息: 你可以作图吗
+
+用户: poka
+时间: 2024-01-09T05:46:23.589Z
+消息: 绘制一个发动机万有特性图
+
+用户: poka
+时间: 2024-01-09T05:47:06.539Z
+消息: 我怎么看不到图
+
+用户: poka
+时间: 2024-01-09T05:47:52.810Z
+消息: 我怎么打开呢
+
+用户: poka
+时间: 2024-01-09T05:48:36.650Z
+消息: This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<Error>
+<Code>PublicAccessNotPermitted</Code>
+<Message>Public access is not permitted on this storage account. RequestId:92c11e61-701e-000d-7fbf-422e7c000000 Time:2024-01-09T05:48:22.4125019Z</Message>
+</Error>
+点开之后是这个
+
+用户: poka
+时间: 2024-01-09T05:49:28.127Z
+消息: 我可以上传表格吗
+
+用户: poka
+时间: 2024-01-09T05:49:59.332Z
+消息: 变量参数
+参数名称	符号	单位
+当前SOC	ActSOC	%
+整车需求扭矩	ReqTorque、Treq	N·m
+当前车速	ActualVelocity、Vact	km/h
+发动机输出扭矩	
+N·m
+发动机最优扭矩	IceOptTorque	N·m
+电机输出正扭矩	TMMaxTorque、Tmmax	N·m
+电机输出负扭矩(发电)	TMMinTorque、Tmmin	N·m
+发动机转速	Ice Speed、ICEspeed	r/min
+电机峰值扭矩	EvLimitTorque、	N·m
+		
+
+帮我简化一下这些字母
+
+用户: poka
+时间: 2024-01-09T05:51:11.202Z
+消息: 你能查到的最新的论文是多久的
+
+用户: poka
+时间: 2024-01-09T05:52:34.361Z
+消息: 我是混合动力汽车能量管理策略 ， 我已经在Cruise和simulink中搭建了联合仿真环境，我现在需要用DP对我的模型进行燃油经济性的优化，请你给我写一个DP代码
+
+用户: poka
+时间: 2024-01-09T05:53:20.301Z
+消息: 我是研究的是混合动力汽车能量管理策略 ， 我已经在Cruise和simulink中搭建了联合仿真环境，我现在需要用DP对我的模型进行燃油经济性的优化，请你给我写一个DP代码
+
+用户: poka
+时间: 2024-01-09T05:53:53.504Z
+消息: clc;
+
+load('S5.mat')          %加载驱动循环数据，包括功率需求（P_dem）、速度（v）和时间（t）。            
+ts = 1;                               %设置时间步长为1秒。
+N = length(t);                        %获取时间向量的长度，表示仿真的总时间步数。
+P_dem = P_dem*1000;                   %将功率需求从千瓦（KW）转换为瓦（W）。
+
+%定义了一些与车辆和电池性能相关的参数
+fl_wt_en = 0.001;      %每单位能耗的燃料重量（fl_wt_en）
+Pe_max = 30000;        %最大发动机功率（Pe_max）
+Pb_max = 15000;        %最大电机功率（Pb_max）
+Q_batt = 18000;        %电池容量（Q_batt）
+U_oc = 320;            %电池开路电压（U_oc）
+SOC_min = 0.3;         %状态 of charge (SOC) 的最小限制
+SOC_max = 0.8;         %状态 of charge (SOC) 的最大限制
+SOC_grid = linspace(SOC_min,SOC_max,80)';   %SOC_grid是在这些限制内均匀划分的状态空间格点。
+ns = length(SOC_grid);
+% DP.这是动态规划（DP）循环的主体。
+V = zeros(ns,N);            %Value function
+V(:,N) = 0;                 %Boundary condition   
+for i = N-1:-1:1            %Iterate through time vector
+    for j = 1:ns            %Iterate through SOC grid
+     lb = max([(((SOC_max-SOC_grid(j))*Q_batt*U_oc)/-ts),-Pb_max, P_dem(i)-Pe_max]);          %lower bound P_batt
+     ub = min([(((SOC_min-SOC_grid(j))*Q_batt*U_oc)/-ts),Pb_max, P_dem(i)]);                 %Upper bound P_batt
+     P_batt_grid = linspace(lb,ub,250);      %P_batt grid 
+     P_eng = P_dem(i) - P_batt_grid;         %P_eng at for P_batt_grid
+     c2g = (ts*fl_wt_en* P_eng)./(eng_eff(P_eng)); %costtogo
+     SOC_next = SOC_grid(j) - (ts .* P_batt_grid ./ (Q_batt*U_oc));
+     V_nxt = interp1(SOC_grid,V(:,i+1),SOC_next);
+     [V(j,i), k] = min([c2g + V_nxt]);
+     u_opt(j,i) = P_batt_grid(k); 
+    end
+end
+% 它从仿真的最后一步（N）开始，向前迭代，计算每个时间步和SOC格点的最优值函数（V）和最优电池功率（u_opt）。
+% lb和ub分别是电池功率的下限和上限，P_batt_grid是在这个范围内均匀划分的电池功率格点。
+% c2g是在当前电池功率下的单位能耗的成本。SOC_next是根据当前电池功率和SOC计算的下一个时间步的SOC。
+% V_nxt是在下一个时间步SOC格点的值函数的插值值。最后，选择最小的cost-to-go并记录最优电池功率。
+
+
+% 通过运行RUN_HEV函数，模拟在不同SOC初始值下的混合动力电动汽车的行驶。
+[Pb_07, Pe_07, FC_07, SOC_07]= RUN_HEV(0.7,N,SOC_grid,u_opt,P_dem);
+[Pb_05, Pe_05, FC_05, SOC_05]= RUN_HEV(0.5,N,SOC_grid,u_opt,P_dem);
+[Pb_03, Pe_03, FC_03, SOC_03]= RUN_HEV(0.3,N,SOC_grid,u_opt,P_dem);
+
+% 这个函数返回每个时间步的电池功率（Pb）、发动机功率（Pe）、燃料消耗（FC）和SOC。
+
+
+% 计算累积燃料消耗。
+cumulative_FC_07 = cumsum(FC_07);
+cumulative_FC_05 = cumsum(FC_05);
+cumulative_FC_03 = cumsum(FC_03);
+% Plot SOC 在一个新的图形中绘制不同SOC初始值下的SOC随时间的变化，并显示图例。
+figure;
+subplot(2,1,1); 
+plot(SOC_07)
+hold on;
+plot(SOC_05)
+plot(SOC_03)
+title('SOC')
+legend('SOC 0.7','SOC 0.5','SOC 0.3')
+
+% Plot Cumulative Fuel Consumption
+subplot(2,1,2);  % 在一个两行一列的子图中选择第二个子图（底部）。
+                 % 这表示在同一个图形窗口中创建两个子图，当前命令将绘制在第二个子图中。
+plot(cumulative_FC_07)    % 绘制SOC初始值为0.7时的累积燃料消耗曲线。
+hold on;                  % 保持图形，使得后续的绘图命令会在同一个图形中叠加而不清除之前的内容。
+plot(cumulative_FC_05)    % 绘制SOC初始值为0.5时的累积燃料消耗曲线。
+plot(cumulative_FC_03)    % 绘制SOC初始值为0.3时的累积燃料消耗曲线。
+title('Cumulative Fuel Consumption')
+legend('SOC 0.7','SOC 0.5','SOC 0.3')
+% 这段代码的目的是比较不同初始SOC值下车辆的累积燃料消耗趋势，通过绘制这些曲线，用户可以直观地比较不同SOC初始值对燃料经济性的影响。
+帮我看一下我这个代码
+
+用户: poka
+时间: 2024-01-09T05:54:22.929Z
+消息: clc;
+
+load('S5.mat')          %加载驱动循环数据，包括功率需求（P_dem）、速度（v）和时间（t）。
+
+ts = 1;                               %设置时间步长为1秒。
+N = length(t);                        %获取时间向量的长度，表示仿真的总时间步数。
+P_dem = P_dem*1000;                   %将功率需求从千瓦（KW）转换为瓦（W）。
+
+%定义了一些与车辆和电池性能相关的参数
+fl_wt_en = 0.001;      %每单位能耗的燃料重量（fl_wt_en）
+Pe_max = 30000;        %最大发动机功率（Pe_max）
+Pb_max = 15000;        %最大电机功率（Pb_max）
+Q_batt = 18000;        %电池容量（Q_batt）
+U_oc = 320;            %电池开路电压（U_oc）
+SOC_min = 0.3;         %状态 of charge (SOC) 的最小限制
+SOC_max = 0.8;         %状态 of charge (SOC) 的最大限制
+SOC_grid = linspace(SOC_min,SOC_max,80)';   %SOC_grid是在这些限制内均匀划分的状态空间格点。
+ns = length(SOC_grid);
+% DP.这是动态规划（DP）循环的主体。
+V = zeros(ns,N);            %Value function
+V(:,N) = 0;                 %Boundary condition
+
+for i = N-1:-1:1            %Iterate through time vector
+for j = 1:ns            %Iterate through SOC grid
+lb = max([(((SOC_max-SOC_grid(j))Q_battU_oc)/-ts),-Pb_max, P_dem(i)-Pe_max]);          %lower bound P_batt
+ub = min([(((SOC_min-SOC_grid(j))Q_battU_oc)/-ts),Pb_max, P_dem(i)]);                 %Upper bound P_batt
+P_batt_grid = linspace(lb,ub,250);      %P_batt grid
+P_eng = P_dem(i) - P_batt_grid;         %P_eng at for P_batt_grid
+c2g = (tsfl_wt_en P_eng)./(eng_eff(P_eng)); %costtogo
+SOC_next = SOC_grid(j) - (ts .* P_batt_grid ./ (Q_batt*U_oc));
+V_nxt = interp1(SOC_grid,V(:,i+1),SOC_next);
+[V(j,i), k] = min([c2g + V_nxt]);
+u_opt(j,i) = P_batt_grid(k);
+end
+end
+% 它从仿真的最后一步（N）开始，向前迭代，计算每个时间步和SOC格点的最优值函数（V）和最优电池功率（u_opt）。
+% lb和ub分别是电池功率的下限和上限，P_batt_grid是在这个范围内均匀划分的电池功率格点。
+% c2g是在当前电池功率下的单位能耗的成本。SOC_next是根据当前电池功率和SOC计算的下一个时间步的SOC。
+% V_nxt是在下一个时间步SOC格点的值函数的插值值。最后，选择最小的cost-to-go并记录最优电池功率。
+
+% 通过运行RUN_HEV函数，模拟在不同SOC初始值下的混合动力电动汽车的行驶。
+[Pb_07, Pe_07, FC_07, SOC_07]= RUN_HEV(0.7,N,SOC_grid,u_opt,P_dem);
+[Pb_05, Pe_05, FC_05, SOC_05]= RUN_HEV(0.5,N,SOC_grid,u_opt,P_dem);
+[Pb_03, Pe_03, FC_03, SOC_03]= RUN_HEV(0.3,N,SOC_grid,u_opt,P_dem);
+
+% 这个函数返回每个时间步的电池功率（Pb）、发动机功率（Pe）、燃料消耗（FC）和SOC。
+
+% 计算累积燃料消耗。
+cumulative_FC_07 = cumsum(FC_07);
+cumulative_FC_05 = cumsum(FC_05);
+cumulative_FC_03 = cumsum(FC_03);
+% Plot SOC 在一个新的图形中绘制不同SOC初始值下的SOC随时间的变化，并显示图例。
+figure;
+subplot(2,1,1);
+plot(SOC_07)
+hold on;
+plot(SOC_05)
+plot(SOC_03)
+title('SOC')
+legend('SOC 0.7','SOC 0.5','SOC 0.3')
+
+% Plot Cumulative Fuel Consumption
+subplot(2,1,2);  % 在一个两行一列的子图中选择第二个子图（底部）。
+% 这表示在同一个图形窗口中创建两个子图，当前命令将绘制在第二个子图中。
+plot(cumulative_FC_07)    % 绘制SOC初始值为0.7时的累积燃料消耗曲线。
+hold on;                  % 保持图形，使得后续的绘图命令会在同一个图形中叠加而不清除之前的内容。
+plot(cumulative_FC_05)    % 绘制SOC初始值为0.5时的累积燃料消耗曲线。
+plot(cumulative_FC_03)    % 绘制SOC初始值为0.3时的累积燃料消耗曲线。
+title('Cumulative Fuel Consumption')
+legend('SOC 0.7','SOC 0.5','SOC 0.3')
+% 这段代码的目的是比较不同初始SOC值下车辆的累积燃料消耗趋势，通过绘制这些曲线，用户可以直观地比较不同SOC初始值对燃料经济性的影响。
+帮我看一下我这个代码换一个新模型哪里需要改动？
+
+用户: poka
+时间: 2024-01-09T06:00:57.051Z
+消息: 帮我写一个matlab代码：计算出发动机最优工作曲线
+
+用户: poka
+时间: 2024-01-10T13:27:16.796Z
+消息: 帮我写一篇中国共产党的二十大报告学习心得，思想汇报
+
+用户: poka
+时间: 2024-01-10T13:27:29.120Z
+消息: 你帮我写
+
+用户: poka
+时间: 2024-01-10T13:27:55.032Z
+消息: 你来写
+
+用户: poka
+时间: 2024-01-10T13:42:47.398Z
+消息: 帮我写一篇思想汇报9-11月份的 2000字
+
+用户: poka
+时间: 2024-01-11T13:28:11.272Z
+消息: 敬爱的党组织：
+您好！我是上海海洋大学工程学院第三党支部的一名入党积极分子，通过近三个月的思想学习和工作实践，我深刻认识到学习习近平新时代中国特色社会主义思想的重要性，认真贯彻党的各项决策部署，提高了政治觉悟，增强了为党工作的信心。以下是我对这段时间思想工作的总结和体会，以及未来的规划和展望。
+在这段时间里，我通过自主阅读等多种形式，深入学习了习近平新时代中国特色社会主义思想。通过对思想精髓的学习，我更加明确中国特色社会主义事业总体布局、全面深化改革、全面依法治国等各个方面的内涵。新时代中国特色社会主义思想作为我们党的行动指南，对于我们每个党员都具有重要的指导意义。
+习总书记的重要讲话和党的决策部署是我们行动的指南。在这个阶段，我认真贯彻学习党的十九届五中全会和中央纪委七次全会等文件，深入理解和领会了习总书记在不同场合的重要讲话。在工作中，我将党的方针政策贯彻到位，时刻保持对党忠诚老实，严守纪律，自觉维护党的统一，对党忠诚老实，敢于担当，努力践行新时代党的建设总要求。
+这段时间，我通过学习先进典型事迹，深受启发。他们的崇高品质、坚定信仰、百折不挠的意志力，激励着我。在他们身上，我看到了共产党员的初心和责任，看到了为人民群众无私奉献的精神风貌。这进一步坚定了我要向先进典型学习，不断进步的决心。
+在这个时期，我积极参与了组织的各项活动。通过党组织的组织生活、支部会议等，我认真对党风廉政建设和反腐败斗争进行了学习，自觉接受组织的监督。同时，我也积极参与社区服务、志愿活动等，不断提升自己的服务水平，为党的形象和事业的发展贡献自己的一份力量。
+在这个时期，我充分认识到要不断提高自己的业务水平，为更好地为党工作，服务人民提供更优质的服务。我通过学习专业知识、提高技能水平，不断适应工作需要，为党的事业提供更加有力的支持。
+通过这段时间的思考和学习，我深感在新时代，作为一名共产党员，我们肩负着更为重大的历史责任。习近平新时代中国特色社会主义思想是我们行动的指南，要深入学习、深刻领会，并不断将其贯彻到工作实践中。我将更加自觉地维护党的团结统一，时刻保持对党的忠诚老实，发扬党的优良传统，锤炼共产党员的政治品质。
+在未来的日子里，我将更加努力地学习理论知识，提高自身的业务素养，争取在更广阔的平台上为党工作，为人民服务，为实现中国特色社会主义伟大事业而努力奋斗。感谢组织一直以来的关心和培养，我会珍惜党组织的培养和教育，不辜负党的期望，为共产主义事业贡献自己的一份力量！
+帮我扩写到1500字
+
+用户: poka
+时间: 2024-01-11T13:58:48.257Z
+消息: 在这个时期，我积极参与了组织的各项活动。通过党组织的组织生活、支部会议等，我认真对党风廉政建设和反腐败斗争进行了学习，自觉接受组织的监督。同时，我也积极参与社区服务、志愿活动等，不断提升自己的服务水平，为党的形象和事业的发展贡献自己的一份力量。
+帮我扩写一下这段话
+

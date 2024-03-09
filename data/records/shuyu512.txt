@@ -1,0 +1,1263 @@
+用户: shuyu512
+时间: 2023-12-30T14:14:34.059Z
+消息: 去趋势对应分析（DCA）
+
+用户: shuyu512
+时间: 2023-12-30T14:14:57.400Z
+消息: DCA
+
+用户: shuyu512
+时间: 2023-12-30T14:16:10.425Z
+消息: DCA是什么
+
+用户: shuyu512
+时间: 2023-12-30T14:30:18.037Z
+消息: 高怎么念
+
+用户: shuyu512
+时间: 2023-12-31T06:58:49.967Z
+消息: 物种斑块网络的连接性、嵌套性和模块化意思
+
+用户: shuyu512
+时间: 2024-01-02T01:28:15.565Z
+消息: Elev . Gap-m
+
+用户: shuyu512
+时间: 2024-01-02T01:29:06.253Z
+消息: 有一个位置的经纬度可以得到海拔高度吗
+
+用户: shuyu512
+时间: 2024-01-02T02:00:00.205Z
+消息: 海拔差几十米物种会有变化吗
+
+用户: shuyu512
+时间: 2024-01-02T02:25:55.417Z
+消息: 非参数Mann - Whitney U检验
+
+用户: shuyu512
+时间: 2024-01-02T02:44:09.673Z
+消息: Ward ' s法
+
+用户: shuyu512
+时间: 2024-01-02T02:44:24.019Z
+消息: Ward ' s法是什么
+
+用户: shuyu512
+时间: 2024-01-02T02:48:33.594Z
+消息: Ward's method 解释一下
+
+用户: shuyu512
+时间: 2024-01-02T02:48:46.563Z
+消息: 中文解释
+
+用户: shuyu512
+时间: 2024-01-02T02:49:46.351Z
+消息: 构建树状图：是什么图
+
+用户: shuyu512
+时间: 2024-01-02T02:56:34.637Z
+消息: zetoro怎么找到文中的参考文献
+
+用户: shuyu512
+时间: 2024-01-02T03:15:28.934Z
+消息: 藻类数据能进行聚类双向分析吗
+
+用户: shuyu512
+时间: 2024-01-02T13:43:05.878Z
+消息: DCA是什么
+
+用户: shuyu512
+时间: 2024-01-02T13:44:08.283Z
+消息: 去趋对应分析
+
+用户: shuyu512
+时间: 2024-01-02T14:07:28.029Z
+消息: two-way cluster analysis, and functional diversity were calculated using PC-ORD version 7.04
+
+用户: shuyu512
+时间: 2024-01-02T14:07:47.216Z
+消息: 说中文
+
+用户: shuyu512
+时间: 2024-01-02T14:08:20.096Z
+消息:  PC-ORD version 7.04这是啥
+
+用户: shuyu512
+时间: 2024-01-02T14:10:35.727Z
+消息: R语言可以算双向聚类分析吗
+
+用户: shuyu512
+时间: 2024-01-02T14:25:27.603Z
+消息: FV是啥
+
+用户: shuyu512
+时间: 2024-01-08T03:08:07.296Z
+消息: epipelon
+
+用户: shuyu512
+时间: 2024-01-08T03:09:12.195Z
+消息: 冗余性
+
+用户: shuyu512
+时间: 2024-01-08T05:30:31.714Z
+消息: 桥穹藻属
+
+用户: shuyu512
+时间: 2024-01-08T05:30:50.581Z
+消息: 可以
+
+用户: shuyu512
+时间: 2024-01-08T08:59:25.927Z
+消息: LOWESS平滑检验
+
+用户: shuyu512
+时间: 2024-01-09T02:35:28.922Z
+消息: 生物多样性的单峰型和双峰型什么意思
+
+用户: shuyu512
+时间: 2024-01-10T15:15:20.876Z
+消息: 什么时候用双向聚类分析图
+
+用户: shuyu512
+时间: 2024-01-12T08:35:58.777Z
+消息: 藻类对生态系统功能有什么影响
+
+用户: shuyu512
+时间: 2024-01-12T09:31:36.917Z
+消息: BioScience
+
+用户: shuyu512
+时间: 2024-01-12T10:45:51.304Z
+消息: A synthesis of anthropogenic stress effects on emergence-mediated aquatic-terrestrial linkages and riparian food webs翻译
+
+用户: shuyu512
+时间: 2024-01-13T00:34:12.253Z
+消息: 四环藻是等片藻吗
+
+用户: shuyu512
+时间: 2024-01-13T00:58:18.247Z
+消息: 弯形弯楔藻
+
+用户: shuyu512
+时间: 2024-01-13T05:37:29.790Z
+消息: 土地类型影响水生物
+
+用户: shuyu512
+时间: 2024-01-13T05:39:15.611Z
+消息: 土地利用类型对藻类的影响
+
+用户: shuyu512
+时间: 2024-01-13T07:21:29.204Z
+消息: 木本优势
+
+用户: shuyu512
+时间: 2024-01-13T10:00:42.390Z
+消息: 土地利用的变化会大吗
+
+用户: shuyu512
+时间: 2024-01-13T10:01:04.982Z
+消息: 5年内土地利用会经常变吗
+
+用户: shuyu512
+时间: 2024-01-14T07:16:02.069Z
+消息: 缓冲区
+
+用户: shuyu512
+时间: 2024-01-15T14:35:39.288Z
+消息: Pearson 相关分析
+
+用户: shuyu512
+时间: 2024-01-15T14:36:07.117Z
+消息: 需要
+
+用户: shuyu512
+时间: 2024-01-15T14:36:32.623Z
+消息: R语言怎么算这个
+
+用户: shuyu512
+时间: 2024-01-15T14:59:07.829Z
+消息: 相关性，大于0.05
+
+用户: shuyu512
+时间: 2024-01-16T14:36:42.816Z
+消息: FRAGSTATS 4.0是什么
+
+用户: shuyu512
+时间: 2024-01-17T01:22:00.844Z
+消息: 连通性
+
+用户: shuyu512
+时间: 2024-01-17T05:19:48.838Z
+消息: 怎么查找距离衰减的文章
+
+用户: shuyu512
+时间: 2024-01-17T07:45:14.712Z
+消息: β多样性可以算距离衰减效应吗
+
+用户: shuyu512
+时间: 2024-01-17T08:29:46.250Z
+消息: Margalef指数
+
+用户: shuyu512
+时间: 2024-01-17T08:30:34.586Z
+消息: Fisher指数
+
+用户: shuyu512
+时间: 2024-01-17T08:31:02.043Z
+消息: Harrison指数
+
+用户: shuyu512
+时间: 2024-01-17T08:42:27.390Z
+消息: EC (μs/cm)这个是啥
+
+用户: shuyu512
+时间: 2024-01-17T08:48:58.939Z
+消息: ORP呢
+
+用户: shuyu512
+时间: 2024-01-17T08:55:20.855Z
+消息: SIMPER分析
+
+用户: shuyu512
+时间: 2024-01-17T08:58:41.275Z
+消息: 森林指数
+
+用户: shuyu512
+时间: 2024-01-17T09:02:07.341Z
+消息: 哈里森指数
+
+用户: shuyu512
+时间: 2024-01-17T09:02:45.499Z
+消息: The Harrison index 
+
+用户: shuyu512
+时间: 2024-01-17T11:06:38.402Z
+消息: PCoA图怎么看
+
+用户: shuyu512
+时间: 2024-01-18T07:24:22.748Z
+消息: 扩散限制是距离衰减吗
+
+用户: shuyu512
+时间: 2024-01-18T14:28:14.898Z
+消息: 阻力图
+
+用户: shuyu512
+时间: 2024-01-18T15:08:07.229Z
+消息: dispersal capacity metric (DCMc)什么意思
+
+用户: shuyu512
+时间: 2024-01-19T01:18:43.748Z
+消息: 植物连通性
+
+用户: shuyu512
+时间: 2024-01-19T01:20:28.828Z
+消息: 植物连通性与水生生物多样性
+
+用户: shuyu512
+时间: 2024-01-19T01:44:34.878Z
+消息: 画一只狗
+
+用户: shuyu512
+时间: 2024-01-19T01:46:14.405Z
+消息: 画一只一只黑白花的狗
+
+用户: shuyu512
+时间: 2024-01-19T02:06:25.271Z
+消息: βtotal
+
+用户: shuyu512
+时间: 2024-01-19T02:06:55.300Z
+消息: βrepl
+
+用户: shuyu512
+时间: 2024-01-19T02:09:07.130Z
+消息: βrich
+
+用户: shuyu512
+时间: 2024-01-19T02:55:46.675Z
+消息: βsim
+
+用户: shuyu512
+时间: 2024-01-19T02:56:23.625Z
+消息: βnes
+
+用户: shuyu512
+时间: 2024-01-19T06:27:19.994Z
+消息: Overland vs. cost vs. watercourse distance
+
+用户: shuyu512
+时间: 2024-01-19T08:47:30.496Z
+消息: 河流连通性对底栖动物群落距离衰减效应和环境过滤效应的影响
+写一个背景
+
+用户: shuyu512
+时间: 2024-01-19T08:57:36.054Z
+消息: 河流的连通性强就具备强扩散能力的物种
+
+用户: shuyu512
+时间: 2024-01-19T11:49:49.653Z
+消息: Mann-Whitney检验什么检验
+
+用户: shuyu512
+时间: 2024-01-19T12:00:54.621Z
+消息: 缓冲区
+
+用户: shuyu512
+时间: 2024-01-19T12:04:02.469Z
+消息: 横向连通性、纵向连通性、垂直连通性的区别
+
+用户: shuyu512
+时间: 2024-01-19T14:32:14.540Z
+消息: PERMANOVA
+
+用户: shuyu512
+时间: 2024-01-19T14:40:13.973Z
+消息: PERMDISP
+
+用户: shuyu512
+时间: 2024-01-20T01:36:35.391Z
+消息: 环境过滤对群落的影响用什么分析方法
+
+
+用户: shuyu512
+时间: 2024-01-20T01:39:08.641Z
+消息: pls-pm
+
+用户: shuyu512
+时间: 2024-01-20T02:01:07.335Z
+消息: 营养冗余
+
+用户: shuyu512
+时间: 2024-01-20T02:01:41.734Z
+消息: 生态系统的营养冗余
+
+用户: shuyu512
+时间: 2024-01-20T02:03:28.090Z
+消息: 生态中营养冗余少的话可以吗
+
+用户: shuyu512
+时间: 2024-01-20T02:06:24.035Z
+消息: 连通性高物种多样性就高
+
+用户: shuyu512
+时间: 2024-01-20T05:44:44.199Z
+消息: 怎么测量河流的连通性
+
+用户: shuyu512
+时间: 2024-01-20T05:45:45.021Z
+消息: 河流连通性用水文的方法怎么测
+
+
+用户: shuyu512
+时间: 2024-01-22T11:57:24.165Z
+消息: 物理连通性
+
+用户: shuyu512
+时间: 2024-01-23T14:48:33.563Z
+消息: FFGs
+
+用户: shuyu512
+时间: 2024-01-23T14:50:35.273Z
+消息: FFGs比例
+
+用户: shuyu512
+时间: 2024-01-23T15:10:06.611Z
+消息: 河流连通性对距离衰减效应的影响
+
+用户: shuyu512
+时间: 2024-01-23T15:11:22.432Z
+消息: 河流连通性对距离衰减效应的影响翻译
+
+用户: shuyu512
+时间: 2024-01-24T10:00:37.868Z
+消息: 生物相异性矩阵
+
+用户: shuyu512
+时间: 2024-01-24T10:08:46.678Z
+消息: R语言中相异性矩阵怎么算
+
+用户: shuyu512
+时间: 2024-01-24T10:16:58.785Z
+消息: BAT 包中的函数" beta "
+
+用户: shuyu512
+时间: 2024-01-24T11:10:33.133Z
+消息: BIO-ENV联合分析
+
+用户: shuyu512
+时间: 2024-01-25T05:21:47.154Z
+消息: nice duck
+
+用户: shuyu512
+时间: 2024-01-25T08:00:33.653Z
+消息: Strahler阶数。
+
+用户: shuyu512
+时间: 2024-01-26T08:42:55.490Z
+消息: cij
+
+用户: shuyu512
+时间: 2024-01-26T12:28:33.021Z
+消息: 线性回归模型
+
+用户: shuyu512
+时间: 2024-01-26T12:29:07.453Z
+消息: 线性回归可以做什么图
+
+用户: shuyu512
+时间: 2024-01-26T12:33:04.540Z
+消息: 相异性矩阵
+
+用户: shuyu512
+时间: 2024-01-26T12:33:23.390Z
+消息: 相异性矩阵可以做什么图
+
+用户: shuyu512
+时间: 2024-01-26T13:56:23.926Z
+消息: 水文连通性是否是河流连通性
+
+用户: shuyu512
+时间: 2024-01-26T14:31:05.401Z
+消息: PCoA分析双标图可以看出物种相似性吗
+
+用户: shuyu512
+时间: 2024-01-26T14:32:34.145Z
+消息: 相似性单因素分析做什么图
+
+用户: shuyu512
+时间: 2024-01-26T14:33:29.303Z
+消息: 主成分分析可以看出物种之间的相似性吗
+
+用户: shuyu512
+时间: 2024-01-26T14:40:39.404Z
+消息: 距离衰减效应，物种随距离的增大相似性减小
+
+用户: shuyu512
+时间: 2024-01-26T14:50:01.238Z
+消息: 相似性单因素分析可以做pca图嘛
+
+用户: shuyu512
+时间: 2024-01-26T14:59:15.615Z
+消息: pcoa
+
+用户: shuyu512
+时间: 2024-01-26T15:23:32.093Z
+消息: 方差分解
+
+用户: shuyu512
+时间: 2024-01-27T02:04:44.571Z
+消息: BIO - ENV分析
+
+用户: shuyu512
+时间: 2024-01-27T03:38:31.771Z
+消息: 环境相异性矩阵包含地理矩阵吗
+
+用户: shuyu512
+时间: 2024-01-27T05:19:01.419Z
+消息: NMDS
+
+用户: shuyu512
+时间: 2024-01-27T06:25:30.043Z
+消息: 河流连通性与扩散之间的关系
+
+
+用户: shuyu512
+时间: 2024-01-27T06:26:06.862Z
+消息: 河流连通性与扩散之间的相关性
+
+用户: shuyu512
+时间: 2024-01-27T06:41:03.867Z
+消息: 系统发育多样性热图
+
+用户: shuyu512
+时间: 2024-01-27T08:35:24.476Z
+消息: 找一篇河流连通性的一区类型
+
+
+用户: shuyu512
+时间: 2024-01-28T06:48:03.498Z
+消息: 分解力强水生态系统功能越好吗
+
+
+用户: shuyu512
+时间: 2024-01-29T04:42:21.511Z
+消息: 高铁运行的原理
+
+用户: shuyu512
+时间: 2024-02-02T06:56:56.952Z
+消息: 扩散限制
+
+用户: shuyu512
+时间: 2024-02-02T06:58:39.605Z
+消息: 扩散限制强物种的相似性就小
+
+用户: shuyu512
+时间: 2024-02-02T07:01:27.839Z
+消息: 连通性增强扩散效应会增强吗
+
+用户: shuyu512
+时间: 2024-02-02T07:04:51.660Z
+消息: 强连通性的河流相似高，弱连通性的河流相似度低
+
+用户: shuyu512
+时间: 2024-02-02T07:06:20.062Z
+消息: 强连通性的河流距离衰减效应小
+
+用户: shuyu512
+时间: 2024-02-02T07:07:13.766Z
+消息: 强连通性的河流距离衰减效应大
+
+用户: shuyu512
+时间: 2024-02-04T02:05:03.432Z
+消息: 同质化
+
+用户: shuyu512
+时间: 2024-02-04T02:05:16.258Z
+消息: 解释
+
+用户: shuyu512
+时间: 2024-02-04T02:25:53.837Z
+消息: 植被连通性怎么算
+
+用户: shuyu512
+时间: 2024-02-04T02:29:04.510Z
+消息: α多样性是算群落的什么的
+
+用户: shuyu512
+时间: 2024-02-04T02:32:41.604Z
+消息: 系统发育多样性做什么图表示
+
+用户: shuyu512
+时间: 2024-02-04T02:35:58.775Z
+消息: α多样性和系统发育多样性做什么图
+
+用户: shuyu512
+时间: 2024-02-04T02:39:18.597Z
+消息: 阿尔法多样性分为什么
+
+用户: shuyu512
+时间: 2024-02-04T05:35:58.713Z
+消息: 较强的河流连通性削弱了距离衰减效应对底栖动物群落的影响，使其群落趋于同质化
+
+用户: shuyu512
+时间: 2024-02-06T15:04:06.575Z
+消息: 橡胶坝是什么啊
+
+用户: shuyu512
+时间: 2024-02-06T16:12:47.654Z
+消息: 底栖动物是否可以在河流中的上游和下游来回移动
+
+用户: shuyu512
+时间: 2024-02-06T16:41:24.264Z
+消息: 底栖动物可以翻越大坝吗
+
+用户: shuyu512
+时间: 2024-02-06T16:55:46.698Z
+消息: 对于壁垒之间具有依赖性的场景
+
+用户: shuyu512
+时间: 2024-02-06T16:56:13.157Z
+消息: 壁垒的依赖性是指什么
+
+用户: shuyu512
+时间: 2024-02-06T16:56:27.077Z
+消息: 壁垒是什么
+
+用户: shuyu512
+时间: 2024-02-07T14:36:44.844Z
+消息: α多样性可分为分类、功能、系统多样性，这些都是什么意思
+
+用户: shuyu512
+时间: 2024-02-07T14:38:52.176Z
+消息: 那香农多样性指数是属于其中的哪一个呢
+
+用户: shuyu512
+时间: 2024-02-07T14:40:15.218Z
+消息: 侧向水文连通性和纵向连通性一样吗
+
+用户: shuyu512
+时间: 2024-02-07T14:41:16.911Z
+消息: 那他们两个对生物的影响一样吗
+
+用户: shuyu512
+时间: 2024-02-07T14:44:10.826Z
+消息: 那物种丰度属于哪一个
+
+用户: shuyu512
+时间: 2024-02-07T14:44:58.418Z
+消息: 密度呢
+
+用户: shuyu512
+时间: 2024-02-07T14:46:35.870Z
+消息: 那功能多样性和系统多样性用什么参数来衡量
+
+用户: shuyu512
+时间: 2024-02-07T14:51:49.462Z
+消息: 群落的功能特征属于群落的那一部分
+
+用户: shuyu512
+时间: 2024-02-07T14:52:18.434Z
+消息: α还是β
+
+用户: shuyu512
+时间: 2024-02-07T15:19:54.199Z
+消息: 空间异质性是不是环境过滤
+
+用户: shuyu512
+时间: 2024-02-07T15:28:53.784Z
+消息: 较强的河流连通性降低了底栖动物群落的α多样性和β多样性
+
+用户: shuyu512
+时间: 2024-02-07T15:35:30.399Z
+消息: 正常河流会导致底栖生物群落的α多样性和β多样性呈现什么趋势
+
+用户: shuyu512
+时间: 2024-02-07T15:36:50.419Z
+消息: α多样性升高β多样性下降
+
+用户: shuyu512
+时间: 2024-02-07T15:51:13.202Z
+消息: 较强的河流连通性对底栖动物群落的α多样性和β多样性有什么影响
+
+用户: shuyu512
+时间: 2024-02-08T06:12:00.921Z
+消息: 底栖动物群落的α多样性随着河流连通性的梯度增加而增加
+
+用户: shuyu512
+时间: 2024-02-08T06:20:13.922Z
+消息: 底栖动物群落的α多样性随着河流连通性的梯度的变化是什么
+
+用户: shuyu512
+时间: 2024-02-08T06:54:17.866Z
+消息: 底栖动物群落的β多样性随着河流连通性的梯度的变化是什么
+
+用户: shuyu512
+时间: 2024-02-08T06:55:48.343Z
+消息: 那做什么图
+
+用户: shuyu512
+时间: 2024-02-08T07:03:53.669Z
+消息: 那强连通性下β多样性里的分类、系统、功能多样性都呈现什么变化
+
+用户: shuyu512
+时间: 2024-02-08T07:21:53.280Z
+消息:  β多样性下降对生态好嘛
+
+用户: shuyu512
+时间: 2024-02-13T08:47:26.057Z
+消息: (A) Dendritic connectivity index with symmetric dams passabilities; (B) Dendritic connectivity index with asymmetric dams passabilities; (C) Integral Index of connectivity (dams are not passable and a threshold on dispersal distance is used); (D) Integral Index of connectivity with uniform reach weights equal to one; (E) lowland species with active aquatic dispersal (fish), (F) upland species with active aquatic dispersal (fish); (G) lowland species with passive aquatic dispersal (invertebrate larval stage); (H) upland species with passive aquatic dispersal (invertebrate larval stage, bivalve).
+
+用户: shuyu512
+时间: 2024-02-13T08:49:04.724Z
+消息: 翻译
+
+用户: shuyu512
+时间: 2024-02-13T08:54:00.095Z
+消息: 这里的对称河坝和不对称河坝的意思是
+
+用户: shuyu512
+时间: 2024-02-13T14:01:37.245Z
+消息: Spearman相关图表示什么
+
+用户: shuyu512
+时间: 2024-02-14T01:15:02.443Z
+消息: 风度和丰富度属于埃尔法多样性嘛
+
+用户: shuyu512
+时间: 2024-02-14T01:34:44.677Z
+消息: 树冠连通性
+
+用户: shuyu512
+时间: 2024-02-14T02:10:22.748Z
+消息: 底栖动物群落α多样性随河流连通性的增加而增加
+
+用户: shuyu512
+时间: 2024-02-14T02:59:30.959Z
+消息: 浅滩的连通性高还是低
+
+用户: shuyu512
+时间: 2024-02-14T04:31:17.776Z
+消息: DCI算的是河段的还是点位的
+
+用户: shuyu512
+时间: 2024-02-14T04:32:49.294Z
+消息: 那要是针对单个点位的话怎么算
+
+用户: shuyu512
+时间: 2024-02-14T05:02:40.204Z
+消息: 主坐标图能看出β多样性嘛
+
+用户: shuyu512
+时间: 2024-02-14T05:24:55.270Z
+消息: 样本或群落之间的差异性相对较高β是高还是低
+
+用户: shuyu512
+时间: 2024-02-27T03:28:47.667Z
+消息: 横向水文连通性（LHC）是解释洪泛区生态系统中大型无脊椎动物功能多样性（FD）的关键参数,，那纵向连通性呢
+
+用户: shuyu512
+时间: 2024-02-27T15:22:19.754Z
+消息: α功能多样性和β功能多样性
+
+用户: shuyu512
+时间: 2024-02-27T15:24:48.583Z
+消息: α功能多样性下降和β功能多样性上升对吗
+
+用户: shuyu512
+时间: 2024-02-27T15:58:31.868Z
+消息: β多样性降低β功能多样性能增加嘛
+
+用户: shuyu512
+时间: 2024-02-27T16:01:24.775Z
+消息: 随着横向水文连通性的增加β功能多样性也增加
+
+用户: shuyu512
+时间: 2024-02-27T16:01:53.967Z
+消息: 随着纵向水文连通性的增加β功能多样性也增加
+
+用户: shuyu512
+时间: 2024-02-27T16:02:52.040Z
+消息: 纵向河流连通性增加，β功能多样性降低
+
+用户: shuyu512
+时间: 2024-02-28T02:11:44.436Z
+消息: 河流连通性的增强使得α多样性上升，β多样性则呈现下降的趋势
+
+用户: shuyu512
+时间: 2024-02-29T01:46:11.329Z
+消息: 水文连通性和河流连通性区别是啥
+
+用户: shuyu512
+时间: 2024-02-29T01:47:03.621Z
+消息: 这两个指标呈正相关吗
+
+用户: shuyu512
+时间: 2024-02-29T02:28:34.149Z
+消息: 多样性分为什么
+
+用户: shuyu512
+时间: 2024-02-29T02:29:05.999Z
+消息: 生态系统多样性分为什么
+
+用户: shuyu512
+时间: 2024-02-29T02:29:34.622Z
+消息: 那阿尔法β都是什么
+
+用户: shuyu512
+时间: 2024-02-29T02:38:48.809Z
+消息: 那强连通性下α多样性里的分类、系统、功能多样性都呈现什么变化
+
+用户: shuyu512
+时间: 2024-02-29T02:45:53.603Z
+消息: 连通性下β多样性里的分类、系统、功能多样性都呈现什么变化
+
+用户: shuyu512
+时间: 2024-02-29T02:48:14.570Z
+消息: 水文连通性使得β多样性的功能多样性呈现什么趋势
+
+用户: shuyu512
+时间: 2024-02-29T02:48:46.993Z
+消息: 纵向河流连通性使得β多样性的功能多样性呈现什么趋势
+
+用户: shuyu512
+时间: 2024-02-29T02:50:36.212Z
+消息: 纵向河流连通性使得β多样性的功能多样性呈现什么趋势
+
+用户: shuyu512
+时间: 2024-02-29T02:52:36.609Z
+消息: 那刚刚为什么说强连通性会使β多样性以及β多样性的功能多样性呈现下降趋势
+
+用户: shuyu512
+时间: 2024-02-29T02:53:43.970Z
+消息: 所以到底是上升还是下降
+
+用户: shuyu512
+时间: 2024-02-29T02:54:00.464Z
+消息: 还是说这两种都有可能
+
+用户: shuyu512
+时间: 2024-02-29T02:56:02.406Z
+消息: 较强的连通性会使α和β多样性呈现什么趋势
+
+用户: shuyu512
+时间: 2024-02-29T07:56:41.935Z
+消息: 丰富度和密度是说α还是β
+
+用户: shuyu512
+时间: 2024-02-29T08:11:14.617Z
+消息: αβ功能多样性是否可以一个增加一个减少
+
+用户: shuyu512
+时间: 2024-02-29T08:14:21.605Z
+消息: 有没有可能α功能增加β功能减少
+
+用户: shuyu512
+时间: 2024-02-29T08:16:19.387Z
+消息: 外来物种的FD随着LHC的增加而增加（R2 = 0 46，P < 0 0001，y = 2 5x 0 8，图2b），但大多数地点几乎没有被外来物种入侵。这说的是阿尔法还是β
+
+用户: shuyu512
+时间: 2024-02-29T08:23:34.842Z
+消息: 生态位是环境过滤嘛
+
+用户: shuyu512
+时间: 2024-02-29T09:16:32.872Z
+消息: 距离衰减效应
+
+用户: shuyu512
+时间: 2024-02-29T10:14:23.575Z
+消息: 强扩散者证明连通性强
+
+用户: shuyu512
+时间: 2024-02-29T10:15:09.754Z
+消息: 能代替强的河流连通性嘛
+
+
+用户: shuyu512
+时间: 2024-02-29T10:15:58.389Z
+消息: 这两个是正相关的嘛
+
+
+用户: shuyu512
+时间: 2024-02-29T10:16:33.600Z
+消息: 那河流连通性和什么相关呢
+
+用户: shuyu512
+时间: 2024-02-29T10:18:21.618Z
+消息: 有没有文献讲的是河流连通性中生物的组成是由环境决定的相关文献
+
+
+用户: shuyu512
+时间: 2024-02-29T10:46:52.515Z
+消息: 生态距离是不是物理距离
+
+用户: shuyu512
+时间: 2024-02-29T11:12:13.864Z
+消息: 被动分散器比主动分散器显示出比主动分散器更强的与站点之间环境差异的相关性
+
+用户: shuyu512
+时间: 2024-03-01T08:35:36.256Z
+消息: DCI=∑i=1nl2iL2×100
+
+用户: shuyu512
+时间: 2024-03-01T08:46:41.887Z
+消息: Dendritic Connectivity Index
+
+用户: shuyu512
+时间: 2024-03-01T08:47:27.631Z
+消息: 这个是用来评估鱼类的可以用来评估底栖吗
+
+用户: shuyu512
+时间: 2024-03-01T08:51:06.793Z
+消息: tutorial_network_creation.Rmdfunctions_network_creation.R
+
+用户: shuyu512
+时间: 2024-03-01T09:12:17.964Z
+消息: ECRINS意思
+
+用户: shuyu512
+时间: 2024-03-01T09:14:22.483Z
+消息: shape_river <- st_read("Ebro_shape_corrected/Ebro_rivers.shp")
+## Reading layer `Ebro_rivers' from data source 
+##   `C:\Users\Damiano\Dropbox\riverconn_tutorial\Ebro_shape_corrected\Ebro_rivers.shp' 
+##   using driver `ESRI Shapefile'
+## Simple feature collection with 4985 features and 14 fields
+## Geometry type: LINESTRING
+## Dimension:     XY
+## Bounding box:  xmin: -4.3625 ymin: 40.3625 xmax: 2.116667 ymax: 43.15417
+## Geodetic CRS:  WGS 84
+
+用户: shuyu512
+时间: 2024-03-01T13:49:49.289Z
+消息: # Set a threshold of 80 square kilometers
+threshold = 80
+
+# Prune HydroRIVERS network based on upstream area
+shape_river_small <- shape_river[as.numeric(shape_river$UPLAND_SKM) > threshold,]
+
+用户: shuyu512
+时间: 2024-03-01T14:04:18.447Z
+消息: 可以绘制生成的地图以直观地比较结果。为 绘制了不同指数之间的比较，覆盖率排名。这 最低等级是到达总数（约 650 次）。达到 排名越高，成为传播源的潜力就越大。
+
+用户: shuyu512
+时间: 2024-03-01T14:05:37.174Z
+消息: 成为传播源什么意思
+
+用户: shuyu512
+时间: 2024-03-01T14:08:06.163Z
+消息: 在生态学中，成为传播源可能指的是某个区域成为了新种群的来源，从而推动了物种的扩散，是不是就是说这段的连通性较差，被孤立
+
+用户: shuyu512
+时间: 2024-03-01T15:43:05.117Z
+消息: 底栖动物通过大坝的概率怎么样
+
+用户: shuyu512
+时间: 2024-03-01T15:44:35.005Z
+消息: 那大坝对鱼类和底栖动物的通过性影响是一样的吗
+
+用户: shuyu512
+时间: 2024-03-02T01:44:39.319Z
+消息: the Strahler order,
+
+用户: shuyu512
+时间: 2024-03-02T13:27:20.055Z
+消息: 压力源对底栖动物群落的影响
+
+用户: shuyu512
+时间: 2024-03-02T13:28:07.948Z
+消息: 多重压力源的类型包括什么
+
+用户: shuyu512
+时间: 2024-03-03T08:30:23.347Z
+消息: 170兆字节什么意思
+
+用户: shuyu512
+时间: 2024-03-03T08:31:24.345Z
+消息: 多少g
+
+用户: shuyu512
+时间: 2024-03-03T08:32:34.047Z
+消息: 兆字节是MB
+
+用户: shuyu512
+时间: 2024-03-03T08:36:20.951Z
+消息: 兆字节是MB
+
+用户: shuyu512
+时间: 2024-03-03T14:20:38.002Z
+消息: # Set a threshold of 80 square kilometers
+threshold = 80
+
+# Prune HydroRIVERS network based on upstream area
+shape_river_small <- shape_river[as.numeric(shape_river$UPLAND_SKM) > threshold,]
+
+用户: shuyu512
+时间: 2024-03-03T14:21:17.788Z
+消息: 中文说
+
+用户: shuyu512
+时间: 2024-03-03T14:22:32.258Z
+消息: # Set a threshold of 80 square kilometers
+threshold = 80
+
+# Prune HydroRIVERS network based on upstream area
+shape_river_small <- shape_river[as.numeric(shape_river$UPLAND_SKM) > threshold,]
+
+用户: shuyu512
+时间: 2024-03-03T14:23:03.934Z
+消息: 上边的代码什么意思呢
+
+用户: shuyu512
+时间: 2024-03-03T14:23:47.732Z
+消息: 170兆字节什么意思
+
+用户: shuyu512
+时间: 2024-03-03T14:29:57.580Z
+消息: 170兆字节什么意思
+
+用户: shuyu512
+时间: 2024-03-04T00:56:28.610Z
+消息: Set a threshold of 80 square kilometers
+threshold = 80
+
+Prune HydroRIVERS network based on upstream area
+shape_river_small <- shape_river[as.numeric(shape_river$UPLAND_SKM) > threshold,]
+
+用户: shuyu512
+时间: 2024-03-04T01:14:46.785Z
+消息: Set a threshold of 80 square kilometers
+threshold = 80
+
+Prune HydroRIVERS network based on upstream area
+shape_river_small <- shape_river[as.numeric(shape_river$UPLAND_SKM) > threshold,]
+
+用户: shuyu512
+时间: 2024-03-04T01:15:33.926Z
+消息: 压力源对底栖动物群落的影响
+
+用户: shuyu512
+时间: 2024-03-04T01:16:27.311Z
+消息: 河流连通性
+
+
+用户: shuyu512
+时间: 2024-03-04T01:16:50.105Z
+消息: 河流连通性
+
+用户: shuyu512
+时间: 2024-03-04T01:23:57.217Z
+消息: 压力源对底栖动物群落的影响
+
+用户: shuyu512
+时间: 2024-03-04T01:25:16.944Z
+消息: 压力源对底栖动物群落的影响
+
+用户: shuyu512
+时间: 2024-03-04T01:27:17.858Z
+消息: 压力源对底栖动物群落的影响
+
+用户: shuyu512
+时间: 2024-03-04T01:27:33.123Z
+消息: 压力源对底栖动物群落的影响
+
+用户: shuyu512
+时间: 2024-03-04T02:54:17.203Z
+消息: 惊蛰是昆虫苏醒的时候吗
+
+用户: shuyu512
+时间: 2024-03-04T14:11:25.290Z
+消息: #' Function to identify river network outlet
+#'
+#' @param river_network a polyline shapefile containing the river network
+#' (must be of class sf)
+#' @param catchment_mask a polygon shapefile with the extent of the catchment
+#' (must be of class sf)
+#'
+#' @return the index of the river network that is corresponding to the outlet
+#' (index points to the row in the river_network_shapefile)
+#' @export
+#'
+#' @examples
+#'
+get_outlet <- function(river_network, catchment_mask, distance) {
+  catchment_mask %>%
+    st_union() %>%
+    st_cast("LINESTRING") %>%
+    st_is_within_distance(river_network, .,
+                          dist = distance, sparse = FALSE) %>%
+    match(TRUE, .)
+}
+
+#' Function to create an object of class igraph with the river network attributes and
+#' the right directionality
+#'
+#' @param network_links a point shapefile containing the river joins and dams
+#' (must be of class sf)
+#' @param river_net_simplified a polyline shapefile containing the river
+#' network already sliced (must be of class sf). Must contain an ID column named 'NodeID'.
+#' @param outlet integer indicating the reach in river_net_simplified that is
+#' the outlet of the catchment
+#'
+#' @return 'igraph' object of the river network
+#' @export
+#'
+#' @examples
+#'
+create_network <- function(network_links, river_net_simplified, outlet) {
+  
+  # - use spatial join to get information about the links
+  # - create a distance matrics in long format
+  # - create temporaty network: it includes triangular cliques corresponding
+  # to the joints
+  # - loop over the triangles to remove the edges that are not good for having a
+  # nicely directed network
+  # - create a new undirected graph without loops
+  # - define the outlet
+  # - create a directed graph by setting directions based on the distance to the outlet
+  # Check where river_net_simplified is overlapping with network links,
+  # retain the information and save to network_links
+
+用户: shuyu512
+时间: 2024-03-04T14:11:33.375Z
+消息: 中文
+
+用户: shuyu512
+时间: 2024-03-04T14:21:51.857Z
+消息: # Set a threshold of 80 square kilometers
+threshold = 80
+
+# Prune HydroRIVERS network based on upstream area
+shape_river_small <- shape_river[as.numeric(shape_river$UPLAND_SKM) > threshold,]
+
+用户: shuyu512
+时间: 2024-03-05T14:33:21.561Z
+消息: shape_river <- st_read("Ebro_shape_corrected/Ebro_rivers.shp")
+## Reading layer `Ebro_rivers' from data source 
+##   `C:\Users\Damiano\Dropbox\riverconn_tutorial\Ebro_shape_corrected\Ebro_rivers.shp' 
+##   using driver `ESRI Shapefile'
+## Simple feature collection with 4985 features and 14 fields
+## Geometry type: LINESTRING
+## Dimension:     XY
+## Bounding box:  xmin: -4.3625 ymin: 40.3625 xmax: 2.116667 ymax: 43.15417
+## Geodetic CRS:  WGS 84
+shape_basin <- st_read("Ebro_catchment/Ebro_mask.shp")
+## Reading layer `Ebro_mask' from data source 
+##   `C:\Users\Damiano\Dropbox\riverconn_tutorial\Ebro_catchment\Ebro_mask.shp' 
+##   using driver `ESRI Shapefile'
+## Simple feature collection with 1 feature and 13 fields
+## Geometry type: POLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -4.4 ymin: 40.34167 xmax: 2.154167 ymax: 43.17917
+## Geodetic CRS:  WGS 84
+shape_dams <- st_read("Ebro_dams/Embalses/Embalses.shp")
+## Reading layer `Embalses' from data source 
+##   `C:\Users\Damiano\Dropbox\riverconn_tutorial\Ebro_dams\Embalses\Embalses.shp' 
+##   using driver `ESRI Shapefile'
+## Simple feature collection with 224 features and 3 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 408868.8 ymin: 4505766 xmax: 903207.1 ymax: 4766629
+## Projected CRS: ETRS89 / UTM zone 30N
+
+用户: shuyu512
+时间: 2024-03-05T14:39:20.043Z
+消息: devtools::session_info()
+
+用户: shuyu512
+时间: 2024-03-05T14:39:34.777Z
+消息: 中文回答
+
+用户: shuyu512
+时间: 2024-03-05T14:40:07.343Z
+消息: #' Function to identify river network outlet
+#'
+#' @param river_network a polyline shapefile containing the river network
+#' (must be of class sf)
+#' @param catchment_mask a polygon shapefile with the extent of the catchment
+#' (must be of class sf)
+#'
+#' @return the index of the river network that is corresponding to the outlet
+#' (index points to the row in the river_network_shapefile)
+#' @export
+#'
+#' @examples
+#'
+get_outlet <- function(river_network, catchment_mask, distance) {
+  catchment_mask %>%
+    st_union() %>%
+    st_cast("LINESTRING") %>%
+    st_is_within_distance(river_network, .,
+                          dist = distance, sparse = FALSE) %>%
+    match(TRUE, .)
+}
+
+用户: shuyu512
+时间: 2024-03-05T14:40:35.799Z
+消息: 需要
+
+用户: shuyu512
+时间: 2024-03-05T14:45:13.820Z
+消息: 集水区是什么意思
+
+用户: shuyu512
+时间: 2024-03-06T02:59:39.348Z
+消息: <metadata xml:lang="en">
+<Esri>
+<CreaDate>20140725</CreaDate>
+<CreaTime>00000000</CreaTime>
+<ArcGISFormat>1.0</ArcGISFormat>
+<SyncOnce>TRUE</SyncOnce>
+<ModDate>20140725</ModDate>
+<ModTime>00000000</ModTime>
+<scaleRange>
+<minScale>150000000</minScale>
+<maxScale>100000</maxScale>
+</scaleRange>
+<ArcGISProfile>ItemDescription</ArcGISProfile>
+</Esri>
+<dataIdInfo>
+<idPurp>HydroBASINS data provides a series of polygon layers that depict watershed boundaries and sub-basin delineations at a global scale. The goal of this product is to provide a seamless global coverage of consistently sized and hierarchically nested sub-basins at different scales (from tens to millions of square kilometers), supported by a coding scheme that allows for analysis of watershed topology such as up- and downstream connectivity.</idPurp>
+<idCitation>
+<resTitle>HydroBASINS Asia, Level 8, Version 1.c - Sub-basins in IUCN customized format (with lakes)</resTitle>
+</idCitation>
+<searchKeys>
+<keyword>HydroBASINS</keyword>
+<keyword>HydrSHEDS</keyword>
+</searchKeys>
+<dataExt>
+<geoEle xmlns="">
+<GeoBndBox esriExtentType="search">
+<westBL>57</westBL>
+<eastBL>151</eastBL>
+<northBL>56</northBL>
+<southBL>1</southBL>
+<exTypeCode>1</exTypeCode>
+</GeoBndBox>
+</geoEle>
+</dataExt>
+<resConst>
+<Consts>
+<useLimit><DIV STYLE="text-align:Left;"><DIV><DIV><P><SPAN><SPAN>HydroBASINS is covered by the same License Agreement as the HydroSHEDS database, which is available at </SPAN></SPAN><A href="http://www.hydrosheds.org"><SPAN><SPAN>http://www.hydrosheds.org</SPAN></SPAN></A><SPAN>. For all regulations regarding license grants, copyright, redistribution restrictions, required attributions, disclaimer of warranty, indemnification, liability, waiver of damages, and a precise definition of licensed materials, please refer to the License Agreement. By downloading and using the data the user agrees to the terms and conditions of the License Agreement.</SPAN></P></DIV></DIV></DIV></useLimit>
+</Consts>
+</resConst>
+<idCredit>The HydroBASINS product has been developed on behalf of World Wildlife Fund US (WWF), with support and in collaboration with the EU BioFresh project, Berlin, Germany; the International Union for Conservation of Nature (IUCN), Cambridge, UK; and McGill University, Montreal, Canada. We kindly ask users to cite HydroBASINS in any published material produced using the data. If possible, online links to the HydroSHEDS website (http://www.hydrosheds.org) should be provided. Citations and acknowledgements of the HydroBASINS data should be made as follows: Lehner, B., Grill G. (2013): Global river hydrography and network routing: baseline data and new approaches to study the world’s large river systems. Hydrological Processes, 27(15): 2171–2186. Data is available at www.hydrosheds.org. </idCredit>
+<idAbs><DIV STYLE="text-align:Left;"><DIV><DIV><P><SPAN>All HydroBASINS layers were derived from World Wildlife Fund’s HydroSHEDS data based on a grid resolution of 15 arc-seconds (approximately 500 m at the equator). Watersheds were delineated in a consistent manner at different scales, and a hierarchical sub-basin breakdown was created following the topological concept of the Pfafstetter coding system. The resulting polygon layers are termed HydroBASINS and represent a subset of the HydroSHEDS database. This shapefile contains (sub-)basin polygons for Asia at Pfafstetter level 8.</SPAN></P></DIV></DIV></DIV></idAbs>
+</dataIdInfo>
+</metadata>
+
+用户: shuyu512
+时间: 2024-03-06T05:05:59.562Z
+消息: shape_river <- st_read("Ebro_shape_corrected/Ebro_rivers.shp")
+## Reading layer `Ebro_rivers' from data source 
+##   `C:\Users\Damiano\Dropbox\riverconn_tutorial\Ebro_shape_corrected\Ebro_rivers.shp' 
+##   using driver `ESRI Shapefile'
+## Simple feature collection with 4985 features and 14 fields
+## Geometry type: LINESTRING
+## Dimension:     XY
+## Bounding box:  xmin: -4.3625 ymin: 40.3625 xmax: 2.116667 ymax: 43.15417
+## Geodetic CRS:  WGS 84
+shape_basin <- st_read("Ebro_catchment/Ebro_mask.shp")
+## Reading layer `Ebro_mask' from data source 
+##   `C:\Users\Damiano\Dropbox\riverconn_tutorial\Ebro_catchment\Ebro_mask.shp' 
+##   using driver `ESRI Shapefile'
+## Simple feature collection with 1 feature and 13 fields
+## Geometry type: POLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -4.4 ymin: 40.34167 xmax: 2.154167 ymax: 43.17917
+## Geodetic CRS:  WGS 84
+shape_dams <- st_read("Ebro_dams/Embalses/Embalses.shp")
+## Reading layer `Embalses' from data source 
+##   `C:\Users\Damiano\Dropbox\riverconn_tutorial\Ebro_dams\Embalses\Embalses.shp' 
+##   using driver `ESRI Shapefile'
+## Simple feature collection with 224 features and 3 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 408868.8 ymin: 4505766 xmax: 903207.1 ymax: 4766629
+## Projected CRS: ETRS89 / UTM zone 30N
+
+用户: shuyu512
+时间: 2024-03-06T05:06:07.205Z
+消息: 中文回答
+
+用户: shuyu512
+时间: 2024-03-06T05:08:01.996Z
+消息: 那这个里边我要是套数据应该给到哪些数据
+
+用户: shuyu512
+时间: 2024-03-06T05:13:04.222Z
+消息: 其中河流数据和流域数据我应该下载些什么呢
+
+用户: shuyu512
+时间: 2024-03-06T05:48:50.960Z
+消息: gis一般用什么分辨率
+
+用户: shuyu512
+时间: 2024-03-06T05:49:35.904Z
+消息: 分辨率30高还是15高
+
+用户: shuyu512
+时间: 2024-03-06T06:08:17.034Z
+消息: # Prune HydroRIVERS network based on upstream area
+shape_river_small <- shape_river[as.numeric(shape_river$UPLAND_SKM) > threshold,]
+
+用户: shuyu512
+时间: 2024-03-06T06:09:44.049Z
+消息: dams_to_points <- shape_dams %>%
+  st_as_sf %>%
+  st_centroid %>%
+  mutate(id = 1:nrow(.))%>% 
+  dplyr::select(id)%>% 
+  st_transform(crs = "+proj=longlat +datum=WGS84")
+
+用户: shuyu512
+时间: 2024-03-06T07:19:35.973Z
+消息: shape_river <- st_read("Ebro_shape_corrected/Ebro_rivers.shp")
+## Reading layer `Ebro_rivers' from data source 
+##   `C:\Users\Damiano\Dropbox\riverconn_tutorial\Ebro_shape_corrected\Ebro_rivers.shp' 
+##   using driver `ESRI Shapefile'
+## Simple feature collection with 4985 features and 14 fields
+## Geometry type: LINESTRING
+## Dimension:     XY
+## Bounding box:  xmin: -4.3625 ymin: 40.3625 xmax: 2.116667 ymax: 43.15417
+## Geodetic CRS:  WGS 84
+

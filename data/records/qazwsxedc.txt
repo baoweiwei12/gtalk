@@ -1,0 +1,48 @@
+用户: qazwsxedc
+时间: 2024-01-23T07:57:59.209Z
+消息: 你是GPT什么版本
+
+用户: qazwsxedc
+时间: 2024-01-23T07:58:19.060Z
+消息: 你是chat GPT什么版本
+
+用户: qazwsxedc
+时间: 2024-01-23T07:58:37.065Z
+消息: 4.0版本？
+
+用户: qazwsxedc
+时间: 2024-01-23T07:59:39.207Z
+消息: 中文润色：本研究旨在探讨杂交鲟感染弗氏柠檬酸杆菌后的血液学、皮肤黏膜免疫和黏膜菌群的变化。组织学分析结果表明，感染后鲟鱼的皮肤表皮层变薄，黏液细胞数量显著减少。血液学参数分析结果显示，感染后1-4天，白细胞浓度明显增加，红细胞浓度从感染后第2天开始下降并达到最低点（p < 0.05）。白细胞分类计数结果显示，感染14天后淋巴细胞数量显著减少，单核细胞数量显著增加（p < 0.0001）。
+
+用户: qazwsxedc
+时间: 2024-01-23T08:00:28.301Z
+消息: 我是一名学习生物学的研究人员，现在正试着修改我的手稿。请帮我确保语法和拼写正确。如果没有发现错误，请告诉我这一段很好。如果您发现语法或拼写错误，请在两栏标记表中列出您发现的错误，将原文放在第一栏，将更正后的文本放在第二栏，并用粗体标出您修正的关键词。中文润色：本研究旨在探讨杂交鲟感染弗氏柠檬酸杆菌后的血液学、皮肤黏膜免疫和黏膜菌群的变化。组织学分析结果表明，感染后鲟鱼的皮肤表皮层变薄，黏液细胞数量显著减少。血液学参数分析结果显示，感染后1-4天，白细胞浓度明显增加，红细胞浓度从感染后第2天开始下降并达到最低点（p < 0.05）。白细胞分类计数结果显示，感染14天后淋巴细胞数量显著减少，单核细胞数量显著增加（p < 0.0001）。
+
+用户: qazwsxedc
+时间: 2024-01-23T08:07:17.217Z
+消息: I am a researcher studying biology and now trying to revise my manuscript . Please help me to ensure the grammar and spelling are correct. Do not try to improve the text, if no mistake found, tell me this paragraph is good. If you find grammar or spelling mistakes, please list the mistakes you find in a two-column markdown table, put the original text in the first column, put the corrected text in the second column, and do highlight the key words you fixed in bold.Text: The present study was to investigate the hematology, skin mucosal immunology, and skin microbiota fluctuation in sturgeons infected with Citrobacter freundii. Histological analysis indicated that the thickness of the epidermal layer of the skin remained thinner and the number of mucous cells was significantly decreased in sturgeons after infection. Haematological parameter analysis indicated that the concentration of leukocytes in the peripheral blood increased significantly from 1 to 4 days, and the concentration of erythrocytes decreased significantly from day 2 after infection and reached a minimum (p < 0.05). Leukocyte categorical counts show that there was a significant decrease in the number of lymphocytes and a significant increase in the number of monocytes after infection (p < 0.0001).
+
+用户: qazwsxedc
+时间: 2024-01-23T08:08:38.467Z
+消息: 翻译这一段话
+
+用户: qazwsxedc
+时间: 2024-01-23T09:12:34.425Z
+消息: 翻译这一段话：The predominant bacterial phyla in the skin mucus sturgeons were Proteobacteria, Fusobacteria, Bacteroidetes, Firmicutes, and Actinobacteria. Specifically, the relative abundance of Fusobacteria, Proteobacteria and, Firmicutes was increased, whereas that of Bacteroidetes was decreased. The predominant bacterial genera in the skin mucus of were Cetobacterium, Pelomonas, Bradyrhizobium, Flavobacterium, and Pseudomonas. Specifically, the relative abundance of Pseudomonas and Flavobacterium increased. 
+
+用户: qazwsxedc
+时间: 2024-01-23T09:14:42.660Z
+消息: 对每一个细菌门类做简要介绍Proteobacteria, Fusobacteria, Bacteroidetes, Firmicutes, and Actinobacteria。
+
+用户: qazwsxedc
+时间: 2024-01-23T09:19:36.548Z
+消息: Proteobacteria，Fusobacteria，拟杆菌门（Bacteroidetes），Firmicutes， and Actinobacteria。
+
+用户: qazwsxedc
+时间: 2024-01-23T09:30:38.853Z
+消息: 对这细菌属类进行简要介绍：Cetobacterium, Pelomonas, Bradyrhizobium, Flavobacterium, and Pseudomonas
+
+用户: qazwsxedc
+时间: 2024-01-23T09:53:53.789Z
+消息: 翻译：These findings could elucidate the dynamic changes in hematology, skin mucosal immunology, and skin microbiota fluctuation in sturgeons infected with Citrobacter freundii and will provide new insights into the theoretical basis for further analysis of the mechanism of sturgeon infection with Citrobacter freundii.
+

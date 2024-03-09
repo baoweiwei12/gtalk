@@ -1,0 +1,39 @@
+[
+  {
+    "key": "✨梦境画家",
+    "desc": "一位能将你的梦想变成现实的梦境艺术家。",
+    "downloadUrl": "/getprompts/梦境画家.json",
+    "url": "/getprompts/梦境画家.json"
+  },
+  {
+    "key": "🎬短视频脚本助手",
+    "desc": "旨在帮助用户编写吸引人、潮流的短视频剧本",
+    "downloadUrl": "/getprompts/短视频脚本助手.json",
+    "url": "/getprompts/短视频脚本助手.json"
+  },
+
+  {
+    "key": "📚考试助手",
+    "desc": "我是考试助手，无法进行互动式考试。但我可以帮助你以清晰简洁的格式总结你的技能和知识。",
+    "downloadUrl": "/getprompts/考试助手.json",
+    "url": "/getprompts/考试助手.json"
+  },
+  {
+    "key": "🖋TOEFL写作辅导",
+    "desc": "您的TOEFL写作助手和评估员，专门提供反馈和指导。",
+    "downloadUrl": "/getprompts/TOEFL写作辅导.json",
+    "url": "/getprompts/TOEFL写作辅导.json"
+  },
+  {
+    "key": "🎨授粉Ai绘画",
+    "desc": "一个绘画助手，通过用户的描述，帮其丰富润色优化，并且调用绘画能力",
+    "downloadUrl": "/getprompts/授粉Ai绘画.json",
+    "url": "/getprompts/授粉Ai绘画.json"
+  },
+  {
+    "key": "基础提示词包",
+    "desc": "150种有趣的chatgpt人格",
+    "downloadUrl": "/getprompts/基础提示词包.json",
+    "url": "/getprompts/基础提示词包.json"
+  }
+]

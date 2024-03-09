@@ -1,0 +1,4456 @@
+用户: yyyyyyyy
+时间: 2023-12-30T15:15:16.475Z
+消息: package 课程设计;
+
+import java.sql.*;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Button;
+
+public class 登录 {
+
+	public Shell sShell = null;
+	private Label label = null;
+	private Label label1 = null;
+	private Text text = null;
+	private Label label2 = null;
+	private Label label3 = null;
+	private Text text1 = null;
+	private Text text2 = null;
+	private Button button = null;
+	private Button button1 = null;
+	private Label label4 = null;
+	public static void main(String[] args) {
+		Display display = Display.getDefault();
+		登录 thisClass = new 登录();
+		thisClass.createSShell();
+		thisClass.sShell.open();
+
+		while (!thisClass.sShell.isDisposed()) {
+			if (!display.readAndDispatch())
+				display.sleep();
+		}
+		display.dispose();
+	}
+	public void createSShell() {
+		sShell = new Shell();
+		sShell.setText("登录");
+		sShell.setSize(new Point(392, 304));
+		sShell.setLayout(null);
+		label = new Label(sShell, SWT.NONE);
+		label.setBounds(new Rectangle(80, 21, 210, 28));
+		label.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 14, SWT.NORMAL));
+		label.setText("请输入你的考试信息");
+		label1 = new Label(sShell, SWT.NONE);
+		label1.setBounds(new Rectangle(90, 70, 48, 29));
+		label1.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label1.setText("姓名：");
+		text = new Text(sShell, SWT.BORDER);
+		text.setBounds(new Rectangle(143, 72, 139, 26));
+		label2 = new Label(sShell, SWT.NONE);
+		label2.setBounds(new Rectangle(90, 112, 47, 28));
+		label2.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label2.setText("年级：");
+		label3 = new Label(sShell, SWT.NONE);
+		label3.setBounds(new Rectangle(89, 148, 49, 27));
+		label3.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label3.setText("班级：");
+		text1 = new Text(sShell, SWT.BORDER);
+		text1.setBounds(new Rectangle(143, 111, 140, 27));
+		text2 = new Text(sShell, SWT.BORDER);
+		text2.setBounds(new Rectangle(143, 150, 140, 28));
+		button = new Button(sShell, SWT.NONE);
+		button.setBounds(new Rectangle(120, 197, 71, 26));
+		button.setText("管理员");
+		
+		button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				管理员登录 guanli = new 管理员登录();
+				guanli.createSShell();
+				guanli.sShell.open();
+				sShell.setVisible(false);
+			}
+		});
+		button1 = new Button(sShell, SWT.NONE);
+		button1.setBounds(new Rectangle(206, 196, 77, 27));
+		button1.setText("开始考试");
+		label4 = new Label(sShell, SWT.NONE);
+		label4.setBounds(new Rectangle(147, 179, 115, 17));
+		label4.setText("");
+		button1.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				try{
+					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+					String userName = "sa";
+					String userPwd = "041128";
+					String url = "jdbc:sqlserver://localhost:1433;DatabaseName =zz02";//填写自己的数据库名称
+					Connection con = DriverManager.getConnection(url,userName,userPwd);
+					Statement stmt = con.createStatement();
+					String sql = "select * from student01 where 姓名='"+text.getText()+"'and 年级='"+text1.getText()+"'and 班级='"+text2.getText()+"'";
+					ResultSet rs = stmt.executeQuery(sql);
+					if(rs.next())
+					{
+						开始答题 dati = new 开始答题();
+						dati.createSShell();
+						dati.sShell.open();
+						sShell.setVisible(false);
+					}
+				}catch(Exception e1)
+				{
+					label4.setText("输入信息有误！");
+					//System.out.println(111);
+				}
+			}
+		});
+	}
+}
+请帮我注释一下上面的这段代码
+
+用户: yyyyyyyy
+时间: 2023-12-30T15:40:29.114Z
+消息: package 课程设计;
+
+import java.sql.*;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Button;
+
+public class 登录 {
+
+	public Shell sShell = null;
+	private Label label = null;
+	private Label label1 = null;
+	private Text text = null;
+	private Label label2 = null;
+	private Label label3 = null;
+	private Text text1 = null;
+	private Text text2 = null;
+	private Button button = null;
+	private Button button1 = null;
+	private Label label4 = null;
+	public static void main(String[] args) {
+		Display display = Display.getDefault();
+		登录 thisClass = new 登录();
+		thisClass.createSShell();
+		thisClass.sShell.open();
+
+		while (!thisClass.sShell.isDisposed()) {
+			if (!display.readAndDispatch())
+				display.sleep();
+		}
+		display.dispose();
+	}
+	public void createSShell() {
+		sShell = new Shell();
+		sShell.setText("登录");
+		sShell.setSize(new Point(392, 304));
+		sShell.setLayout(null);
+		label = new Label(sShell, SWT.NONE);
+		label.setBounds(new Rectangle(80, 21, 210, 28));
+		label.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 14, SWT.NORMAL));
+		label.setText("请输入你的考试信息");
+		label1 = new Label(sShell, SWT.NONE);
+		label1.setBounds(new Rectangle(90, 70, 48, 29));
+		label1.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label1.setText("姓名：");
+		text = new Text(sShell, SWT.BORDER);
+		text.setBounds(new Rectangle(143, 72, 139, 26));
+		label2 = new Label(sShell, SWT.NONE);
+		label2.setBounds(new Rectangle(90, 112, 47, 28));
+		label2.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label2.setText("年级：");
+		label3 = new Label(sShell, SWT.NONE);
+		label3.setBounds(new Rectangle(89, 148, 49, 27));
+		label3.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label3.setText("班级：");
+		text1 = new Text(sShell, SWT.BORDER);
+		text1.setBounds(new Rectangle(143, 111, 140, 27));
+		text2 = new Text(sShell, SWT.BORDER);
+		text2.setBounds(new Rectangle(143, 150, 140, 28));
+		button = new Button(sShell, SWT.NONE);
+		button.setBounds(new Rectangle(120, 197, 71, 26));
+		button.setText("管理员");
+		
+		button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				管理员登录 guanli = new 管理员登录();
+				guanli.createSShell();
+				guanli.sShell.open();
+				sShell.setVisible(false);
+			}
+		});
+		button1 = new Button(sShell, SWT.NONE);
+		button1.setBounds(new Rectangle(206, 196, 77, 27));
+		button1.setText("开始考试");
+		label4 = new Label(sShell, SWT.NONE);
+		label4.setBounds(new Rectangle(147, 179, 115, 17));
+		label4.setText("");
+		button1.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				try{
+					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+					String userName = "sa";
+					String userPwd = "041128";
+					String url = "jdbc:sqlserver://localhost:1433;DatabaseName =zz02";//填写自己的数据库名称
+					Connection con = DriverManager.getConnection(url,userName,userPwd);
+					Statement stmt = con.createStatement();
+					String sql = "select * from student01 where 姓名='"+text.getText()+"'and 年级='"+text1.getText()+"'and 班级='"+text2.getText()+"'";
+					ResultSet rs = stmt.executeQuery(sql);
+					if(rs.next())
+					{
+						开始答题 dati = new 开始答题();
+						dati.createSShell();
+						dati.sShell.open();
+						sShell.setVisible(false);
+					}
+				}catch(Exception e1)
+				{
+					label4.setText("输入信息有误！");
+					//System.out.println(111);
+				}
+			}
+		});
+	}
+}
+请帮我注释一下上面的这段代码
+
+用户: yyyyyyyy
+时间: 2023-12-30T15:43:22.607Z
+消息: package 课程设计;
+
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Button;
+
+public class 管理员登录 {
+
+	public Shell sShell = null;
+	private Text text = null;
+	private Text text1 = null;
+	private Label label = null;
+	private Label label1 = null;
+	private Button button = null;
+	private Label label2 = null;
+	private Button button1 = null;
+	public void createSShell() {
+		sShell = new Shell();
+		sShell.setText("管理员登录");
+		sShell.setSize(new Point(329, 272));
+		sShell.setLayout(null);
+		text = new Text(sShell, SWT.BORDER);
+		text.setBounds(new Rectangle(118, 43, 115, 26));
+		text1 = new Text(sShell, SWT.BORDER | SWT.PASSWORD);
+		text1.setBounds(new Rectangle(118, 83, 115, 26));
+		label = new Label(sShell, SWT.NONE);
+		label.setBounds(new Rectangle(56, 41, 53, 26));
+		label.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label.setText("账号");
+		label1 = new Label(sShell, SWT.NONE);
+		label1.setBounds(new Rectangle(54, 80, 55, 28));
+		label1.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label1.setText("密码");
+		button = new Button(sShell, SWT.NONE);
+		button.setBounds(new Rectangle(99, 146, 106, 32));
+		button.setText("登录");
+		button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				if(text.getText().equals("111")&&text.getText().equals("111"))
+				{
+					录入题目 luru = new 录入题目();
+					luru.createSShell();
+					luru.sShell.open();
+					sShell.setVisible(false);
+				}else label2.setText("账号或密码不正确！");
+			}
+		});
+		label2 = new Label(sShell, SWT.NONE);
+		label2.setBounds(new Rectangle(61, 117, 195, 23));
+		label2.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label2.setText("");
+		button1 = new Button(sShell, SWT.NONE);
+		button1.setBounds(new Rectangle(7, 4, 48, 18));
+		button1.setText("返回");
+		button1.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				登录 denglu = new 登录();
+				denglu.createSShell();
+				denglu.sShell.open();
+				sShell.setVisible(false);
+			}
+		});
+	}
+
+}
+请帮我注释一下上面的这段代码
+
+用户: yyyyyyyy
+时间: 2023-12-30T15:51:20.302Z
+消息: 请问Java中界面的标签是上面
+
+用户: yyyyyyyy
+时间: 2023-12-30T15:52:45.097Z
+消息: package 课程设计;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.ProgressBar;
+
+public class 录入题目 {
+
+	public Shell sShell = null;
+	private Label label = null;
+	private Text text = null;
+	private Label label1 = null;
+	private Text text1 = null;
+	private Button button = null;
+	private Label label2 = null;
+	private Button button1 = null;
+	private Label label3 = null;
+	private Text text2 = null;
+	public void createSShell() {
+		sShell = new Shell();
+		sShell.setText("Shell");
+		sShell.setSize(new Point(355, 259));
+		sShell.setLayout(null);
+		label = new Label(sShell, SWT.NONE);
+		label.setBounds(new Rectangle(52, 68, 68, 27));
+		label.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 10, SWT.NORMAL));
+		label.setText("录入题目");
+		text = new Text(sShell, SWT.BORDER);
+		text.setBounds(new Rectangle(142, 65, 135, 29));
+		label1 = new Label(sShell, SWT.NONE);
+		label1.setBounds(new Rectangle(52, 99, 69, 24));
+		label1.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 10, SWT.NORMAL));
+		label1.setText("录入答案");
+		text1 = new Text(sShell, SWT.BORDER);
+		text1.setBounds(new Rectangle(142, 96, 76, 28));
+		button = new Button(sShell, SWT.NONE);
+		button.setBounds(new Rectangle(121, 151, 81, 29));
+		button.setText("录入");
+		button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				try{
+					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+				    String userName = "sa";
+				    String userPwd = "041128";
+				    String url = "jdbc:sqlserver://localhost:1433;DatabaseName =zz02";//填写自己的数据库名称
+				    Connection con = DriverManager.getConnection(url,userName,userPwd);
+				    Statement stmt = con.createStatement();
+				    String sql = "insert into 题库 values('"+text2.getText()+"','"+text.getText()+"','"+text1.getText()+"')";
+				stmt.executeUpdate(sql);
+				label2.setText("录入成功!");
+				}
+				catch(Exception e1){
+					label2.setText("题号重复！");
+				}
+			}
+		});
+		label2 = new Label(sShell, SWT.NONE);
+		label2.setBounds(new Rectangle(117, 128, 95, 24));
+		label2.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label2.setText("");
+		button1 = new Button(sShell, SWT.NONE);
+		button1.setBounds(new Rectangle(4, 4, 48, 20));
+		button1.setText("退出");
+		label3 = new Label(sShell, SWT.NONE);
+		label3.setBounds(new Rectangle(51, 36, 70, 26));
+		label3.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 10, SWT.NORMAL));
+		label3.setText("录入题号");
+		text2 = new Text(sShell, SWT.BORDER);
+		text2.setBounds(new Rectangle(143, 33, 134, 31));
+		button1.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				管理员登录 denglu = new 管理员登录();
+				denglu.createSShell();
+				denglu.sShell.open();
+				sShell.setVisible(false);
+			}
+		});
+	}
+
+}
+请帮我注释一下上面的这段代码
+
+用户: yyyyyyyy
+时间: 2023-12-30T15:55:13.266Z
+消息: Java课设面试打分系统数据库设计E-R图
+怎么写
+
+用户: yyyyyyyy
+时间: 2023-12-30T15:57:43.076Z
+消息: Java课设面试打分系统数据库设计怎么写
+
+用户: yyyyyyyy
+时间: 2023-12-30T16:00:11.287Z
+消息: 上述代码中的shell类是什么
+
+用户: yyyyyyyy
+时间: 2023-12-30T16:05:01.650Z
+消息: 请问上述代码中提示信息标签的作用
+
+用户: yyyyyyyy
+时间: 2023-12-30T16:16:20.299Z
+消息: package 课程设计;
+
+import java.sql.*;
+import org.eclipse.swt.layout.GridLayout;
+import java.util.Random;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Button;
+
+public class 答题 {
+	public Shell sShell = null;
+	private Label label = null;
+	private Label label2 = null;
+	private Text text1 = null;
+	private Button button = null;
+	private Button button1 = null;
+	private Button button2 = null;
+	private Label label3 = null;
+    public long time = 1800;
+	private Label label4 = null;
+	public int index = 1;
+	String []str = new String[15];//
+	String []s = new String[15];
+	private Label label5 = null;
+	public int sum = 0;
+	private Text text = null;
+	private Label label1 = null;
+	private Button button3 = null;
+	
+	public void createSShell() {
+		
+		sShell = new Shell();
+		sShell.setText("题目");
+		sShell.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		sShell.setSize(new Point(388, 277));
+		sShell.setLayout(null);
+		label = new Label(sShell, SWT.NONE);
+		label.setBounds(new Rectangle(31, 55, 50, 33));
+		label.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label.setText("题目");
+		label2 = new Label(sShell, SWT.NONE);
+		label2.setBounds(new Rectangle(30, 109, 54, 32));
+		label2.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label2.setText("答案");
+		text1 = new Text(sShell, SWT.BORDER);
+		text1.setBounds(new Rectangle(89, 110, 75, 30));
+		text1.setText("");
+		
+		button = new Button(sShell, SWT.NONE);
+		button.setBounds(new Rectangle(24, 191, 60, 27));
+		button.setText("上一题");
+		button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				System.out.println("widgetSelected()"); // TODO Auto-generated Event stub widgetSelected()
+			}
+		});
+		button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				if(index>0)
+				{
+					--index;
+					label4.setText("第"+index+"题");
+					try{
+						label5.setText(str[index]);
+					    text1.setText(s[index]);
+					}
+					catch(Exception e1){}
+				}else
+				{
+					MessageBox ms = new MessageBox(sShell);
+					ms.setMessage("这是第一题");
+					ms.setText("提示");
+					ms.open();
+				}
+			}
+		});
+		button1 = new Button(sShell, SWT.NONE);
+		button1.setBounds(new Rectangle(285, 188, 68, 27));
+		button1.setText("下一题");
+		button1.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				Random r = new Random();
+				int k = r.nextInt(60);
+				
+				if(index<=11)
+				{
+					if(index<=10){label4.setText("第"+index+"题");}
+					try{
+						Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+					    String userName = "sa";
+					    String userPwd = "041128";
+					    String url = "jdbc:sqlserver://localhost:1433;DatabaseName =zz02";//填写自己的数据库名称
+					    Connection con = DriverManager.getConnection(url,userName,userPwd);
+					    Statement stmt = con.createStatement();
+					    String sql = "select * from 题库 where 题号='"+k+"'";
+					    ResultSet rs =stmt.executeQuery(sql);
+					    if(rs.next()){
+					        label5.setText(rs.getString("题目"));
+//					    	str[index] = label5.getText();
+//					    	s[index] = text1.getText();
+					    }
+					    button3.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+							public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+								str[index] = label5.getText();
+								s[index] = text1.getText();
+								
+							}
+						});
+					    
+					    System.out.println(str[index]+s[index]);
+					    index++;
+					}
+					catch(Exception e1){
+						System.out.println("异常");
+					}
+				}else 
+				{
+					MessageBox ms = new MessageBox(sShell);
+					ms.setMessage("已到最后一题");
+					ms.setText("提示");
+					ms.open();
+				}
+			}
+		});
+		button2 = new Button(sShell, SWT.NONE);
+		button2.setBounds(new Rectangle(302, 11, 66, 25));
+		button2.setText("交卷");
+		button2.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {   
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {   
+				MessageBox ms = new MessageBox(sShell);
+				ms.setMessage("确定交卷！");
+				ms.setText("提示");
+				ms.open();
+				try{
+					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+				    String userName = "sa";
+				    String userPwd = "041128";
+				    String url = "jdbc:sqlserver://localhost:1433;DatabaseName =zz02";//填写自己的数据库名称
+				    Connection con = DriverManager.getConnection(url,userName,userPwd);
+				    Statement stmt = con.createStatement();
+				    int i = 1;
+				    while(i<=10)
+				    {
+				    	String sql ="select * from 题库  where 题目='"+str[i]+"'and 答案='"+s[i]+"'";
+				    	ResultSet rs =stmt.executeQuery(sql);
+				    	if(rs.next())
+				    	{
+				    		sum+=10;
+				    	}
+				    	i++;
+				    }
+				    String sql = "update student01 set 成绩='"+sum+"'where 姓名='"+text.getText()+"'";
+				    stmt.executeUpdate(sql);
+				          查询 cx = new 查询();
+					cx.createSShell();
+					cx.sShell.open();
+					sShell.setVisible(false);
+				}
+				catch(Exception e1){
+					System.out.println("异常");
+				}
+			}
+		
+		});
+		label3 = new Label(sShell, SWT.NONE);
+		label3.setBounds(new Rectangle(92, 12, 34, 22));
+		label3.setText("题号");
+		label4 = new Label(sShell, SWT.NONE);
+		label4.setBounds(new Rectangle(133, 12, 126, 22));
+		label4.setVisible(true);
+		label5 = new Label(sShell, SWT.NONE);
+		label5.setBounds(new Rectangle(89, 57, 104, 30));
+		label5.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 14, SWT.NORMAL));
+		label5.setText("");
+		text = new Text(sShell, SWT.BORDER);
+		text.setBounds(new Rectangle(271, 56, 94, 26));
+		label1 = new Label(sShell, SWT.NONE);
+		label1.setBounds(new Rectangle(218, 56, 45, 26));
+		label1.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 10, SWT.NORMAL));
+		label1.setText("账号");
+		button3 = new Button(sShell, SWT.NONE);
+		button3.setBounds(new Rectangle(144, 157, 95, 30));
+		button3.setText("保存");
+		
+	}
+
+}
+请帮我注释一下上面的这段代码
+
+用户: yyyyyyyy
+时间: 2023-12-30T16:17:55.524Z
+消息: 上述代码的题目索引是什么
+
+用户: yyyyyyyy
+时间: 2023-12-30T16:30:27.293Z
+消息: package 课程设计;
+
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
+
+public class 开始答题 {
+
+	public Shell sShell = null;  //  @jve:decl-index=0:visual-constraint="10,10"
+	private Button button = null;
+
+	/**
+	 * This method initializes sShell
+	 */
+	public void createSShell() {
+		sShell = new Shell();
+		sShell.setText("开始答题");
+		sShell.setSize(new Point(399, 265));
+		sShell.setLayout(null);
+		button = new Button(sShell, SWT.NONE);
+		button.setBounds(new Rectangle(115, 79, 142, 49));
+		button.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 14, SWT.NORMAL));
+		button.setText("开始答题");
+		button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				答题 dati = new 答题();
+				dati.createSShell();
+				dati.sShell.open();
+				sShell.setVisible(false);
+			}
+		});
+	}
+
+}
+请帮我注释上面的代码
+
+用户: yyyyyyyy
+时间: 2023-12-30T16:31:02.339Z
+消息: package 课程设计;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Button;
+
+public class 查询 {
+
+	public Shell sShell = null;
+	private Label label = null;
+	private Text text = null;
+	private Label label1 = null;
+	private Button button = null;
+	private Label label2 = null;
+	private Text text1 = null;
+
+	/**
+	 * This method initializes sShell
+	 */
+	public void createSShell() {
+		sShell = new Shell();
+		sShell.setText("Shell");
+		sShell.setSize(new Point(334, 222));
+		sShell.setLayout(null);
+		label = new Label(sShell, SWT.NONE);
+		label.setBounds(new Rectangle(62, 23, 78, 26));
+		label.setText("请输入姓名");
+		text = new Text(sShell, SWT.BORDER);
+		text.setBounds(new Rectangle(148, 23, 111, 27));
+		label1 = new Label(sShell, SWT.NONE);
+		label1.setBounds(new Rectangle(119, 97, 90, 18));
+		label1.setText("");
+		button = new Button(sShell, SWT.NONE);
+		button.setBounds(new Rectangle(119, 120, 91, 28));
+		button.setText("查询");
+		label2 = new Label(sShell, SWT.NONE);
+		label2.setBounds(new Rectangle(62, 60, 82, 21));
+		label2.setText("socre");
+		text1 = new Text(sShell, SWT.BORDER);
+		text1.setBounds(new Rectangle(149, 54, 111, 27));
+		button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				try{
+					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+				    String userName = "sa";
+				    String userPwd = "041128";
+				    String url = "jdbc:sqlserver://localhost:1433;DatabaseName =zz02";//填写自己的数据库名称
+				    Connection con = DriverManager.getConnection(url,userName,userPwd);
+				    Statement stmt = con.createStatement();
+				    String sql = "select * from student01 where 姓名='"+text.getText()+"'";
+				    ResultSet rs =stmt.executeQuery(sql);
+				    String s ="";
+				    if(rs.next())
+				    {
+				    	text1.setText(rs.getString("成绩"));
+				    	s = rs.getString("成绩");
+				    }
+//				    try
+//				    {int k = Integer.parseInt(s);
+//				    System.out.println(k);}
+//				    catch(Exception e1){
+//				    	
+//				    }
+//				    if(k<=100&&k>=90)text1.setText("SMART");
+//				    else if(k>=80&&k<90)text1.setText("GOOD");
+//				    else if(k>=70&&k<80)text1.setText("OK");
+//				    else if(k>=60&&k<70)text1.setText("PASS");
+//				    else if(k>=0&&k<60)text1.setText("TRY AGAIN");
+				}
+				catch(Exception e1){
+					System.out.println("异常");
+				}
+			}
+		});
+	}
+
+}
+请帮我注释上面的代码
+
+用户: yyyyyyyy
+时间: 2023-12-30T16:42:24.807Z
+消息: 请问在上面的几个代码里是怎么进行题目随机生成的
+
+用户: yyyyyyyy
+时间: 2023-12-30T16:43:45.917Z
+消息: package 课程设计;
+
+import java.sql.*;
+import org.eclipse.swt.layout.GridLayout;
+import java.util.Random;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Button;
+
+public class 答题 {
+	public Shell sShell = null;
+	private Label label = null;
+	private Label label2 = null;
+	private Text text1 = null;
+	private Button button = null;
+	private Button button1 = null;
+	private Button button2 = null;
+	private Label label3 = null;
+    public long time = 1800;//时间
+	private Label label4 = null;
+	public int index = 1;//题目索引idex是用于追踪当前显示的题目和答案的数组下标
+	//题目和答案数组
+	String []str = new String[15];
+	String []s = new String[15];
+	private Label label5 = null;
+	public int sum = 0;//分数
+	private Text text = null;
+	private Label label1 = null;
+	private Button button3 = null;
+	
+	public void createSShell() {
+		
+		sShell = new Shell();
+		sShell.setText("题目");
+		sShell.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		sShell.setSize(new Point(388, 277));
+		sShell.setLayout(null);
+		label = new Label(sShell, SWT.NONE);
+		label.setBounds(new Rectangle(31, 55, 50, 33));
+		label.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label.setText("题目");
+		label2 = new Label(sShell, SWT.NONE);
+		label2.setBounds(new Rectangle(30, 109, 54, 32));
+		label2.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label2.setText("答案");
+		text1 = new Text(sShell, SWT.BORDER);
+		text1.setBounds(new Rectangle(89, 110, 75, 30));
+		text1.setText("");
+		
+		button = new Button(sShell, SWT.NONE);
+		button.setBounds(new Rectangle(24, 191, 60, 27));
+		button.setText("上一题");
+		button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				System.out.println("widgetSelected()"); // TODO Auto-generated Event stub widgetSelected()
+			}
+		});
+		button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				if(index>0)
+				{
+					--index;
+					label4.setText("第"+index+"题");
+					try{
+						label5.setText(str[index]);
+					    text1.setText(s[index]);
+					}
+					catch(Exception e1){}
+				}else
+				{
+					MessageBox ms = new MessageBox(sShell);
+					ms.setMessage("这是第一题");
+					ms.setText("提示");
+					ms.open();
+				}
+			}
+		});
+		button1 = new Button(sShell, SWT.NONE);
+		button1.setBounds(new Rectangle(285, 188, 68, 27));
+		button1.setText("下一题");
+		button1.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				Random r = new Random();
+				int k = r.nextInt(60);
+				
+				if(index<=11)
+				{
+					if(index<=10){label4.setText("第"+index+"题");}
+					try{
+						Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+					    String userName = "sa";
+					    String userPwd = "041128";
+					    String url = "jdbc:sqlserver://localhost:1433;DatabaseName =zz02";//填写自己的数据库名称
+					    Connection con = DriverManager.getConnection(url,userName,userPwd);
+					    Statement stmt = con.createStatement();
+					    String sql = "select * from 题库 where 题号='"+k+"'";
+					    ResultSet rs =stmt.executeQuery(sql);
+					    if(rs.next()){
+					        label5.setText(rs.getString("题目"));
+//					    	str[index] = label5.getText();
+//					    	s[index] = text1.getText();
+					    }
+					    button3.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+							public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+								str[index] = label5.getText();
+								s[index] = text1.getText();
+								
+							}
+						});
+					    
+					    System.out.println(str[index]+s[index]);
+					    index++;
+					}
+					catch(Exception e1){
+						System.out.println("异常");
+					}
+				}else 
+				{
+					MessageBox ms = new MessageBox(sShell);
+					ms.setMessage("已到最后一题");
+					ms.setText("提示");
+					ms.open();
+				}
+			}
+		});
+		button2 = new Button(sShell, SWT.NONE);
+		button2.setBounds(new Rectangle(302, 11, 66, 25));
+		button2.setText("交卷");
+		button2.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {   
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {   
+				MessageBox ms = new MessageBox(sShell);
+				ms.setMessage("确定交卷！");
+				ms.setText("提示");
+				ms.open();
+				try{
+					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+				    String userName = "sa";
+				    String userPwd = "041128";
+				    String url = "jdbc:sqlserver://localhost:1433;DatabaseName =zz02";//填写自己的数据库名称
+				    Connection con = DriverManager.getConnection(url,userName,userPwd);
+				    Statement stmt = con.createStatement();
+				    int i = 1;
+				    while(i<=10)
+				    {
+				    	String sql ="select * from 题库  where 题目='"+str[i]+"'and 答案='"+s[i]+"'";
+				    	ResultSet rs =stmt.executeQuery(sql);
+				    	if(rs.next())
+				    	{
+				    		sum+=10;
+				    	}
+				    	i++;
+				    }
+				    String sql = "update student01 set 成绩='"+sum+"'where 姓名='"+text.getText()+"'";
+				    stmt.executeUpdate(sql);
+				          查询 cx = new 查询();
+					cx.createSShell();
+					cx.sShell.open();
+					sShell.setVisible(false);
+				}
+				catch(Exception e1){
+					System.out.println("异常");
+				}
+			}
+		
+		});
+		label3 = new Label(sShell, SWT.NONE);
+		label3.setBounds(new Rectangle(92, 12, 34, 22));
+		label3.setText("题号");
+		label4 = new Label(sShell, SWT.NONE);
+		label4.setBounds(new Rectangle(133, 12, 126, 22));
+		label4.setVisible(true);
+		label5 = new Label(sShell, SWT.NONE);
+		label5.setBounds(new Rectangle(89, 57, 104, 30));
+		label5.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 14, SWT.NORMAL));
+		label5.setText("");
+		text = new Text(sShell, SWT.BORDER);
+		text.setBounds(new Rectangle(271, 56, 94, 26));
+		label1 = new Label(sShell, SWT.NONE);
+		label1.setBounds(new Rectangle(218, 56, 45, 26));
+		label1.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 10, SWT.NORMAL));
+		label1.setText("账号");
+		button3 = new Button(sShell, SWT.NONE);
+		button3.setBounds(new Rectangle(144, 157, 95, 30));
+		button3.setText("保存");
+		
+	}
+
+}
+请问这串代码里面哪里是随机生成题目
+
+用户: yyyyyyyy
+时间: 2023-12-30T16:49:02.829Z
+消息: package 课程设计;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.ProgressBar;
+
+public class 录入题目 {
+
+	public Shell sShell = null;
+	private Label label = null;
+	private Text text = null;
+	private Label label1 = null;
+	private Text text1 = null;
+	private Button button = null;
+	private Label label2 = null;
+	private Button button1 = null;
+	private Label label3 = null;
+	private Text text2 = null;
+	
+	public void createSShell() {
+		sShell = new Shell();
+		sShell.setText("Shell");
+		sShell.setSize(new Point(355, 259));
+		sShell.setLayout(null);
+		label = new Label(sShell, SWT.NONE);
+		label.setBounds(new Rectangle(52, 68, 68, 27));
+		label.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 10, SWT.NORMAL));
+		label.setText("录入题目");
+		text = new Text(sShell, SWT.BORDER);
+		text.setBounds(new Rectangle(142, 65, 135, 29));
+		label1 = new Label(sShell, SWT.NONE);
+		label1.setBounds(new Rectangle(52, 99, 69, 24));
+		label1.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 10, SWT.NORMAL));
+		label1.setText("录入答案");
+		text1 = new Text(sShell, SWT.BORDER);
+		text1.setBounds(new Rectangle(142, 96, 76, 28));
+		button = new Button(sShell, SWT.NONE);
+		button.setBounds(new Rectangle(121, 151, 81, 29));
+		button.setText("录入");
+		button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				try{
+					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+				    String userName = "sa";
+				    String userPwd = "041128";
+				    String url = "jdbc:sqlserver://localhost:1433;DatabaseName =zz02";//填写自己的数据库名称
+				    Connection con = DriverManager.getConnection(url,userName,userPwd);
+				    Statement stmt = con.createStatement();
+				    String sql = "insert into 题库 values('"+text2.getText()+"','"+text.getText()+"','"+text1.getText()+"')";
+				stmt.executeUpdate(sql);
+				label2.setText("录入成功!");
+				}
+				catch(Exception e1){
+					label2.setText("题号重复！");
+				}
+			}
+		});
+		//提示信息标签
+		label2 = new Label(sShell, SWT.NONE);
+		label2.setBounds(new Rectangle(117, 128, 95, 24));
+		label2.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label2.setText("");
+		button1 = new Button(sShell, SWT.NONE);
+		button1.setBounds(new Rectangle(4, 4, 48, 20));
+		button1.setText("退出");
+		label3 = new Label(sShell, SWT.NONE);
+		label3.setBounds(new Rectangle(51, 36, 70, 26));
+		label3.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 10, SWT.NORMAL));
+		label3.setText("录入题号");
+		text2 = new Text(sShell, SWT.BORDER);
+		text2.setBounds(new Rectangle(143, 33, 134, 31));
+		button1.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				管理员登录 denglu = new 管理员登录();
+				denglu.createSShell();
+				denglu.sShell.open();
+				sShell.setVisible(false);
+			}
+		});
+	}
+
+}
+请问这串代码是怎么进行录入题目
+
+用户: yyyyyyyy
+时间: 2023-12-30T16:53:36.663Z
+消息: package 课程设计;
+
+import java.sql.*;
+import org.eclipse.swt.layout.GridLayout;
+import java.util.Random;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Button;
+
+public class 答题 {
+	public Shell sShell = null;
+	private Label label = null;
+	private Label label2 = null;
+	private Text text1 = null;
+	private Button button = null;
+	private Button button1 = null;
+	private Button button2 = null;
+	private Label label3 = null;
+    public long time = 1800;//时间
+	private Label label4 = null;
+	public int index = 1;//题目索引idex是用于追踪当前显示的题目和答案的数组下标
+	//题目和答案数组
+	String []str = new String[15];
+	String []s = new String[15];
+	private Label label5 = null;
+	public int sum = 0;//分数
+	private Text text = null;
+	private Label label1 = null;
+	private Button button3 = null;
+	
+	public void createSShell() {
+		
+		sShell = new Shell();
+		sShell.setText("题目");
+		sShell.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		sShell.setSize(new Point(388, 277));
+		sShell.setLayout(null);
+		label = new Label(sShell, SWT.NONE);
+		label.setBounds(new Rectangle(31, 55, 50, 33));
+		label.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label.setText("题目");
+		label2 = new Label(sShell, SWT.NONE);
+		label2.setBounds(new Rectangle(30, 109, 54, 32));
+		label2.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 12, SWT.NORMAL));
+		label2.setText("答案");
+		text1 = new Text(sShell, SWT.BORDER);
+		text1.setBounds(new Rectangle(89, 110, 75, 30));
+		text1.setText("");
+		
+		button = new Button(sShell, SWT.NONE);
+		button.setBounds(new Rectangle(24, 191, 60, 27));
+		button.setText("上一题");
+		button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				System.out.println("widgetSelected()"); // TODO Auto-generated Event stub widgetSelected()
+			}
+		});
+		button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				if(index>0)
+				{
+					--index;
+					label4.setText("第"+index+"题");
+					try{
+						label5.setText(str[index]);
+					    text1.setText(s[index]);
+					}
+					catch(Exception e1){}
+				}else
+				{
+					MessageBox ms = new MessageBox(sShell);
+					ms.setMessage("这是第一题");
+					ms.setText("提示");
+					ms.open();
+				}
+			}
+		});
+		button1 = new Button(sShell, SWT.NONE);
+		button1.setBounds(new Rectangle(285, 188, 68, 27));
+		button1.setText("下一题");
+		button1.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+				Random r = new Random();
+				int k = r.nextInt(60);
+				
+				if(index<=11)
+				{
+					if(index<=10){label4.setText("第"+index+"题");}
+					try{
+						Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+					    String userName = "sa";
+					    String userPwd = "041128";
+					    String url = "jdbc:sqlserver://localhost:1433;DatabaseName =zz02";//填写自己的数据库名称
+					    Connection con = DriverManager.getConnection(url,userName,userPwd);
+					    Statement stmt = con.createStatement();
+					    String sql = "select * from 题库 where 题号='"+k+"'";
+					    ResultSet rs =stmt.executeQuery(sql);
+					    if(rs.next()){
+					        label5.setText(rs.getString("题目"));
+//					    	str[index] = label5.getText();
+//					    	s[index] = text1.getText();
+					    }
+					    button3.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+							public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+								str[index] = label5.getText();
+								s[index] = text1.getText();
+								
+							}
+						});
+					    
+					    System.out.println(str[index]+s[index]);
+					    index++;
+					}
+					catch(Exception e1){
+						System.out.println("异常");
+					}
+				}else 
+				{
+					MessageBox ms = new MessageBox(sShell);
+					ms.setMessage("已到最后一题");
+					ms.setText("提示");
+					ms.open();
+				}
+			}
+		});
+		button2 = new Button(sShell, SWT.NONE);
+		button2.setBounds(new Rectangle(302, 11, 66, 25));
+		button2.setText("交卷");
+		button2.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {   
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {   
+				MessageBox ms = new MessageBox(sShell);
+				ms.setMessage("确定交卷！");
+				ms.setText("提示");
+				ms.open();
+				try{
+					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+				    String userName = "sa";
+				    String userPwd = "041128";
+				    String url = "jdbc:sqlserver://localhost:1433;DatabaseName =zz02";//填写自己的数据库名称
+				    Connection con = DriverManager.getConnection(url,userName,userPwd);
+				    Statement stmt = con.createStatement();
+				    int i = 1;
+				    while(i<=10)
+				    {
+				    	String sql ="select * from 题库  where 题目='"+str[i]+"'and 答案='"+s[i]+"'";
+				    	ResultSet rs =stmt.executeQuery(sql);
+				    	if(rs.next())
+				    	{
+				    		sum+=10;
+				    	}
+				    	i++;
+				    }
+				    String sql = "update student01 set 成绩='"+sum+"'where 姓名='"+text.getText()+"'";
+				    stmt.executeUpdate(sql);
+				          查询 cx = new 查询();
+					cx.createSShell();
+					cx.sShell.open();
+					sShell.setVisible(false);
+				}
+				catch(Exception e1){
+					System.out.println("异常");
+				}
+			}
+		
+		});
+		label3 = new Label(sShell, SWT.NONE);
+		label3.setBounds(new Rectangle(92, 12, 34, 22));
+		label3.setText("题号");
+		label4 = new Label(sShell, SWT.NONE);
+		label4.setBounds(new Rectangle(133, 12, 126, 22));
+		label4.setVisible(true);
+		label5 = new Label(sShell, SWT.NONE);
+		label5.setBounds(new Rectangle(89, 57, 104, 30));
+		label5.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 14, SWT.NORMAL));
+		label5.setText("");
+		text = new Text(sShell, SWT.BORDER);
+		text.setBounds(new Rectangle(271, 56, 94, 26));
+		label1 = new Label(sShell, SWT.NONE);
+		label1.setBounds(new Rectangle(218, 56, 45, 26));
+		label1.setFont(new Font(Display.getDefault(), "Microsoft YaHei UI", 10, SWT.NORMAL));
+		label1.setText("账号");
+		button3 = new Button(sShell, SWT.NONE);
+		button3.setBounds(new Rectangle(144, 157, 95, 30));
+		button3.setText("保存");
+		
+	}
+
+}
+请问上述代码是如何判断题目的答案是否算做对的
+
+用户: yyyyyyyy
+时间: 2023-12-31T03:18:13.108Z
+消息: 请问HTTP是什么
+
+用户: yyyyyyyy
+时间: 2023-12-31T03:24:08.272Z
+消息: 请问RTP协议是什么
+
+用户: yyyyyyyy
+时间: 2023-12-31T03:50:21.430Z
+消息: 在计算机中,根据图像记录方式的不同,图像文件可分为____和____两大类
+
+用户: yyyyyyyy
+时间: 2023-12-31T03:51:19.627Z
+消息: 影响图像文件大小的指标主要有分辨率和_____
+
+用户: yyyyyyyy
+时间: 2023-12-31T03:59:28.118Z
+消息: 请问位深是不是图像深度
+
+用户: yyyyyyyy
+时间: 2023-12-31T04:01:01.571Z
+消息: Photoshop中的______是指编辑图像的工作区域
+
+用户: yyyyyyyy
+时间: 2023-12-31T04:01:55.882Z
+消息: 请问Photoshop中的______是指编辑图像的工作区域
+
+用户: yyyyyyyy
+时间: 2023-12-31T04:02:17.079Z
+消息: 寻找有关Photoshop中的工作区域的信息
+
+用户: yyyyyyyy
+时间: 2023-12-31T04:04:21.074Z
+消息: 声波物理特性中的        表示声音的音调，声波信号中的振幅表示声音中的        
+
+用户: yyyyyyyy
+时间: 2023-12-31T04:07:38.969Z
+消息: 请问声波物理特性中的什么表示声音的音调
+
+用户: yyyyyyyy
+时间: 2023-12-31T04:09:26.554Z
+消息: 请问颜色的三要素包括什么
+
+用户: yyyyyyyy
+时间: 2023-12-31T04:11:09.708Z
+消息: 数字视频的播放制式有三种，其中       制式是国内播放制式，播放帧速为25帧/秒
+
+用户: yyyyyyyy
+时间: 2023-12-31T04:14:01.696Z
+消息: 在PR中视频字幕可分为        字幕、         字幕两种。
+
+用户: yyyyyyyy
+时间: 2023-12-31T04:21:12.601Z
+消息:  动画是人工制作的动态画面，其中        是构成动画的基本单位，        是动画、电影等视觉媒体形成和传播的根据。
+
+用户: yyyyyyyy
+时间: 2023-12-31T04:23:52.857Z
+消息: 模拟信号在时间上是连续的。而数字信号在时间上是        的。为了使计算机能够处理声音信息，需要把模拟信号转化成       信号。
+
+用户: yyyyyyyy
+时间: 2023-12-31T04:27:39.417Z
+消息:  多媒体数据具有数据量大、        和       特点，对通信网络提出了巨大的需求
+
+用户: yyyyyyyy
+时间: 2023-12-31T04:31:51.283Z
+消息: 超媒体组成的要素包含       、        、热标及宏节点
+
+用户: yyyyyyyy
+时间: 2024-01-01T11:00:11.477Z
+消息: 索引在数据库中只用于加速对数据的检索操作，没有其它的用是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T13:23:48.567Z
+消息: 数据库设计只包括需求分析、概念设计、逻辑设计和物理设计四个阶段是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T13:24:36.900Z
+消息: 数据库设计只包括需求分析、概念设计、逻辑设计和物理设计四个阶段是否正确是只需要包括这几个方面吗
+
+用户: yyyyyyyy
+时间: 2024-01-01T13:24:49.989Z
+消息: Sa登录是系统管理员的登录，sa登录具有所有可能的关于系统管理工作的权限是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T13:25:49.709Z
+消息: 从“销售”表中找出部门号为04 ”的部门中，单价最高前两条商品记录”的语句是什么
+
+用户: yyyyyyyy
+时间: 2024-01-01T13:39:41.228Z
+消息: 在数据库设计中，为了提高查询效率，应该尽可能地增加冗余数据吗？是否正确？
+
+用户: yyyyyyyy
+时间: 2024-01-01T13:56:42.646Z
+消息: 假设有课程关系表（课程号课程名	学分数	学时数	任课教师），则查询学分数小于6的课程的任课教师对应的SQL语句为什么？
+
+用户: yyyyyyyy
+时间: 2024-01-01T13:56:53.735Z
+消息: 64、如果需要对学生的选课表中的数学成绩限定在0~150这个输入范围，应使用什么关键字约束。
+
+用户: yyyyyyyy
+时间: 2024-01-01T13:59:23.256Z
+消息: 67、SQL语言中，为基本表或者视图添加新的列所使用的关键字是什么
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:00:47.476Z
+消息: 69、SQL语句中修改表结构的命令是什么
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:01:20.338Z
+消息: 若要删除数据库中已经存在的表S，对应的SQL语言为什么
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:02:22.239Z
+消息: 完善以下语句，为teacher(tid,tname,tsex,tbdate)表增加一行数据。
+​          INSERT teacher(tid,tname,tsex,tbdate) _________ ('219809’,'刘真’,’男’,’2005’)。
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:03:19.840Z
+消息: 在SQL中，可以使用什么语句来连接两个或多个表。。
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:04:20.366Z
+消息: 假设学号字段“SNo”的数据类型为nvarchar（6），当“SNo”的值为“S001”时，“SNo”在内存中占多少字节。
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:05:30.745Z
+消息: 在SELECT语句查询中，若要查询某属性的平均值，应该使用什么函数。
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:06:19.316Z
+消息: 在SQL中若要按学号（Sno）进行分组，对应的SQL语句为什么
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:12:43.383Z
+消息: 表是由行和列组成的，行有时也称记录，列有时也称为字段或属性是否正确。
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:13:13.329Z
+消息: 在 SQL Server 中，每个视图的所有列可以来源于一个或多个基本表是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:13:40.095Z
+消息: 关系数据库规范化理论是为解决关系数据库中提高查询速度问题而引入的是否正确。
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:15:34.409Z
+消息: 关系中的每一个分量必须是不可分的数据项，满足这个条件的关系模式属于第一范式是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:16:21.026Z
+消息: 若一个数据表中的某个属性被定义为unique，表明该属性对应的值可以唯一也可以不唯一是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:17:04.911Z
+消息: 对于一个好的关系模式来说，一般要求其满足第二范式就可以了是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:17:50.130Z
+消息: 创建数据表时，如果给某个字段定义PRIMARY KEY约束时，该字段的数据可以为空也可以不为空是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:18:26.367Z
+消息: 一个关系中可以有一个也可以有多个主码是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:18:56.666Z
+消息: 数据库中的视图是实表是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:19:38.383Z
+消息: 87、在任何一个关系数据库中，第一范式（1NF）是对关系模式的基本要求是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:20:18.588Z
+消息: 数据管理技术依次经历了人工管理、文件系统管理、数据库系统管理三个阶段是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:20:42.957Z
+消息: 90、通常情况下，设计数据库不需要考虑其安全性是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:21:14.089Z
+消息: 91、数据库系统是由数据库、数据库管理系统、硬件平台和软件平台组成的是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:22:19.698Z
+消息: 关系型数据库中的数据是以表格的形式存储的，表格由行和列组成是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:22:34.280Z
+消息: 93、SQL是用于与关系型数据库进行通信的标准语言是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:22:49.174Z
+消息: 索引在数据库中只用于加速对数据的检索操作，没有其它的用是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:23:04.154Z
+消息: 数据库设计的主要步骤是什么？
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:25:23.414Z
+消息: 简述实体、强实体、弱实体及属性的基本概念。
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:28:56.972Z
+消息: 简述数据库系统管理阶段的优点。
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:37:23.989Z
+消息: 简述数据库中事务的提交和回滚的含义。
+
+用户: yyyyyyyy
+时间: 2024-01-01T14:46:42.107Z
+消息: 查询大于某个数对应的SQL语句
+
+用户: yyyyyyyy
+时间: 2024-01-01T15:35:23.962Z
+消息: 查询05级的且性别为男的学号、姓名、性别及专业班级的SQL语句
+
+用户: yyyyyyyy
+时间: 2024-01-01T15:37:55.852Z
+消息: 7、创建视图的SQL语句
+
+用户: yyyyyyyy
+时间: 2024-01-01T15:39:27.221Z
+消息: 删除学号为“001”的SQL语句。
+
+用户: yyyyyyyy
+时间: 2024-01-01T15:41:12.233Z
+消息: 在课程表中使用SQL语句将计算机应用基础的课程名修改为计算机应用技术对应的SQL代码
+
+用户: yyyyyyyy
+时间: 2024-01-01T15:43:15.335Z
+消息: 查询统计学生“060101”的平均成绩对应的SQL语句
+
+用户: yyyyyyyy
+时间: 2024-01-01T15:43:39.032Z
+消息: 查询统计学生“060101”的平均成绩对应的SQL语句
+
+用户: yyyyyyyy
+时间: 2024-01-01T15:43:56.081Z
+消息: 查询统计学生“060101”的平均成绩对应的SQL语句
+
+用户: yyyyyyyy
+时间: 2024-01-01T15:44:13.532Z
+消息: 查询统计学生“060101”的平均成绩对应的SQL语句
+
+用户: yyyyyyyy
+时间: 2024-01-01T15:45:54.841Z
+消息: 将“C04”号课程的成绩按升序排列SQL语句
+
+用户: yyyyyyyy
+时间: 2024-01-01T15:47:47.876Z
+消息: 删除学号为0004的记录SQL语句
+
+用户: yyyyyyyy
+时间: 2024-01-01T15:48:45.070Z
+消息: 使用SQL语句将张三的姓名修改为张小三
+
+用户: yyyyyyyy
+时间: 2024-01-01T15:49:43.568Z
+消息: Java连接数据库的SQL语句（通用的代码）。
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:13:06.063Z
+消息: 1.已知广义表L=(a,b,c,d)，写出GetHead(L) 的值为      ，GetTail(L)的值为           。
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:14:35.285Z
+消息: 2.一个循环队列Q的存储空间大小为MAXSIZE,其队头和队尾指针分别为front和rear，则循环队列中元素的最多个数为：            。队空的条件是：                         ，队满的条件是：                             。（用Q.rear,Q.front和MAXSIZE表 示）
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:16:27.688Z
+消息: 3.设有二维数组A[10,20]，其每个元素占两个字节，A[0][0]存储地址为100；若按行优先顺序存储，则元素A[6,6]的存储地址为       ；按列优先顺序存储，元素A[6,6]的存储地址为       。 
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:19:36.004Z
+消息: 4.在二叉树的第i层上至多有      个结点； 深度为k的二叉树至多有      个结点；对于任何一棵二叉树，若度为2的结点数有n2个，叶子结点数n0，则n0与n2的关系为：n0=      。
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:20:33.534Z
+消息: 5.对具有n个结点完全二叉树，若从上至下、从左至右连续编号（根结点编号为1），对任意编号为i 的结点有：i=1时无双亲，i>1时双亲的编号为      ；2i>n时无左孩子，否则其左孩子编号为      ；2i+1>n时无右孩子，否则其右孩子编号为      。
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:21:23.279Z
+消息: 6.将一棵有100个结点的完全二叉树从根这一层开始，每一层上从左到右依次对结点进行编号，根结点的编号为1，则编号为45的结点的左孩子编号为        ，右孩子编号为        ，父结点编号为        。
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:24:22.906Z
+消息: 7.具有n个结点完全二叉树的深(高）度必为             。一棵完全二叉树上有1002个结点，这棵完全二叉树的高度是         。
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:25:10.863Z
+消息: 8.在有序表（4，6，10，12，20，30，50，70，88，100）进行折半查找，若在表中查找元素4，比较次数为     ；若在表中查找元素88，比较次数为      ；若查找元素58，比较次数为      ，查找失败。
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:25:42.108Z
+消息: 9.对一棵二叉排序树按      遍历，可得到结点值从小到大的有序序列。
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:26:00.374Z
+消息: 10.用邻接表表示图，进行广度优先遍历时通常借助      来实现；进行深度优先遍历时通常借助     来实现。
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:26:27.611Z
+消息: 已知图的邻接矩阵如下图所示，从顶点v0出发按深度优先遍历的结果序列是                   。从顶点v0出发按广度优先遍历的结果序列是                 。
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:28:11.780Z
+消息: 11.已知图的邻接矩阵如下图所示，从顶点v0出发按深度优先遍历的结果序列是                   。从顶点v0出发按广度优先遍历的结果序列是                 。（顶点之间用半角逗号间隔）
+0 1 1 1 1 0 1
+1 0 0 1 0 0 1
+1 0 0 0 1 0 0
+1 1 0 0 1 1 0
+1 0 1 1 0 1 0
+0 0 0 1 1 0 1
+1 1 0 0 0 1 0
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:28:34.287Z
+消息: 12.折半查找树有n个结点，其深度为d=          ，查找成功时的比较次数小于等于
+     （用d表示），查找不成功时的比较次数为     或      （用d表示）。
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:29:12.910Z
+消息: 13.在一个有向图中所有顶点的入度之和等于所有顶点的出度之和，并与有向边的数目            。
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:29:40.076Z
+消息: 14.在一个无向图中所有顶点的度之和等于边的数目      倍。
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:29:59.852Z
+消息: 15.已知图的邻接表如下图所示，从顶点v0出发按深度优先遍历的顶点序列是                 ；从顶点v0出发按广度优先遍历的顶点序列是                。（顶点之间用半角逗号间隔）
+
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:30:11.508Z
+消息: 16.设一棵二叉树的先序序列： A B D F C E G H ，中序序列： B F D A G E H C，画出这棵二叉树。
+
+用户: yyyyyyyy
+时间: 2024-01-01T16:31:07.892Z
+消息: 16.设一棵二叉树的先序序列： A B D F C E G H ，中序序列： B F D A G E H C，画出这棵二叉树。
+
+用户: yyyyyyyy
+时间: 2024-01-02T03:18:01.095Z
+消息: 请帮我解释一下有序表的折半查找是怎么搞的
+
+用户: yyyyyyyy
+时间: 2024-01-02T03:18:45.284Z
+消息: 在有序表（4，6，10，12，20，30，50，70，88，100）进行折半查找，若在表中查找元素4，比较次数为  1   ；若在表中查找元素88，比较次数为   4   ；若查找元素58，比较次数为   4   ，查找失败。请帮我分析这个题目并解释
+
+用户: yyyyyyyy
+时间: 2024-01-02T03:19:38.129Z
+消息: 对于已知的有序表（4，6，10，12，20，30，50，70，88，100），在查找元素4时，我们进行了1次比较就找到了目标值4；在这个过程中比较的是哪个数
+
+用户: yyyyyyyy
+时间: 2024-01-02T03:21:56.608Z
+消息: 因为4小于10，所以我们将查找范围缩小至左半部分，然后在左半部分找到了目标值4。为什么是比较10，折半查找不应该是先比较有序表最中间的那个数字30吗，小的就去左边继续比较，大的去右边继续比较
+
+用户: yyyyyyyy
+时间: 2024-01-02T03:23:36.609Z
+消息: 在有序表（4，6，10，12，20，30，50，70，88，100）进行折半查找，若在表中查找元素4，比较次数为  1   ；若在表中查找元素88，比较次数为   4   ；若查找元素58，比较次数为   4   ，查找失败。
+
+用户: yyyyyyyy
+时间: 2024-01-02T03:23:49.977Z
+消息: .在有序表（4，6，10，12，20，30，50，70，88，100）进行折半查找，若在表中查找元素4，比较次数为 几次 ；
+
+用户: yyyyyyyy
+时间: 2024-01-02T03:25:35.092Z
+消息: 在有序表（4，6，10，12，20，30，50，70，88，100）进行折半查找，若在表中查找元素4，比较次数为 几次；若在表中查找元素88，比较次数为  几次   ；若查找元素58，比较次数为 几次 ，查找失败。
+
+用户: yyyyyyyy
+时间: 2024-01-02T03:28:09.881Z
+消息: 在有序表（4，6，10，12，20，30，50，70，88，100）进行折半查找，若在表中查找元素4，比较次数为3次，4首先与中间位置的20进行比较，比20小对左边进行比较，在与左边中间部分的6进行比较，比6小，在与4进行比较，查找成功为3次不是吗
+
+用户: yyyyyyyy
+时间: 2024-01-02T03:42:48.789Z
+消息: 从顶点v0出发按深度优先遍历（结果不唯一）的结果序列是                   。必须得经过每一行吗
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:11:57.514Z
+消息: 广度优先遍历
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:19:22.443Z
+消息: 广度优先遍历是按什么顺序来遍历
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:20:13.519Z
+消息: 折半查找树有n个结点，其深度为d=     log2(n+1) - 1     ，查找成功时的比较次数小于等于   d  （用d表示），查找不成功时的比较次数为  d   或   d+1   （用d表示）。
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:21:04.677Z
+消息: 折半查找树有n个结点，其深度为什么为d=     log2(n+1) - 1     ，
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:22:08.376Z
+消息: 结点
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:22:17.584Z
+消息: 结点啥意思
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:22:37.162Z
+消息: 请问结点啥意思
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:23:25.727Z
+消息: 在一个有向图中所有顶点的入度之和等于所有顶点的出度之和，并与有向边的数目     相等       。
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:24:00.649Z
+消息: 有向图是什么意思
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:42:18.645Z
+消息: 为什么一个无向图中所有顶点的度之和等于边的数目   两   倍。
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:50:26.994Z
+消息: 邻接表是如何看的
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:54:50.038Z
+消息: 先序遍历是如何运行的
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:55:06.879Z
+消息: 中序遍历是如何搞的
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:55:26.011Z
+消息: 后序遍历是如何运行的
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:55:55.792Z
+消息: 中序遍历是如何运行的
+
+用户: yyyyyyyy
+时间: 2024-01-02T04:56:34.378Z
+消息: 后序遍历是一种用于遍历树的方法，它的运行方式如下：
+
+递归地遍历该节点的左子树。
+递归地遍历该节点的右子树。
+最后访问（或输出）树或子树的根节点。
+这个过程中，每个节点都被遍历了三次：两次在其递归的左右子树中，一次在根节点位置。通过这种方式，可以产生树的后序遍历序列。其中左子树应如何运行
+
+用户: yyyyyyyy
+时间: 2024-01-02T06:55:42.046Z
+消息: 假设以行序为主序存储二维数组A=array[1..100,1..100]，设每个数据元素占2个存储单元，基地址为10，则LOC[5,5]=（  ）。
+
+用户: yyyyyyyy
+时间: 2024-01-02T07:00:29.541Z
+消息: 设有数组A[i,j]，数组的每个元素长度为3字节，i的值为1到8，j的值为1到10，数组从内存首地址BA开始顺序存放，当用以列为主存放时，元素A[5,8]的存储首地址为（  ）
+
+用户: yyyyyyyy
+时间: 2024-01-02T07:08:11.397Z
+消息: 设有一个10阶的对称矩阵A，采用压缩存储方式，以行序为主存储，a11为第一元素，其存储地址为1，每个元素占一个地址空间，则a85的地址为（  ）。
+
+用户: yyyyyyyy
+时间: 2024-01-02T07:13:43.305Z
+消息: )数组A[0..4,-1..-3,5..7]中含有元素的个数（  ）。
+
+用户: yyyyyyyy
+时间: 2024-01-02T07:14:33.211Z
+消息: 数组A[0..4,-1..-3,5..7]中含有元素的个数为(5)(3)(3)=45。为什么这么算
+
+用户: yyyyyyyy
+时间: 2024-01-02T07:15:30.840Z
+消息: 请用中文回答一边
+
+用户: yyyyyyyy
+时间: 2024-01-02T07:20:28.479Z
+消息: 度为0是什么意思
+
+用户: yyyyyyyy
+时间: 2024-01-02T07:21:43.719Z
+消息: 二叉树的相关知识点是啥
+
+用户: yyyyyyyy
+时间: 2024-01-02T07:23:20.098Z
+消息: 一棵完全二叉树上有1001个结点，其中叶子结点的个数是（  ）。
+
+用户: yyyyyyyy
+时间: 2024-01-02T09:24:23.342Z
+消息: Java语言的可变参数方法定义
+
+用户: yyyyyyyy
+时间: 2024-01-02T09:32:28.694Z
+消息: 下列选项中,(  )是正确的float变量的声明。
+A. float foo=1;
+B. float foo=1.0;
+C. float foo=2e1;
+
+D. float foo=2. 02;
+
+用户: yyyyyyyy
+时间: 2024-01-02T09:51:13.444Z
+消息: “byte amount= 128;”是否正确的byte型变量声明
+
+用户: yyyyyyyy
+时间: 2024-01-02T09:51:49.177Z
+消息:  “float height= 1. 0f;"是否正确的float 变量声明
+
+用户: yyyyyyyy
+时间: 2024-01-02T09:54:46.096Z
+消息: )“float area= 1el;"是否错误的float 变量声明
+
+用户: yyyyyyyy
+时间: 2024-01-02T10:08:36.915Z
+消息: 挑错题(A.B.C.D 注释标注的哪行代码有错误?)
+public class Test {
+
+public static void main(String args[]){
+
+byte b ='a'; //A
+
+int n = 100;
+
+char c= 65;//B
+
+b = b；//c
+
+b = b+ 1;//D
+
+}
+
+}
+
+用户: yyyyyyyy
+时间: 2024-01-02T10:19:58.093Z
+消息: 表达式10> 20-17的结果是
+
+用户: yyyyyyyy
+时间: 2024-01-02T10:21:50.022Z
+消息: while(表达式)...语句中的“表达式”的值必须是boolean型数据。对吗
+
+用户: yyyyyyyy
+时间: 2024-01-02T10:22:50.692Z
+消息:  if 语句中的条件表达式的值可以是int型数据。为什么
+
+用户: yyyyyyyy
+时间: 2024-01-02T10:35:29.343Z
+消息: class B {
+
+int x = 100,y= 200;
+
+public void setX(int x){|
+
+x= x；
+
+}
+
+public void setY(int y){
+
+this.y = yi
+
+}
+
+public int getxYSum(){
+
+return x+ y;
+
+}
+
+public class A {
+
+public static void main(String args[]){
+
+B  b = new B();
+
+b.setX(- 100)；
+
+b.setY(- 200)；
+
+System,out. println("sum ="+ b. getxYSum());
+
+}
+
+}请问是如何运行的
+
+用户: yyyyyyyy
+时间: 2024-01-02T10:38:30.255Z
+消息: Class Fish{
+
+ int weight=1;
+
+}
+
+class Lake {
+
+Fish fish;
+
+void setFish(Fish s){
+
+fish =s;
+
+}
+
+void foodFish( int m) {
+
+fish.weight = fish.weight + m;
+
+}
+
+}
+
+public class E {
+
+public static void main(String args[]){
+
+Fish redFish = new Fish();
+
+System.out.println(redFish.weight); //【代码 1】
+
+Lake lake = new Lake()；
+
+lake.setFish(redFish);
+
+lake.foodFish(120);
+
+System.out.println(redFish.weight)；//【代码 2】
+
+System. out.println(lake.fish.weight); //【代码 3】
+
+}
+
+}请问如何运行的
+
+用户: yyyyyyyy
+时间: 2024-01-02T10:43:10.310Z
+消息: 请说出 A 类中 System.out. println 的输出结果。
+
+class B {
+
+int  n;
+
+static int sum = 0;
+
+void setN(int n){
+
+this.n=n;
+
+}
+
+int getSum( ){
+
+for(int i=l;i<= n;i++）
+
+sum = sum+i;
+
+return sum;
+
+}
+
+}
+
+publ ic class A {
+
+public static void main(String args[ ]){
+
+B bl = new B(),b2 = new B();
+
+bl.setN(3);
+
+b2.setN(5);
+
+int s1= bl.getSum()；
+
+int s2= b2.getSum();
+
+System. out. println(s1 + s2)；
+
+}
+
+}
+
+用户: yyyyyyyy
+时间: 2024-01-02T11:38:35.884Z
+消息: 影响图像文件大小的指标主要有
+
+用户: yyyyyyyy
+时间: 2024-01-02T11:39:36.252Z
+消息: 影响图像文件大小的指标主要有哪两个
+
+用户: yyyyyyyy
+时间: 2024-01-02T11:40:12.315Z
+消息: 在PR中视频字幕可分为 字幕、     字幕两种。
+
+用户: yyyyyyyy
+时间: 2024-01-03T10:04:24.555Z
+消息: 实现中华民族伟大复兴，当代青年责任在肩，使命重大。作为新时代青年大学生，结合实际谈谈你如何为中华民族伟大复兴发奋学习，立志成才，贡献自己的聪明才智。
+1.要求观点正确，充满正能量，内容积极向上，结合自己实际紧密，不空谈，不大发议论。
+2.字数在1200字到1500字之间
+3.试卷答题纸上的书名号《》内统一写《形势与政策3》，其下接着把老师布置的题目抄写上去。接着自己写答题内容。
+4.建议同学们先打好草稿，然后再工整地誊写在答题纸上。
+5.论文完成时间不做具体要求，同学们在课余抓紧完成即可。
+6.同学们在答题纸上按要求写好姓名、专业、班级、学号等信息。学委按学号从小到大顺序收好。
+学委另附一张白纸，写清以下内容:
+（1）班级
+（2）应参加考试人数，实际参加考试人数，未参加考试学生的姓名、学号，以及原因写清楚
+（3）写清自己班级平时自习教室
+（4）凡是转专业到本班的，试卷统一放到最后，并写清楚转专业学生的学号、原来班级、专业。
+
+用户: yyyyyyyy
+时间: 2024-01-03T13:26:54.553Z
+消息: 若要把变量声名为暂时性变量，应使用如下哪种修饰符()。
+A.provate
+B.protected
+C.volatile(共享变量)
+D.ransient(临时变量)
+
+用户: yyyyyyyy
+时间: 2024-01-03T13:48:58.200Z
+消息: 顺序执行string s=“湖南应用技术学院！”；输出其字符串长度
+
+用户: yyyyyyyy
+时间: 2024-01-03T13:53:00.016Z
+消息: 抽象方法不能含有方法，并且必须在抽象类中
+
+用户: yyyyyyyy
+时间: 2024-01-03T13:54:08.973Z
+消息: math类的方法，round（）的功能是返回与参数最近的整数，四舍五入后取整数。
+
+用户: yyyyyyyy
+时间: 2024-01-03T13:55:05.739Z
+消息: 在JAVA语言中，每个ASCII码英文字符占用8个二进位置，而每个中文汉字字符则占用16个二进制位
+
+用户: yyyyyyyy
+时间: 2024-01-03T13:55:28.378Z
+消息: JAVA源文件的扩展名为？
+
+用户: yyyyyyyy
+时间: 2024-01-03T13:55:49.692Z
+消息:  在JAVA中一个类只能实现一个接口？
+
+用户: yyyyyyyy
+时间: 2024-01-03T13:56:17.268Z
+消息: JAVA语言含有指针？
+
+用户: yyyyyyyy
+时间: 2024-01-03T13:56:45.225Z
+消息: 编写一个Java程序。对于两个正整数a，b，有的人使用算术平均公式(a+b)/2计算(算术)平均值，有的人使用几何平均公式√a+b计算(几何)平均值，现要求定义一个接口，分别用不同的类实现两种计算方法，并返回平均值。
+
+用户: yyyyyyyy
+时间: 2024-01-03T14:10:19.979Z
+消息: 抽象方法不能含有方法体，并且必须在JAVA内中？
+
+用户: yyyyyyyy
+时间: 2024-01-04T00:04:09.198Z
+消息: #define  MAXSIZE  20        //顺序表的最大长度
+typedef struct
+{
+​int key;
+​char *otherinfo;
+}ElemType;                   //顺序表的元素类型
+                       
+typedef struct                
+{
+   ElemType *r;​         //存储空间的基地址
+   int  length;             //顺序表长度
+}SqList;​​​​​ //顺序表类型
+ 
+int Partition(SqList &L,int low,int high)
+{
+​//对顺序表L中的子表r[low..high]进行一趟排序，返回枢轴位置
+​int pivotkey;
+​L.r[0]=L.r[low];         //用子表的第一个记录做枢轴记录
+​pivotkey=L.r[low].key;​ //枢轴记录关键字保存在pivotkey中
+​while(low<high)
+​{​​​​​​ //从表的两端交替地向中间扫描
+​​while(low<high && L.r[high].key>=pivotkey) --high;
+​​L.r[low]=L.r[high];​ //将比枢轴记录小的记录移到低端
+​​while(low<high && L.r[low].key<=pivotkey) ++low;
+​​L.r[high]=L.r[low];  //将比枢轴记录大的记录移到高端
+​}//while
+​L.r[low]=L.r[0];​​ //枢轴记录到位
+​return  low;​​​ //返回枢轴位置
+}//Partition
+ 
+void QSort(SqList &L,int low,int high)
+{​//调用前置初值：low=1; high=L.length;
+   //对顺序表L中的子序列L.r[low..high]做快速排序
+​int pivotloc;
+   if(low<high)
+​{​​​​​​//长度大于1
+      pivotloc=Partition(L,low,high); ​//将L.r[low..high]一分为二，pivotloc是枢轴位置
+      QSort(L,low,pivotloc-1);​​​//对左子表递归排序
+      QSort(L,pivotloc+1,high);        //对右子表递归排序
+​}
+}//QSort
+ 
+void QuickSort(SqList &L)
+{
+  //对顺序表L做快速排序
+  QSort(L,1,L.length);
+}//QuickSort
+ 
+int Search_Bin(SqList ST,int key) {
+  //在有序表ST中折半查找其关键字等于key的数据元素。
+  //该若找到，则函数值为元素在表中的位置，否则为0
+  int low=1,high=ST.length; //置查找区间初值
+  int  mid;
+  while(low<=high)
+  {
+​  mid=(low+high) / 2;
+     if (key==ST.r[mid].key)  return mid;    //找到待查元素
+     else if (key<ST.r[mid].key)  high=mid-1;//继续在前一子表进行查找
+     else  low =mid +1;                      //继续在后一子表进行查找
+  }//while
+  return 0;​​​​​​​      //表中不存在待查元素
+}// Search_Bin​​​​​​​​​
+​​​​​​​​
+void Create_Sq(SqList &L)
+{
+​int i,n;
+​cout<<"请输入数据个数，不少于10个，不超过"<<MAXSIZE<<"个：";
+​cin>>n;​​​​​​​//输入个数
+​cout<<"请输入待排序的数据（用半角空格为间隔）:\n";
+​while(n>MAXSIZE)
+​{
+​​cout<<"个数超过上限，不能超过"<<MAXSIZE<<"，请重新输入：";
+​​cin>>n;
+​}
+​for(i=1;i<=n;i++)
+​{
+​​cin>>L.r[i].key;
+​​L.length++;
+​}
+}
+ 
+void show(SqList L)
+{
+​int i;
+​for(i=1;i<=L.length;i++)
+​​cout<<L.r[i].key<<' ';
+​cout<<endl<<endl;
+}
+int main()
+{
+​SqList L;
+​int key,index;
+​L.r=new ElemType[MAXSIZE+1];
+​L.length=0;
+​Create_Sq(L);
+​cout<<"排序前的顺序表为："<<endl;
+​show(L);
+​QuickSort(L);
+​cout<<"排序后的顺序表为："<<endl;
+​show(L);
+​cout<<"请输入待查的元素1："<<endl;
+​cin>>key;
+​index=Search_Bin(L,key);
+​if (index>0)
+​   cout<<key<<"为有序序列中的第 "<<index<<" 个元素"<<endl<<endl;
+​else
+​   cout<<key<<" 在序列中不存在"<<endl<<endl;
+​cout<<"请输入待查的元素2："<<endl;
+​cin>>key;
+​index=Search_Bin(L,key);
+​if (index>0)
+​   cout<<key<<"为有序序列中的第 "<<index<<" 个元素"<<endl<<endl;
+​else
+​   cout<<key<<" 在序列中不存在"<<endl<<endl;
+}分析
+
+用户: yyyyyyyy
+时间: 2024-01-04T14:15:37.642Z
+消息: 请问一张容量为640m的光盘，可以贮存多少张分辨率为1024*768的真彩（24位）相片
+
+用户: yyyyyyyy
+时间: 2024-01-04T14:41:17.351Z
+消息: 请问多媒体通信系统的特征
+
+用户: yyyyyyyy
+时间: 2024-01-04T15:25:26.688Z
+消息: 预测编码的基本思想是什么？
+
+用户: yyyyyyyy
+时间: 2024-01-06T02:58:43.136Z
+消息: 编写一个Java程序，计算两个数的和与差。
+
+用户: yyyyyyyy
+时间: 2024-01-06T02:59:13.982Z
+消息: 请编写一个Java程序，计算两个数的和与差。
+
+用户: yyyyyyyy
+时间: 2024-01-06T11:07:38.981Z
+消息: package wyy;
+/*
+ * 1.块类
+ */
+public class Block {
+	String name;
+	int number;
+	boolean boo=false;
+	public void setName(String name){
+		this.name=name;
+	}
+	public String getName(){
+		return name;
+	}
+	public void setNumber(int n){
+		number=n;
+	}
+	public int getNumber(){
+		return number;
+	}
+	boolean isMine(){
+		return boo;
+	}
+	public void setIsMine(boolean boo){
+		this.boo=boo;
+	}
+}分析
+
+用户: yyyyyyyy
+时间: 2024-01-06T11:08:00.202Z
+消息: package wyy;
+/*
+ * 1.块类
+ */
+public class Block {
+	String name;
+	int number;
+	boolean boo=false;
+	public void setName(String name){
+		this.name=name;
+	}
+	public String getName(){
+		return name;
+	}
+	public void setNumber(int n){
+		number=n;
+	}
+	public int getNumber(){
+		return number;
+	}
+	boolean isMine(){
+		return boo;
+	}
+	public void setIsMine(boolean boo){
+		this.boo=boo;
+	}
+}分析改代码
+
+用户: yyyyyyyy
+时间: 2024-01-06T11:09:33.461Z
+消息: package wyy;
+/*
+ * 1.块类
+ */
+public class Block {
+	String name;
+	int number;
+	boolean boo=false;
+	public void setName(String name){
+		this.name=name;
+	}
+	public String getName(){
+		return name;
+	}
+	public void setNumber(int n){
+		number=n;
+	}
+	public int getNumber(){
+		return number;
+	}
+	boolean isMine(){
+		return boo;
+	}
+	public void setIsMine(boolean boo){
+		this.boo=boo;
+	}
+}请问这个类用来干什么的
+
+用户: yyyyyyyy
+时间: 2024-01-06T11:11:21.604Z
+消息: package wyy;
+
+import javax.swing.*;
+import java.awt.*;
+/*
+ * 块视图
+ */
+public class BlockView  extends JPanel{
+	JLabel  blockName;
+	JButton blockCover;
+	CardLayout card;
+	BlockView(){//构造方法->初始化组件
+		card=new CardLayout();
+		setLayout(card);//设置为CardLayout布局
+		blockName= new JLabel();
+		blockCover =new JButton();
+		add("cover",blockCover);//增加组件及设置文本
+		add("name",blockName);		
+	}
+	public void setName(String name){
+		blockName.setText(name);		
+	}
+	public String getName(){
+		return blockName.getText();
+	}
+	public void seeBlockName(){
+		card.show(this, "name");
+		validate();//确认，生效
+	}
+	public void seeBlockCover(){
+		card.show(this, "cover");
+		validate();
+	}
+	public JButton getBlockCover(){
+		return blockCover;
+	}
+}请问这个类用来干什么的
+
+用户: yyyyyyyy
+时间: 2024-01-06T11:12:50.321Z
+消息: package wyy;
+
+import java.util.LinkedList;
+/*
+ * 放置雷（布雷）：随机
+ */
+public class LayMines {
+	public void layMinesForBlock(Block block[][],int mineCount){
+		int row=block.length;//行数
+		int column=block[0].length;//列数
+		LinkedList<Block> list=new LinkedList<Block>();//创建空链表list
+		for(int i=0;i<row;i++){//给list增加结点
+			for(int j=0;j<column;j++){
+				list.add(block[i][j]);//给list增加结点
+			}
+		}
+		while(mineCount>0){//随机布雷
+			int size=list.size();
+			int randomIndex=(int)(Math.random()*size);
+			Block b=list.get(randomIndex);//返回索引号为randomIndex的结点的数据
+			b.setName("雷");
+			b.setIsMine(true);
+			list.remove(randomIndex);
+			mineCount--;
+		}
+		for(int i=0;i<row;i++){//不是雷的块
+			for(int j=0;j<column;j++){
+				if(block[i][j].isMine()){}
+				else{
+					int mineNumber=0;
+					for(int k=Math.max(i-1, 0);k<Math.min(i+1, row-1);k++){
+						for(int t=Math.max(j-1, 0);t<Math.max(j+1, column-1);t++){
+							if(block[k][t].isMine())
+								mineNumber++;
+						}						
+					}
+					if(mineNumber>0){
+						block[i][j].setName(""+mineNumber);
+						block[i][j].setNumber(mineNumber);
+					}
+					else{
+						block[i][j].setName(" ");
+						block[i][j].setNumber(mineNumber);
+					}
+				}
+			}
+		}
+	}
+}请问这个类用来干什么的
+
+用户: yyyyyyyy
+时间: 2024-01-06T11:14:11.057Z
+消息: package wyy;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class MinesMainFrame extends JFrame implements ActionListener {
+	JButton reStart;
+	Block block[][];//块数组
+	BlockView blockView[][];//块视图数组
+	LayMines lay;  //放置雷
+	int row = 15, column = 15, mineCount = 15;//数组大小及雷的数量
+	int colorSwitch = 0;
+	JPanel pCenter, pNorth;//，
+	public MinesMainFrame() {
+		reStart = new JButton("重新开始");
+		pCenter = new JPanel();
+		pNorth = new JPanel();
+		pNorth.setBackground(Color.cyan);
+		block = new Block[row][column];
+		for (int i = 0; i < row; i++) {//实例化数组
+			for (int j = 0; j < column; j++)
+				block[i][j] = new Block();
+		}
+		lay = new LayMines();
+		lay.layMinesForBlock(block, mineCount);//调用布雷方法，进行布雷
+		blockView = new BlockView[row][column];
+		pCenter.setLayout(new GridLayout(row, column));//网格布局
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < column; j++) {
+				blockView[i][j] = new BlockView();
+				blockView[i][j].setName(block[i][j].getName());
+				pCenter.add(blockView[i][j]);
+				blockView[i][j].getBlockCover().addActionListener(this);
+			}
+		}
+		reStart.addActionListener(this);
+		pNorth.add(reStart);
+		add(pNorth, BorderLayout.NORTH);//增加布局
+		add(pCenter, BorderLayout.CENTER);
+		setSize(400, 450);
+		setVisible(true);
+		validate();
+		setTitle("扫雷游戏");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public void actionPerformed(ActionEvent e) {//事件
+		JButton source = (JButton) e.getSource();
+		if (source != reStart) {//如果没有单击“重新开始”
+			int m = -1, n = -1;
+			for (int i = 0; i < row; i++) {
+				for (int j = 0; j < column; j++) {
+					if (source == blockView[i][j].getBlockCover()) {//获得按钮
+						m = i;
+						n = j;
+						break;
+					}
+				}
+			}
+			if (block[m][n].isMine()) {//如果是雷
+				for (int i = 0; i < row; i++) {
+					for (int j = 0; j < column; j++) {
+						blockView[i][j].getBlockCover().removeActionListener(
+								this);
+						if (block[i][j].isMine())
+							blockView[i][j].seeBlockName();
+					}
+				}
+			} else {//如果不是雷
+				if (block[m][n].getNumber() > 0)
+					blockView[m][n].seeBlockName();
+				else if (block[m][n].getNumber() == 0)
+					for (int k = Math.max(m - 1, 0); k <= Math.min(m + 1,
+							row - 1); k++) {
+						for (int t = Math.max(n - 1, 0); t <= Math.min(n + 1,
+								column - 1); t++)
+							blockView[k][t].seeBlockName();
+					}
+			}
+		}
+		if(source==reStart){//单击了“重新开始
+			for(int i=0;i<row;i++){
+				for(int j=0;j<column;j++)
+					block[i][j].setIsMine(false);
+			}
+			lay.layMinesForBlock(block, mineCount);//重新布雷
+			for(int i=0;i<row;i++){
+				for(int j=0;j<column;j++){
+					blockView[i][j].setName(block[i][j].getName());
+					blockView[i][j].seeBlockCover();
+					blockView[i][j].getBlockCover().addActionListener(this);
+				}
+			}
+		}
+	}
+	public static void main(String[] args) {
+		new MinesMainFrame();
+	}
+}请问这个类用来干什么的
+
+用户: yyyyyyyy
+时间: 2024-01-07T04:42:32.160Z
+消息: 1.Block类
+package zz;
+
+public class Block {
+	String name;
+	int number;
+	boolean boo=false;
+	public void setName(String name){
+		this.name=name;
+	}
+	public String getName(){
+		return name;
+	}
+	public void setNumber(int n){
+		number=n;
+	}
+	public int getNumber(){
+		return number;
+	}
+	boolean isMine(){
+		return boo;
+	}
+	public void setIsMine(boolean boo){
+		this.boo=boo;
+	}
+}
+2.BlockView类
+package zz;
+import javax.swing.*;
+import java.awt.*;
+//块视图
+public class BlockView  extends JPanel{
+	JLabel  blockName;
+	JButton blockCover;
+	CardLayout card;
+	BlockView(){//构造方法->初始化组件
+		card=new CardLayout();
+		setLayout(card);//设置为CardLayout布局
+		blockName= new JLabel();
+		blockCover =new JButton();
+		add("cover",blockCover);//增加组件及设置文本
+		add("name",blockName);		
+	}
+	public void setName(String name){
+		blockName.setText(name);		
+	}
+	public String getName(){
+		return blockName.getText();
+	}
+	public void seeBlockName(){
+		card.show(this, "name");
+		validate();//确认，生效
+	}
+	public void seeBlockCover(){
+		card.show(this, "cover");
+		validate();
+	}
+	public JButton getBlockCover(){
+		return blockCover;
+	}
+}
+3.LayMines类
+package zz;
+import java.util.LinkedList;
+public class LayMines {
+		public void layMinesForBlock(Block block[][],int mineCount){
+			int row=block.length;//行数
+			int column=block[0].length;//列数
+			LinkedList<Block> list=new LinkedList<Block>();//创建空链表list
+			for(int i=0;i<row;i++){//给list增加结点
+				for(int j=0;j<column;j++){
+					list.add(block[i][j]);//给list增加结点
+				}
+			}
+			while(mineCount>0){//随机布雷
+				int size=list.size();
+				int randomIndex=(int)(Math.random()*size);
+				Block b=list.get(randomIndex);//返回索引号为randomIndex的结点的数据
+				b.setName("雷");
+				b.setIsMine(true);
+				list.remove(randomIndex);
+				mineCount--;
+			}
+			for(int i=0;i<row;i++){//不是雷的块
+				for(int j=0;j<column;j++){
+					if(block[i][j].isMine()){}
+					else{
+						int mineNumber=0;
+						for(int k=Math.max(i-1, 0);k<Math.min(i+1, row-1);k++){
+							for(int t=Math.max(j-1, 0);t<Math.max(j+1, column-1);t++){
+								if(block[k][t].isMine())
+									mineNumber++;
+							}						
+						}
+						if(mineNumber>0){
+							block[i][j].setName(""+mineNumber);
+							block[i][j].setNumber(mineNumber);
+						}
+						else{
+							block[i][j].setName(" ");
+							block[i][j].setNumber(mineNumber);
+						}
+					}
+				}
+			}
+		}
+}
+4.MineMainFrame类
+package zz;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+public class MineMainFrame extends JFrame implements ActionListener {
+	JButton reStart;
+	Block block[][];//块数组
+	BlockView blockView[][];//块视图数组
+	LayMines lay;  //放置雷
+	int row = 15, column = 20, mineCount = 20;//数组大小及雷的数量
+	int colorSwitch = 0;
+	JPanel pCenter, pNorth;//，
+	public MineMainFrame() {
+		reStart = new JButton("重新开始");
+		pCenter = new JPanel();
+		pNorth = new JPanel();
+		pNorth.setBackground(Color.orange);
+		block = new Block[row][column];
+		for (int i = 0; i < row; i++) {//实例化数组
+			for (int j = 0; j < column; j++)
+				block[i][j] = new Block();
+		}
+		lay = new LayMines();
+		lay.layMinesForBlock(block, mineCount);//调用布雷方法，进行布雷
+		blockView = new BlockView[row][column];
+		pCenter.setLayout(new GridLayout(row, column));//网格布局
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < column; j++) {
+				blockView[i][j] = new BlockView();
+				blockView[i][j].setName(block[i][j].getName());
+				pCenter.add(blockView[i][j]);
+				blockView[i][j].getBlockCover().addActionListener(this);
+			}
+		}
+		reStart.addActionListener(this);
+		pNorth.add(reStart);
+		add(pNorth, BorderLayout.NORTH);//增加布局
+		add(pCenter, BorderLayout.CENTER);
+		setSize(400, 450);
+		setVisible(true);
+		validate();
+		setTitle("扫雷游戏");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public void actionPerformed(ActionEvent e) {//事件
+		JButton source = (JButton) e.getSource();
+		if (source != reStart) {//如果没有单击“重新开始”
+			int m = -1, n = -1;
+			for (int i = 0; i < row; i++) {
+				for (int j = 0; j < column; j++) {
+					if (source == blockView[i][j].getBlockCover()) {//获得按钮
+						m = i;
+						n = j;
+						break;
+					}
+				}
+			}
+			if (block[m][n].isMine()) {//如果是雷
+				for (int i = 0; i < row; i++) {
+					for (int j = 0; j < column; j++) {
+						blockView[i][j].getBlockCover().removeActionListener(
+								this);
+						if (block[i][j].isMine())
+							blockView[i][j].seeBlockName();
+					}
+				}
+			} else {//如果不是雷
+				if (block[m][n].getNumber() > 0)
+					blockView[m][n].seeBlockName();
+				else if (block[m][n].getNumber() == 0)
+					for (int k = Math.max(m - 1, 0); k <= Math.min(m + 1,
+							row - 1); k++) {
+						for (int t = Math.max(n - 1, 0); t <= Math.min(n + 1,
+								column - 1); t++)
+							blockView[k][t].seeBlockName();
+					}
+			}
+		}
+		if(source==reStart){//单击了“重新开始
+			for(int i=0;i<row;i++){
+				for(int j=0;j<column;j++)
+					block[i][j].setIsMine(false);
+			}
+			lay.layMinesForBlock(block, mineCount);//重新布雷
+			for(int i=0;i<row;i++){
+				for(int j=0;j<column;j++){
+					blockView[i][j].setName(block[i][j].getName());
+					blockView[i][j].seeBlockCover();
+					blockView[i][j].getBlockCover().addActionListener(this);
+				}
+			}
+		}
+	}
+	public static void main(String[] args) {
+		new MineMainFrame();
+	}
+}
+请帮我分析一下该代码
+
+用户: yyyyyyyy
+时间: 2024-01-07T04:51:01.062Z
+消息: package zz;
+
+public class Block {
+	String name;
+	int number;
+	boolean boo=false;
+	public void setName(String name){
+		this.name=name;
+	}
+	public String getName(){
+		return name;
+	}
+	public void setNumber(int n){
+		number=n;
+	}
+	public int getNumber(){
+		return number;
+	}
+	boolean isMine(){
+		return boo;
+	}
+	public void setIsMine(boolean boo){
+		this.boo=boo;
+	}
+}
+请帮我分析该串代码
+
+用户: yyyyyyyy
+时间: 2024-01-07T05:51:34.119Z
+消息: import class在Java语言中是什么意思
+
+用户: yyyyyyyy
+时间: 2024-01-07T05:52:14.609Z
+消息: struct在Java中是什么意思
+
+用户: yyyyyyyy
+时间: 2024-01-07T05:55:13.695Z
+消息: 对于两个正整数a，b，有的人使用算术平均公式 (ab)/2计算(算术)平均值，有的人使用几何平均公式Va+h计算 (几何)平
+均值，现要求定义一个接口，分别用不同的类实现两种计算方法，并返回平均值.求Java
+
+用户: yyyyyyyy
+时间: 2024-01-07T05:57:20.144Z
+消息: 请帮我写出这个Java编程题：对于两个正整数a，b，有的人使用算术平均公式 (ab)/2计算(算术)平均值，有的人使用几何平均公式Va+h计算 (几何)平
+均值，现要求定义一个接口，分别用不同的类实现两种计算方法，并返回平均值.
+
+用户: yyyyyyyy
+时间: 2024-01-07T05:59:56.964Z
+消息: 编写一个Java程序，计算两个数的和与差
+
+用户: yyyyyyyy
+时间: 2024-01-07T06:00:15.324Z
+消息: 编写一个Java程序，计算两个数的和与差
+
+用户: yyyyyyyy
+时间: 2024-01-07T06:00:37.458Z
+消息: 请编写一个Java程序，计算两个数的和与差
+
+用户: yyyyyyyy
+时间: 2024-01-07T08:33:02.922Z
+消息: import java.util.*;
+
+public class E {
+
+public static void main(String[] args) {
+
+// TODO Auto-generated method stub
+
+LinkedList<Integer> list=new LinkedList<Integer>();
+
+for(int k=1;k<=10;k++){
+
+list.add(new Integer(k));
+
+}
+
+list.remove(5);
+
+list.remove(5);
+
+Integer m=list.get(5);
+
+System.out.println(m.intValue());【结果】
+
+}
+
+}请分析改代码
+
+用户: yyyyyyyy
+时间: 2024-01-08T16:56:16.806Z
+消息: 三、写作
+阅读1和阅读2的文本围绕着美国和中国对成人初显期的看法。你们的小组讨论也与这个话题有关。现在写一篇关于你对成人初显期的看法的作文，引用课文和小组讨论中的观点。
+当你完成时，与同伴交换你的写作，并根据以下标准评价彼此的工作。:
+评价标准:
+1 写一篇不少于140字的英语作文。
+2 以一个主题句开始，它清楚地说明了段落的中心思想。
+3 用合理的理由/论据来支持你的主要观点。
+4 尽可能多地使用你在本单元中学到的新单词和表达方式，并在下面划线。
+
+用户: yyyyyyyy
+时间: 2024-01-09T00:24:38.001Z
+消息: 请帮我写一篇成人初显期的作文
+
+用户: yyyyyyyy
+时间: 2024-01-09T00:24:56.587Z
+消息: 请帮我写一篇对成人初显期看法的英文作文
+
+用户: yyyyyyyy
+时间: 2024-01-09T00:25:41.616Z
+消息: 请帮我写一篇对成人初显期看法的英文作文100字
+
+用户: yyyyyyyy
+时间: 2024-01-10T05:31:21.058Z
+消息: 5、在已建"职工"表中有姓名、性别、年龄等字段，查询女职工中年龄最小的职工姓名、性别和年龄，正确的SQL命令是什么？
+
+用户: yyyyyyyy
+时间: 2024-01-10T05:35:47.725Z
+消息: 数据库系统管理与文件系统管理的主要区别是什么？
+
+用户: yyyyyyyy
+时间: 2024-01-10T05:48:41.147Z
+消息: 某运动会管理系统数据库的部分基本表：运动员（运动员编号，姓名，性别，队别），项目（项目编号，名称，比赛地点，比赛时间），比赛（运动员编号，项目编号，成绩）。主键依次是运动员编号、项目编号、运动员编号与项目编号的组合（该组合里的属性是外键）。下列能正确查询出“参加了比赛项目的运动员人数”的选项是SQL语句是什么？
+
+用户: yyyyyyyy
+时间: 2024-01-10T05:51:48.133Z
+消息: 31、某运动会管理系统数据库的部分基本表：运动员（运动员编号，姓名，性别，队别），项目（项目编号，名称，比赛地点，比赛时间），比赛（运动员编号，项目编号，成绩）。主键依次是运动员编号、项目编号、运动员编号与项目编号的组合（该组合里的属性是外键）。下列能正确查询出“参加了比赛项目的运动员人数”的选项是SQL语句是什么？
+
+用户: yyyyyyyy
+时间: 2024-01-10T05:52:30.184Z
+消息: 通常情况下，设计数据库不需要考虑其安全性是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-10T05:53:27.089Z
+消息: 数据库系统是由数据库、数据库管理系统、硬件平台和软件平台组成的是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-10T05:59:26.850Z
+消息: 关系型数据库中的数据是以（二维表）表格的形式存储的，表格由行和列组成是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:00:05.863Z
+消息: 二维表是什么
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:03:00.590Z
+消息: 在数据库中，通常情况下，能正确检索出“所有学生的姓名”的关系代数表达式是什么？
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:04:07.131Z
+消息: SQL语言中，为基本表或者视图添加新的列所使用的关键字是什么
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:05:40.335Z
+消息: SQL是用于与关系型数据库进行通信的标准语言是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:06:13.097Z
+消息: 索引在数据库中只用于加速对数据的检索操作，没有其它的用是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:09:49.798Z
+消息: 在数据库系统的三级模式中，内模式的个数有几个？
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:28:47.813Z
+消息: 某运动会管理系统数据库的部分基本表：运动员（运动员编号，姓名，性别，队别），项目（项目编号，名称，比赛地点，比赛时间），比赛（运动员编号，项目编号，成绩）。主键依次是运动员编号、项目编号、运动员编号与项目编号的组合（该组合里的属性是外键）。下列能正确查询出“参加了比赛项目的运动员人数”的选项是SQL语句是什么？
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:29:56.372Z
+消息: 在SQL中，基要删除一个视图，则需要使用什么来删除。
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:30:57.836Z
+消息: 数据库设计只包括需求分析、概念设计、逻辑设计和物理设计四个阶段是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:37:06.905Z
+消息: Sa登录是系统管理员的登录，sa登录具有所有可能的关于系统管理工作的权限是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:39:42.486Z
+消息: 创建视图的SQL语句
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:40:32.184Z
+消息: 已知关系模式R（A, B, C, D, E, G, H），函数依赖集F为{BC→AE, DC→EH, DG→E, B→CD, D→G}，则F的最小函数依赖集是
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:41:02.731Z
+消息: 请计算
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:41:54.694Z
+消息: 删除学号为“001”的SQL语句。
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:44:44.791Z
+消息: 在数据库设计中，为了提高查询效率，应该尽可能地增加冗余数据吗？是否正确？
+
+用户: yyyyyyyy
+时间: 2024-01-10T06:52:29.747Z
+消息: 在任何一个关系数据库中，第一范式（1NF）是对关系模式的基本要求是否正确
+
+用户: yyyyyyyy
+时间: 2024-01-10T07:03:46.755Z
+消息: 假设学号字段“SNo”的数据类型为nvarchar（6），当“SNo”的值为“S001”时，“SNo”在内存中占多少字节。
+
+用户: yyyyyyyy
+时间: 2024-01-10T07:16:23.418Z
+消息: 将“C04”号课程的成绩按升序排列SQL语句
+
+用户: yyyyyyyy
+时间: 2024-01-10T07:18:09.661Z
+消息: 使用SQL语句将张三的姓名修改为张小三
+
+用户: yyyyyyyy
+时间: 2024-01-10T07:40:14.129Z
+消息: 从“销售”表中找出部门号为04 ”的部门中，单价最高前两条商品记录”的语句是什么
+
+用户: yyyyyyyy
+时间: 2024-01-10T08:09:54.639Z
+消息: 删除学号为“001”的SQL语句。
+
+用户: yyyyyyyy
+时间: 2024-01-10T08:10:09.372Z
+消息: Update 课程表
+Set 课程名=’计算机应用技术’
+Where 课程名=’计算机应用基础’
+
+用户: yyyyyyyy
+时间: 2024-01-10T08:10:21.266Z
+消息: 在课程表中使用SQL语句将计算机应用基础的课程名修改为计算机应用技术对应的SQL代码
+
+用户: yyyyyyyy
+时间: 2024-01-10T09:13:46.036Z
+消息: SQL语言中，为基本表或者视图添加新的列所使用的关键字是什么
+
+用户: yyyyyyyy
+时间: 2024-01-10T09:15:58.010Z
+消息: SQL语言中，为基本表或者视图添加新的列所使用的关键字是什么
+
+用户: yyyyyyyy
+时间: 2024-01-10T09:47:08.477Z
+消息: 从“销售”表中找出部门号为04 ”的部门中，单价最高前两条商品记录”的语句是什么
+
+用户: yyyyyyyy
+时间: 2024-01-10T09:48:20.581Z
+消息: 从“销售”表中找出部门号为04 ”的部门中，单价最高前两条商品记录”的语句是什么
+
+用户: yyyyyyyy
+时间: 2024-01-10T09:54:46.292Z
+消息: 若要删除数据库中已经存在的表S，对应的SQL语言为什么
+
+用户: yyyyyyyy
+时间: 2024-01-10T10:06:00.131Z
+消息: import java.sql.*;
+
+public class DatabaseConnection {
+    public static void main(String[] args) {
+        String url = "jdbc:sql://localhost:1433//database_name";
+        String user = "username";
+        String password = "password";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, password);
+            Statement statement = connection.createStatement();
+            
+            // 执行SQL语句
+            String sqlQuery = "SELECT * FROM table_name;";
+            ResultSet resultSet = statement.executeQuery(sqlQuery);
+            while (resultSet.next()) {
+                // 处理结果集
+            }
+
+            // 关闭连接
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}其中哪三句为关键语句
+
+用户: yyyyyyyy
+时间: 2024-01-10T10:11:54.685Z
+消息: 查询第一个字是“王”的SQL语句
+
+用户: yyyyyyyy
+时间: 2024-01-10T10:12:05.290Z
+消息: 查询第二个字是“王”的SQL语句
+
+用户: yyyyyyyy
+时间: 2024-01-10T10:12:23.382Z
+消息: 查询第三个字是“王”的SQL语句
+
+用户: yyyyyyyy
+时间: 2024-01-11T05:27:08.545Z
+消息: 对n个元素的表做顺序查找时，若查找每个元素的概率相同，则平均查找长度为（ ）。解析一下
+
+用户: yyyyyyyy
+时间: 2024-01-11T05:27:49.766Z
+消息: 对n个元素的表做顺序查找时，若查找每个元素的概率相同，则平均查找长度为 (n + 1) / 2，为什么呢
+
+用户: yyyyyyyy
+时间: 2024-01-11T05:28:22.162Z
+消息: 顺序查找是什么
+
+用户: yyyyyyyy
+时间: 2024-01-11T05:32:11.044Z
+消息: 请帮我分析一下顺序查找的过程
+
+用户: yyyyyyyy
+时间: 2024-01-11T05:33:07.070Z
+消息: 对n个元素的表做顺序查找时，若查找每个元素的概率相同，则平均查找长度为 (n + 1) / 2，为什么要除以2
+
+用户: yyyyyyyy
+时间: 2024-01-11T05:35:58.155Z
+消息: 分块查找
+
+用户: yyyyyyyy
+时间: 2024-01-11T05:37:04.648Z
+消息: ）如果要求一个线性表既能较快的查找，又能适应动态变化的要求，最好采用（ ）查找法。为什么
+
+用户: yyyyyyyy
+时间: 2024-01-11T05:37:49.166Z
+消息: ）如果要求一个线性表既能较快的查找，又能适应动态变化的要求，最好采用分块查找法。为什么
+
+用户: yyyyyyyy
+时间: 2024-01-11T05:39:18.621Z
+消息: 如果要求一个线性表既能较快的查找，又能适应动态变化的要求，最好采用分块查找法。这是因为分块查找法结合了块状索引和分块有序查找的优点。它将大的数据集合划分成若干块，同时保留一个索引结构来提高检索效率。这种方法既允许快速查找，又能适应动态变化的要求，原因如下：
+
+检索速度：通过将数据划分成块，并对每个块进行排序，可以提高检索速度。当需要查找时，首先使用索引查找到可能包含目标值的块，然后在该块内进行查找，避免了对整个数据集合的遍历，提高了查找的效率。如何对数据进行分块，是否要按照顺序分
+
+用户: yyyyyyyy
+时间: 2024-01-11T05:40:38.570Z
+消息: 2024/1/11 13:38:03
+
+如果要求一个线性表既能较快的查找，又能适应动态变化的要求，最好采用分块查找法。这是因为分块查找法结合了块状索引和分块有序查找的优点。它将大的数据集合划分成若干块，同时保留一个索引结构来提高检索效率。这种方法既允许快速查找，又能适应动态变化的要求，原因如下：
+
+检索速度：通过将数据划分成块，并对每个块进行排序，可以提高检索速度。当需要查找时，首先使用索引查找到可能包含目标值的块，然后在该块内进行查找，避免了对整个数据集合的遍历，提高了查找的效率。如何索引找到目标值的那块数据
+
+用户: yyyyyyyy
+时间: 2024-01-11T05:41:28.496Z
+消息: 哈希查找
+
+用户: yyyyyyyy
+时间: 2024-01-11T05:43:38.019Z
+消息: 归并排序
+
+用户: yyyyyyyy
+时间: 2024-01-11T05:48:02.433Z
+消息: 冒泡排序
+
+用户: yyyyyyyy
+时间: 2024-01-11T05:59:55.958Z
+消息: 在分块查找中建立索引表时是否需要比较关键字的大小来分块
+
+用户: yyyyyyyy
+时间: 2024-01-11T06:06:29.162Z
+消息: 如果要求一个线性表既能较快的查找，又能适应动态变化的要求，最好采用分块查找法。这是因为分块查找法结合了块状索引和分块有序查找的优点。它将大的数据集合划分成若干块，同时保留一个索引结构来提高检索效率。这种方法既允许快速查找，又能适应动态变化的要求，原因如下：
+
+检索速度：通过将数据划分成块，并对每个块进行排序，可以提高检索速度。当需要查找时，首先使用索引查找到可能包含目标值的块，然后在该块内进行查找，避免了对整个数据集合的遍历，提高了查找的效率。
+
+适应动态变化：分块查找法可以较好地适应动态变化。当数据集合发生变化时，只需要对相应的块进行排序和插入/删除操作，而不需要对整个集合进行操作。这使得分块查找法能够更好地处理动态变化的情况。
+
+因此，分块查找法结合了快速查找和适应动态变化的优势，是一个理想的选择。如果第二个字表中的关键字并不是都大于第一个子表中的最大关键字有没有这种可能呢
+
+用户: yyyyyyyy
+时间: 2024-01-11T06:32:05.137Z
+消息: 冒泡排序
+
+用户: yyyyyyyy
+时间: 2024-01-11T06:37:46.680Z
+消息: 插入排序
+
+用户: yyyyyyyy
+时间: 2024-01-11T06:42:12.765Z
+消息: 选择排序
+
+用户: yyyyyyyy
+时间: 2024-01-11T06:46:46.346Z
+消息: 从未排序序列中依次取出元素与已排序序列中的元素进行比较，将其放入已排序序列的正确位置上的方法，这种排序方法称为插入排序为什么
+
+用户: yyyyyyyy
+时间: 2024-01-11T06:47:38.879Z
+消息: 从未排序序列中挑选元素，并将其依次放入已排序序列（初始时为空）的一端的方法，称为选择排序为什么
+
+用户: yyyyyyyy
+时间: 2024-01-11T06:51:12.935Z
+消息: 一棵完全二叉树上有1002个结点，这棵完全二叉树的高度是 
+
+用户: yyyyyyyy
+时间: 2024-01-11T06:53:26.615Z
+消息: #define OK 1
+
+#define ERROR 0
+
+#define OVERFLOW -2
+
+#define MAXSIZE 5 //循环队列存储单元长度
+
+
+
+#include "string.h"
+
+#include "stdlib.h"
+
+#include <iostream>
+
+using namespace std; 
+
+
+
+typedef int Status;
+
+
+
+ 
+
+typedef struct
+
+{
+
+  int *base;
+
+  int front;
+
+  int rear;
+
+}SqQueue;
+
+
+
+Status InitQueue(SqQueue &Q)
+
+{
+
+  Q.base=new int[MAXSIZE];
+
+  if (!Q.base) return ERROR;
+
+  Q.front=0; Q.rear=0;
+
+  return OK;
+
+}
+
+ 
+
+bool Full(SqQueue Q)
+
+{
+
+  if ((Q.rear+1)%MAXSIZE==Q.front)
+
+    return true;
+
+  else
+
+    return false;
+
+}
+
+ 
+
+bool Empty(SqQueue Q)
+
+{
+
+  if (   (1)   )
+
+    return true;
+
+  else
+
+    return false;
+
+}
+
+ 
+
+void EnQueue(SqQueue &Q,int e)
+
+{
+
+    Q.base[Q.rear]=   (2)    ;
+
+  Q.rear=(Q.rear+1)%MAXSIZE;
+
+}
+
+ 
+
+int DeQueue(SqQueue &Q)
+
+{
+
+  int e;
+
+  e=Q.base[Q.front];
+
+  Q.front=   (3)   ;
+
+  return e;
+
+}
+
+ 
+
+
+int main()
+
+{
+
+  int e,choose=-1;
+
+  SqQueue Q;
+
+  cout<<"1.初始化队列"<<endl;
+
+  cout<<"2.入队"<<endl;
+
+  cout<<"3.取队首元素"<<endl;
+
+  cout<<"4.出队"<<endl;
+
+  cout<<"0.退出"<<endl<<endl;
+
+  while (choose)
+
+  { 
+
+    cout<<"请选择："; 
+
+    cin>>choose;
+
+    switch (choose)
+
+    {
+
+      case 1:
+
+       if (InitQueue(Q))
+
+            cout<<"初始化成功！"<<endl<<endl;
+
+       else
+
+           cout<<"初始化失败！"<<endl<<endl;
+
+       break;
+
+       case 2:
+
+       if (Full(Q))
+
+           cout<<"队列已满！"<<endl<<endl;
+
+       else
+
+       {
+
+            cout<<"请输入入队元素：";
+
+            cin>>e;
+
+            EnQueue(Q,e); 
+
+            cout<<endl;
+
+       }
+
+       break; 
+
+      case 3:
+
+       if (Empty(Q))
+
+            cout<<"队列为空！"<<endl<<endl;
+
+      else
+
+           cout<<"队首元素为："<<GetFront(Q)<<endl<<endl;
+
+      break;
+
+      case 4:
+
+      if (Empty(Q))
+
+           cout<<"队列为空！"<<endl<<endl;
+
+      else
+
+           cout<<"出队元素为："<<DeQueue(Q)<<endl<<endl;
+
+     break;
+
+     case 0:
+
+     break;
+
+    default:
+
+        cout<<"选择非法\n\n"; 
+
+    }  
+
+  } 请帮我分析
+
+用户: yyyyyyyy
+时间: 2024-01-11T06:55:37.601Z
+消息: typedef struct
+
+{
+
+  int *base;
+
+  int front;
+
+  int rear;
+
+}SqQueue;什么意思
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:00:27.303Z
+消息: Status InitQueue(SqQueue &Q)
+
+{
+
+  Q.base=new int[MAXSIZE];
+
+  if (!Q.base) return ERROR;
+
+  Q.front=0; Q.rear=0;
+
+  return OK;
+
+}分析
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:01:24.036Z
+消息: 在有序表（4，6，10，12，20，30，50，70，88，100）进行折半查找，若在表中查找元素4，比较次数为     ；若在表中查找元素88，比较次数为      ；若查找元素58，比较次数为      ，查找失败。
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:01:47.948Z
+消息: Status InitQueue(SqQueue &Q)
+
+{
+
+  Q.base=new int[MAXSIZE];
+
+  if (!Q.base) return ERROR;
+
+  Q.front=0; Q.rear=0;
+
+  return OK;
+
+}请帮我解析一下
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:03:49.598Z
+消息: bool Full(SqQueue Q)
+
+{
+
+  if ((Q.rear+1)%MAXSIZE==Q.front)
+
+    return true;
+
+  else
+
+    return false;
+
+}请帮我解析一下
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:06:57.698Z
+消息: void EnQueue(SqQueue &Q,int e)
+
+{
+
+    Q.base[Q.rear]= e  ;
+
+  Q.rear=(Q.rear+1)%MAXSIZE;
+
+}请帮我解析一下
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:08:19.092Z
+消息: int DeQueue(SqQueue &Q)
+
+{
+
+  int e;
+
+  e=Q.base[Q.front];
+
+  Q.front=(Q.front+1)%MAXSIZE  ;
+
+  return e;
+
+}请帮我解析一下
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:14:25.053Z
+消息: #define OK 1
+#define ERROR 0
+#define OVERFLOW -2
+#define MAXSIZE 5 //循环队列存储单元长度
+
+#include "string.h"
+#include "stdlib.h"
+#include <iostream>
+
+using namespace std; 
+typedef int Status;
+
+typedef struct
+{
+  int *base;//指向一个整数的指针 
+  int front;//队列的头指针 
+  int rear;//队列的尾指针 
+}SqQueue;
+
+Status InitQueue(SqQueue &Q)
+{
+  Q.base=new int[MAXSIZE];
+  if (!Q.base) return ERROR;
+  Q.front=0; Q.rear=0;
+  return OK;
+}
+
+bool Full(SqQueue Q)
+{
+  if ((Q.rear+1)%MAXSIZE==Q.front)
+    return true;
+  else
+    return false;
+}
+
+bool Empty(SqQueue Q)
+{
+  if (Q.rear==Q.front)
+    return true;
+  else
+    return false;
+}
+
+void EnQueue(SqQueue &Q,int e)
+{
+    Q.base[Q.rear]=(Q.front+1)%MAXSIZE ;
+  Q.rear=(Q.rear+1)%MAXSIZE;
+}
+
+int DeQueue(SqQueue &Q)
+{
+  int e;
+  e=Q.base[Q.front];
+  Q.front=(Q.front+1)%MAXSIZE ;
+  return e;
+}
+
+int main()
+{
+  int e,choose=-1;
+  SqQueue Q;
+  cout<<"1.初始化队列"<<endl;
+  cout<<"2.入队"<<endl;
+  cout<<"3.取队首元素"<<endl;
+  cout<<"4.出队"<<endl;
+  cout<<"0.退出"<<endl<<endl;
+  while (choose)
+  { 
+    cout<<"请选择："; 
+    cin>>choose;
+    switch (choose)
+    {
+      case 1:
+       if (InitQueue(Q))
+            cout<<"初始化成功！"<<endl<<endl;
+       else
+           cout<<"初始化失败！"<<endl<<endl;
+       break;
+       case 2:
+       if (Full(Q))
+           cout<<"队列已满！"<<endl<<endl;
+       else
+       {
+            cout<<"请输入入队元素：";
+            cin>>e;
+            EnQueue(Q,e); 
+            cout<<endl;
+       }
+       break; 
+      case 3:
+       if (Empty(Q))
+            cout<<"队列为空！"<<endl<<endl;
+      else
+           cout<<"队首元素为："<<GetFront(Q)<<endl<<endl;
+      break;
+      case 4:
+      if (Empty(Q))
+           cout<<"队列为空！"<<endl<<endl;
+      else
+           cout<<"出队元素为："<<DeQueue(Q)<<endl<<endl;
+     break;
+     case 0:
+     break;
+    default:
+        cout<<"选择非法\n\n"; 
+    } 
+  } 
+
+请帮我解析一下
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:17:18.031Z
+消息: 同时 GetFront(Q) 函数应该是一个未定义的函数。如何定义
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:21:41.392Z
+消息: Q.base[Q.rear]代表什么
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:27:20.392Z
+消息: typedef int Status;
+
+typedef struct
+
+{
+
+  int *base;
+
+  int *top;
+
+  int stacksize;
+
+}SqStack;
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:31:06.184Z
+消息: int DeQueue(SqQueue &Q)
+{
+  int e;
+  e=Q.base[Q.front];
+  Q.front=(Q.front+1)%MAXSIZE ;
+  return e;
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:35:18.080Z
+消息: typedef struct
+{
+  int *base;//指向一个整数的指针 
+  int front;//队列的头指针 
+  int rear;//队列的尾指针 
+}SqQueue;
+解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:36:37.849Z
+消息: Status InitStack(SqStack &S)
+
+{
+
+  S.base=new int[MAXSIZE];
+
+  if (!S.base) return ERROR;
+
+  S.top=S.base;
+
+  S.stacksize=MAXSIZE;
+
+  return OK;
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:49:38.368Z
+消息: Status Empty(SqStack S)
+
+{
+
+  if (S.top==S.base)
+
+    return 1;
+
+  else
+
+    return 0;
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:50:08.777Z
+消息: Status Full(SqStack S)
+
+{
+
+  if (S.top-S.base==S.stacksize)
+
+    return 1;
+
+  else
+
+    return 0;
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:51:28.267Z
+消息: Status Push(SqStack &S,int e)
+
+{
+
+  *S.top=e;
+
+  S.top++;
+
+  return OK;
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:52:56.850Z
+消息: int Pop(SqStack &S)
+
+{
+
+  return (   (1)   );
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:54:24.217Z
+消息: int Pop(SqStack &S)
+
+{
+
+return ( *—S.top  );
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:56:36.500Z
+消息: int GetTop(SqStack S)
+
+{
+
+  return   *(S.top-1) ;
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T07:58:53.563Z
+消息: typedef struct HTNode
+
+{
+
+  char ch;
+
+  int weight;
+
+  int parent,lchild,rchild;
+
+}*HuffmanTree;解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:00:14.115Z
+消息: void select(HuffmanTree HT,int len,int &s1,int &s2)
+
+{
+
+//选择两个其双亲域为0， 且权值最小的结点，并返回它们在HT中的序号s1和s2
+
+  int i,min1=0x3f3f3f3f,min2=0x3f3f3f3f;
+
+  s1=s2=1;
+
+  for (i=1;i<=len;i++)
+
+  {
+
+    if (HT[i].weight<min1 && HT[i].parent==0)
+
+    {
+
+  s1=i;
+
+  min1=HT[i].weight;
+
+}  
+
+  }
+
+  int temp=HT[s1].weight;
+
+  HT[s1].weight=0x3f3f3f3f;
+
+  for (i=1;i<=len;i++)
+
+  {
+
+if (HT[i].weight<min2 && HT[i].parent==0)
+
+{
+
+  s2=i;
+
+  min2=HT[i].weight;
+
+}
+
+  }
+
+  HT[s1].weight=temp;
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:14:20.197Z
+消息: 哈夫曼树的数据结构定义、创建哈夫曼树、生成哈夫曼编码
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:16:23.102Z
+消息: 哈夫曼树的创建主要包括构建哈夫曼树的过程，这通常是通过合并权值最小的两棵树（作为左右子树），直到全部节点均已被合并。权值是什么意思
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:22:22.309Z
+消息: void CreateBiTree(BiTree &T)  //先序创建二叉树
+
+{
+
+  char ch; cin>>ch;
+
+  if (ch=='#') T=NULL;  //递归结束，建空树
+
+  else
+
+  {
+
+    T=new BiNode;    //生成根结点
+
+    T->data=   (1)   ;
+
+    CreateBiTree(T->lchild);  //递归创建左子树
+
+    CreateBiTree(T->rchild);  //递归创建右子树
+
+  }
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:24:19.335Z
+消息: void CreateBiTree(BiTree &T)  //先序创建二叉树
+
+{
+
+char ch; cin>>ch;
+
+if (ch=='#') T=NULL;  //递归结束，建空树
+
+else
+
+{
+
+T=new BiNode;    //生成根结点
+
+T->data=ch ;
+
+CreateBiTree(T->lchild);  //递归创建左子树
+
+CreateBiTree(T->rchild);  //递归创建右子树
+}
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:24:45.753Z
+消息: typedef struct BiNode
+
+{
+
+  char data;
+
+  struct BiNode *lchild,*rchild;
+
+}*BiTree;解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:25:39.840Z
+消息: T->data指什么
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:26:10.550Z
+消息: void PreOrderTraverse(BiTree T)  //先序遍历二叉树T的递归算法
+
+{
+
+  if (T)
+
+    {
+
+  cout<<T->data;
+
+  PreOrderTraverse(T->lchild);
+
+  PreOrderTraverse(T->rchild);
+
+}
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:29:42.620Z
+消息: void InOrderTraverse(BiTree T)  //中序遍历二叉树T的递归算法
+
+{
+
+  if (T)
+
+  {
+
+    InOrderTraverse(T->lchild);
+
+    cout<<T->data;
+
+    InOrderTraverse(T->rchild);
+
+  }
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:31:16.724Z
+消息: int NodeCount(BiTree T)  //计算二叉树结点总数
+
+{
+
+  if  (T==NULL) 
+
+                 return 0;
+
+  else
+
+    return NodeCount(T->lchild)+NodeCount(T->rchild)+1;
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:32:34.082Z
+消息: int LeafCount(BiTree T)  //计算二叉树叶子结点总数
+
+{
+
+  if (T==NULL) return 0;
+
+  else if (T->lchild==NULL && T->rchild==NULL)
+
+    return  1 ;
+
+  else
+
+    return LeafCount(T->lchild)+LeafCount(T->rchild);
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:34:41.828Z
+消息: int TreeDepth(BiTree T)
+
+{
+
+  int d1,d2;
+
+  if (T==NULL) return 0;
+
+  else
+
+  {
+
+    d1=TreeDepth(T->lchild);  d2=TreeDepth(T->rchild);
+
+    if (d1>=d2)
+
+      return    (3)   ;
+
+    else
+
+      return d2+1;
+
+  }
+
+}解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:43:40.267Z
+消息: int TreeDepth(BiTree T)
+
+{
+
+int d1,d2;
+
+if (T==NULL) return 0;
+
+else
+
+{
+
+d1=TreeDepth(T->lchild);  d2=TreeDepth(T->rchild);
+
+if (d1>=d2)
+
+  return    (3)   ;
+
+else
+
+  return d2+1;
+}
+
+}解析为什么要+1
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:48:16.334Z
+消息: typedef struct BiNode
+
+{
+
+  char data;
+
+  struct BiNode *lchild,*rchild;
+
+}*BiTree;解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:48:42.967Z
+消息: 折半查找树有n个结点，其深度为d=  ，查找成功时的比较次数小于等于    （用d表示），查找不成功时的比较次数为    或      （用d表示）。
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:55:00.715Z
+消息: int LeafCount(BiTree T)  //计算二叉树叶子结点总数
+
+{
+
+  if (T==NULL) return 0;
+
+  else if (T->lchild==NULL && T->rchild==NULL)
+
+    return    1 ;
+
+  else
+
+    return LeafCount(T->lchild)+LeafCount(T->rchild);
+
+}为什么左子树和右子树为空时只要1个叶子节点总数
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:56:21.560Z
+消息: int LeafCount(BiTree T)  //计算二叉树叶子结点总数
+
+{
+
+if (T==NULL) return 0;
+
+else if (T->lchild==NULL && T->rchild==NULL)
+
+return    1 ;
+else
+
+return LeafCount(T->lchild)+LeafCount(T->rchild);
+}为什么else if (T->lchild==NULL && T->rchild==NULL)
+
+return    1 ;
+
+用户: yyyyyyyy
+时间: 2024-01-11T08:59:10.647Z
+消息: typedef struct
+
+{
+
+      int key;
+
+      char *otherinfo;
+
+}ElemType;  解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T09:00:36.957Z
+消息: typedef struct
+
+{
+
+  ElemType *r;            //存储空间的基地址
+
+  int  length;              //顺序表长度
+
+}SqList;       //顺序表类型
+解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T10:11:14.422Z
+消息: 在n个结点的顺序表中，算法的时间复杂度是O(1)的操作是（   ）。
+A. 访问第i个结点（1≤i≤n）和求第i个结点的直接前驱（2≤i≤n）
+B. 在第i个结点后插入一个新结点（1≤i≤n）
+C. 删除第i个结点（1≤i≤n）
+D. 将n个结点从小到大排序
+
+用户: yyyyyyyy
+时间: 2024-01-11T10:11:51.068Z
+消息: 时间复杂度怎么算
+
+用户: yyyyyyyy
+时间: 2024-01-11T10:24:23.518Z
+消息: #define OK 1
+#define ERROR 0
+#define OVERFLOW -2
+#define MAXSIZE 5 //循环队列存储单元长度
+
+#include "string.h"
+#include "stdlib.h"
+#include <iostream>
+
+using namespace std; 
+typedef int Status;
+typedef struct
+{
+  int *base;
+  int front;
+  int rear;
+}SqQueue;
+
+Status InitQueue(SqQueue &Q)
+{
+  Q.base=new int[MAXSIZE];
+  if (!Q.base) return ERROR;
+  Q.front=0; Q.rear=0;
+  return OK;
+}
+
+bool Full(SqQueue Q)
+{
+  if ((Q.rear+1)%MAXSIZE==Q.front)
+    return true;
+  else
+    return false;
+}
+
+bool Empty(SqQueue Q)
+{
+  if (   (1)   )
+    return true;
+  else
+    return false;
+}
+
+void EnQueue(SqQueue &Q,int e)
+{
+    Q.base[Q.rear]=   (2)    ;
+  Q.rear=(Q.rear+1)%MAXSIZE;
+}
+
+int DeQueue(SqQueue &Q)
+{
+  int e;
+  e=Q.base[Q.front];
+  Q.front=   (3)   ;
+  return e;
+}
+
+int main()
+{
+  int e,choose=-1;
+  SqQueue Q;
+  cout<<"1.初始化队列"<<endl;
+  cout<<"2.入队"<<endl;
+  cout<<"3.取队首元素"<<endl;
+  cout<<"4.出队"<<endl;
+  cout<<"0.退出"<<endl<<endl;
+  while (choose)
+  { 
+    cout<<"请选择："; 
+    cin>>choose;
+    switch (choose)
+    {
+      case 1:
+       if (InitQueue(Q))
+            cout<<"初始化成功！"<<endl<<endl;
+       else
+           cout<<"初始化失败！"<<endl<<endl;
+       break;
+       case 2:
+       if (Full(Q))
+           cout<<"队列已满！"<<endl<<endl;
+       else
+       {
+            cout<<"请输入入队元素：";
+            cin>>e;
+            EnQueue(Q,e); 
+            cout<<endl;
+       }
+       break; 
+      case 3:
+       if (Empty(Q))
+            cout<<"队列为空！"<<endl<<endl;
+      else
+           cout<<"队首元素为："<<GetFront(Q)<<endl<<endl;
+      break;
+      case 4:
+      if (Empty(Q))
+           cout<<"队列为空！"<<endl<<endl;
+      else
+           cout<<"出队元素为："<<DeQueue(Q)<<endl<<endl;
+     break;
+     case 0:
+     break;
+    default:
+        cout<<"选择非法\n\n"; 
+    }  
+  } 
+
+请帮我注释解释一下该代码
+
+用户: yyyyyyyy
+时间: 2024-01-11T10:24:25.518Z
+消息: 双向链表存储结构
+
+用户: yyyyyyyy
+时间: 2024-01-11T10:26:49.121Z
+消息: 在双向链表存储结构中，删除p所指的结点时须修改指针（   ）。
+A. p->next->prior=p->prior; p->prior->next=p->next;
+B. p->next=p->next->next; p->next->prior=p;
+C. p->prior->next=p; p->prior=p->prior->prior;
+D. p->prior=p->next->next; p->next=p->prior->prior;
+
+用户: yyyyyyyy
+时间: 2024-01-11T12:52:54.400Z
+消息: 链式栈结点为：(data,link)，top指向栈顶.若想摘除栈顶结点，并将删除结点的值保存到x中,则应执行操作（  ）。
+A. x=top->data;top=top->link；
+B. top=top->link;x=top->link； 
+C. x=top;top=top->link；
+D. x=top->link；解析
+
+用户: yyyyyyyy
+时间: 2024-01-11T12:53:44.512Z
+消息: 链式栈结点为：(data,link)什么意思
+
+用户: yyyyyyyy
+时间: 2024-01-11T12:54:16.281Z
+消息: top指向栈顶.若想摘除栈顶结点什么意思
+
+用户: yyyyyyyy
+时间: 2024-01-11T13:06:58.116Z
+消息: 设计一个判别表达式中左，右括号是否配对出现的算法，采用（　）数据结构最佳。
+
+用户: yyyyyyyy
+时间: 2024-01-11T13:10:50.900Z
+消息: 串是一种特殊的线性表，其特殊性体现在（  ）。
+
+用户: yyyyyyyy
+时间: 2024-01-11T15:13:26.618Z
+消息: p->next->prior=p->prior; p->prior->next=p->next;请帮我解释一下
+
+用户: yyyyyyyy
+时间: 2024-01-11T15:29:40.896Z
+消息: 右指针域为空是没有兄弟吗
+
+用户: yyyyyyyy
+时间: 2024-01-11T15:29:59.806Z
+消息: 右指针域为空什么意思
+
+用户: yyyyyyyy
+时间: 2024-01-11T15:40:46.724Z
+消息:  在双向循环链表中，在p指针所指的结点后插入q所指向的新结点，其修改指针的操作是q->prior=p; q->next=p->next; p->next->prior=q; p->next=q;为什么是这个运行顺序
+
+用户: yyyyyyyy
+时间: 2024-01-11T16:25:46.998Z
+消息: 若让元素1，2，3，4，5依次进栈，则出栈次序不可能出现在（  ）种情况。
+A. 5，4，3，2，1 
+B. 2，1，5，4，3
+C. 4，3，1，2，5 
+D. 2，3，5，4，1
+
+用户: yyyyyyyy
+时间: 2024-01-11T16:45:42.157Z
+消息: top=top->link请问该语句是什么意思
+
+用户: yyyyyyyy
+时间: 2024-01-11T16:49:40.310Z
+消息: 具有n个顶点的有向图最多有（   ）条边。  
+
+用户: yyyyyyyy
+时间: 2024-01-11T16:50:21.122Z
+消息: 有向图什么意思
+
+用户: yyyyyyyy
+时间: 2024-01-11T16:50:52.313Z
+消息: 具有n个顶点的有向图最多有n*(n-1)条边。为什么
+
+用户: yyyyyyyy
+时间: 2024-01-11T16:55:31.397Z
+消息: 若一个栈以向量V[1..n]存储，初始栈顶指针top设为n+1，则元素x进栈的正确操作是(    )。
+A. top++; V[top]=x;
+B. V[top]=x; top++;
+C. top--; V[top]=x;
+D. V[top]=x; top--;
+
+用户: yyyyyyyy
+时间: 2024-01-11T16:56:51.684Z
+消息: 设计一个判别表达式中左，右括号是否配对出现的算法，采用（　D）数据结构最佳。
+A. 线性表的顺序存储结构 
+B. 队列
+C. 线性表的链式存储结构 
+D. 栈
+
+用户: yyyyyyyy
+时间: 2024-01-11T16:58:44.511Z
+消息: 连通图
+
+用户: yyyyyyyy
+时间: 2024-01-11T16:59:09.415Z
+消息: 邻接距阵
+
+用户: yyyyyyyy
+时间: 2024-01-11T17:15:21.567Z
+消息: n个顶点的连通图用邻接距阵表示时，该距阵至少有2(n-1)个非零元素。为什么
+
+用户: yyyyyyyy
+时间: 2024-01-11T17:21:14.397Z
+消息: 假设以行序为主序存储二维数组A=array[1..100,1..100]，设每个数据元素占2个存储单元，基地址为10，则LOC[5,5]=
+
+用户: yyyyyyyy
+时间: 2024-01-11T17:21:40.769Z
+消息: 非连通无向图
+
+用户: yyyyyyyy
+时间: 2024-01-11T17:35:50.136Z
+消息: 设有一个10阶的对称矩阵A，采用压缩存储方式，以行序为主存储，a11为第一元素，其存储地址为1，每个元素占一个地址空间，则a85的地址为
+
+用户: yyyyyyyy
+时间: 2024-01-12T00:56:47.239Z
+消息: 数组A[0..4,-1..-3,5..7]中含有元素的个数
+
+用户: yyyyyyyy
+时间: 2024-01-12T00:58:21.700Z
+消息: 广义表A=(a,b,(c,d),(e,(f,g)))，则Head(Tail(Head(Tail(Tail(A)))))的值为
+
+用户: yyyyyyyy
+时间: 2024-01-12T01:30:52.394Z
+消息: G是一个非连通无向图，共有28条边，则该图至少有（   ）个顶点
+
+
+用户: yyyyyyyy
+时间: 2024-01-12T01:32:12.724Z
+消息: 8个顶点的无向图最多有8*7/2=28条边，再添加一个点即构成非连通无向图，故至少有9个顶点。为什么
+
+用户: yyyyyyyy
+时间: 2024-01-12T01:34:24.731Z
+消息: 无向图是啥
+
+用户: yyyyyyyy
+时间: 2024-01-12T01:42:11.434Z
+消息: 非连通无向图
+
+用户: yyyyyyyy
+时间: 2024-01-12T01:42:38.388Z
+消息: n个顶点的连通图用邻接距阵表示时，该距阵至少有（   ）个非零元素
+
+用户: yyyyyyyy
+时间: 2024-01-12T01:44:59.288Z
+消息: Prim算法 
+
+用户: yyyyyyyy
+时间: 2024-01-12T01:46:32.070Z
+消息: Kruskal算法
+
+用户: yyyyyyyy
+时间: 2024-01-12T01:47:08.423Z
+消息: Dijkstra算法
+
+用户: yyyyyyyy
+时间: 2024-01-12T01:47:36.768Z
+消息: Floyd算法 
+
+用户: yyyyyyyy
+时间: 2024-01-12T01:48:50.414Z
+消息: )图的BFS生成树的树高比DFS生成树的树高
+
+用户: yyyyyyyy
+时间: 2024-01-12T01:53:58.483Z
+消息: .对具有n个结点完全二叉树，若从上至下、从左至右连续编号（根结点编号为1），对任意编号为i 的结点有：i=1时无双亲，i>1时双亲的编号为    i / 2   ；2i>n时无左孩子，否则其左孩子编号为   2i    ；2i+1>n时无右孩子，否则其右孩子编号为   2i + 1   。解释
+
+用户: yyyyyyyy
+时间: 2024-01-12T01:58:14.034Z
+消息: 结点值
+
+用户: yyyyyyyy
+时间: 2024-01-12T01:58:26.247Z
+消息: 结点值什么意思
+
+用户: yyyyyyyy
+时间: 2024-01-12T01:59:25.182Z
+消息: 图的BFS生成树的树高比DFS生成树的树高
+
+用户: yyyyyyyy
+时间: 2024-01-12T02:02:07.700Z
+消息: 折半查找树有n个结点，其深度为d=     log2n+1     ，查找成功时的比较次数小于等于   d  （用d表示），查找不成功时的比较次数为  d   或   d+1   （用d表示）。为什么
+
+用户: yyyyyyyy
+时间: 2024-01-12T02:03:38.473Z
+消息: 查找成功时的比较次数小于等于   d  （用d表示），为什么
+
+用户: yyyyyyyy
+时间: 2024-01-12T02:04:43.389Z
+消息: 查找不成功时的比较次数为  d   或   d+1   （用d表示）。为什么
+
+用户: yyyyyyyy
+时间: 2024-01-12T02:17:44.975Z
+消息: int LocateElem(LinkList L,int e) //查找值为e的结点的序号 
+{
+  LinkList p;
+  p=L->next;
+  int j=1;
+  while (p && p->data!=e)
+  {
+  	p=p->next;
+  	j++;
+  }
+  if (p) return j;
+  else return 0;
+}请帮我分析一下上面的这串代码
+
+用户: yyyyyyyy
+时间: 2024-01-12T02:36:16.477Z
+消息: Status ListInsert(LinkList &L,int i,int e)//第 i 个结点之前插入值为e的新结点 
+{
+  LinkList p,s;
+  int j=0;
+  p=L;
+  while (p && j<i-1)
+  {
+  	p=p->next;
+  	j++;
+  }
+  if (!p || j>i-1)
+    return ERROR;
+  s=new Lnode;
+  s->data=e;
+  s->next=p->next;
+  p->next=s;
+  return OK;
+}请帮我分析一下这串代码
+
+用户: yyyyyyyy
+时间: 2024-01-12T03:13:24.319Z
+消息: Status ListDelete(LinkList &L,int i,int &e)//删除第 i 个结点
+{
+  LinkList p,q;
+  int j;
+  p=L;
+  j=0;
+  while (p && j<i-1)
+  {
+  	p=p->next;
+  	j++;
+  }
+  if (!(p->next) && j>i-1)
+    return ERROR;
+  q=p->next;
+  p->next=q->next;
+  e=q->data;
+  delete q;
+  return OK;
+}请帮我分析上面的这串代码
+
+用户: yyyyyyyy
+时间: 2024-01-12T03:36:35.358Z
+消息: Status ListInsert(Sqlist &L,int i,int e)
+{ 
+  if (L.length==MAXSIZE) return OVERFLOW;
+  if (i<1 || i>L.length+1)
+     return ERROR;
+  for (int j=L.length-1;j>=i-1;j--)
+     L.elem[j+1]=L.elem[j];
+  L.elem[i-1]=e;
+  L.length++;
+  return OK;
+}请帮我分析该代码
+
+用户: yyyyyyyy
+时间: 2024-01-12T04:49:13.720Z
+消息: #define OK 1
+
+#define OVERFLOW -2
+
+#define ERROR 0
+
+#include "stdlib.h"
+
+#include <iostream>
+
+using namespace std;
+
+
+
+typedef int Status;
+
+typedef struct Lnode
+
+{
+
+  int data;
+
+  struct Lnode *next;
+
+}Lnode,*LinkList;分析
+
+用户: yyyyyyyy
+时间: 2024-01-12T04:50:25.173Z
+消息: Status ListDelete(Sqlist &L,int i)
+{
+  if (i<1 || i>L.length)
+    return ERROR;
+  for (int j=i;j<L.length;j++)
+    L.elem[j-1]=L.elem[j];
+  L.length--;
+  return OK;
+}请分析一下上面的这串代码
+
+用户: yyyyyyyy
+时间: 2024-01-12T04:52:59.315Z
+消息: int LocateElem(LinkList Linte)//查找值为
+e的结点的序号{
+LinkList p;
+p=L->next;
+int j=1;
+while (p && p->datal=e){
+p=p->next;
+J++;}
+if (p) returnj;
+else return 0;}请帮我分析一下每条语句的意思
+
+用户: yyyyyyyy
+时间: 2024-01-12T05:02:04.733Z
+消息: Status ListInsert(LinkList &L,int i,int e)//第
+i个结点之前插入值为e的新结点
+LinkList p,s;
+int j=0; .
+p=L;
+while (p && j<i-1)
+p=p->next;
+j++;
+}
+if (!pllj>i-1)
+return ERROR;
+s=new Lnode;
+S- >data=e;
+s->next=p- ->next; .
+p->next=S;
+return OK;
+}请帮我分析一下每条语句的意思
+
+用户: yyyyyyyy
+时间: 2024-01-12T05:03:18.291Z
+消息: Status ListDelete(LinkList &L,int i,int &e)//
+删除第i个结点
+LinkList p,q;
+int j;
+p=L;
+j=0;
+while (p && j<i-1)
+p=p->next;
+j++;
+if (!(p->next) && j>i-1)
+return ERROR;
+q=p- >next;
+p->next=q->next;
+e=q->data; .
+delete q; .
+return OK;
+}请帮我分析一下每条语句的意思
+
+用户: yyyyyyyy
+时间: 2024-01-12T05:40:30.144Z
+消息: Status ListInsert(Sqlist &L,int i,int e)
+if (L.length==MAXSIZE) return
+OVERFLOW;
+if (i<1l| i>L.length+1)
+return ERROR;
+for (int j=L.length-1;j>=i-1;j--)
+L.elem[j+ 1]=L.elem[j];
+L.elem[i-1]=e;
+L.length++;
+return OK;
+}请帮我分析一下每条语句的意思
+
+用户: yyyyyyyy
+时间: 2024-01-12T05:44:33.148Z
+消息: Status ListDelete(Sqlist &L,int i)
+{
+if (i<1ll i>L.length)
+return ERROR; 
+for (int j=i;j<L.length;j++)
+L.elem[j-1]=L.elem[j];
+L.length--;
+return OK;
+}请帮我分析一下每条语句的意思
+
+

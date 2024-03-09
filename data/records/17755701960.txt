@@ -1,0 +1,314 @@
+用户: 17755701960
+时间: 2024-01-10T07:17:20.961Z
+消息: 200 Sea urchin medius (shell diameter: 58.04±3.58mm, shell height: 33.59±2.91mm, weight: 56.06±10.00g). Sea urchin (Fishing place: Lushunkou District, Dalian City, Liaoning Province N:121.62163。 E:38.91895。) The animals were kept temporarily (7 days) in the Key Laboratory of Northern Aquaculture, Ministry of Agriculture and Rural Affairs, Dalian Ocean University, and then randomly divided into normal feeding group and starvation treatment group. The experimental period was one month, and data were collected every week. Sea urchins were cultured in indoor water temperature of (9.0±1.0) ℃ and salinity of (30.0±1.0). During the indoor period, kelp was fed. Under the condition of natural light, the pool was aerated for 24 hours, and the water was changed once a day, and the water was changed for 1/2. The GSI (GSI= gonad weight/body weight × 100%) and growth indexes were measured. The gonads were stored at -80℃. 翻译成中文
+
+用户: 17755701960
+时间: 2024-01-15T08:11:49.381Z
+消息: The gonad tissue blocks were collected and fixed in Borne reagent (v saturated bitric acid: v 40% formaldehyde: v saturated glacial acetic acid = 15∶5∶1) at room temperature, and the volume fraction was stored in 75% ethanol for routine paraffin section preparation and HE staining. Paraffin sections of the digestive tract with a thickness of 6 μm were obtained using a pathological microtome (Leica, RM2016, Germany) and observed and photographed using a light microscope (Leica, LEICADM4B, Germany).翻译
+
+用户: 17755701960
+时间: 2024-01-15T08:12:03.086Z
+消息: The gonad tissue blocks were collected and fixed in Borne reagent (v saturated bitric acid: v 40% formaldehyde: v saturated glacial acetic acid = 15∶5∶1) at room temperature, and the volume fraction was stored in 75% ethanol for routine paraffin section preparation and HE staining. Paraffin sections of the digestive tract with a thickness of 6 μm were obtained using a pathological microtome (Leica, RM2016, Germany) and observed and photographed using a light microscope (Leica, LEICADM4B, Germany).翻译成中文
+
+用户: 17755701960
+时间: 2024-01-15T08:12:50.177Z
+消息: The gonad tissue blocks were collected and fixed in Borne reagent (v saturated bitric acid: v 40% formaldehyde: v saturated glacial acetic acid = 15∶5∶1) at room temperature, and the volume fraction was stored in 75% ethanol for routine paraffin section preparation and HE staining. Paraffin sections of the digestive tract with a thickness of 6 μm were obtained using a pathological microtome (Leica, RM2016, Germany) and observed and photographed using a light microscope (Leica, LEICADM4B, Germany).翻译中文
+
+用户: 17755701960
+时间: 2024-01-15T08:13:18.017Z
+消息: The gonad tissue blocks were collected and fixed in Borne reagent (v saturated bitric acid: v 40% formaldehyde: v saturated glacial acetic acid = 15∶5∶1) at room temperature, and the volume fraction was stored in 75% ethanol for routine paraffin section preparation and HE staining. Paraffin sections of the digestive tract with a thickness of 6 μm were obtained using a pathological microtome (Leica, RM2016, Germany) and observed and photographed using a light microscope (Leica, LEICADM4B, Germany).翻译
+
+用户: 17755701960
+时间: 2024-01-15T08:14:03.378Z
+消息: The gonad tissue blocks were collected and fixed in Borne reagent (v saturated bitric acid: v 40% formaldehyde: v saturated glacial acetic acid = 15∶5∶1) at room temperature, and the volume fraction was stored in 75% ethanol for routine paraffin section preparation and HE staining. Paraffin sections of the digestive tract with a thickness of 6 μm were obtained using a pathological microtome (Leica, RM2016, Germany) and observed and photographed using a light microscope (Leica, LEICADM4B, Germany).把这段话翻译成中文
+
+用户: 17755701960
+时间: 2024-01-15T08:15:56.671Z
+消息: The gonad tissue blocks were collected and fixed in Borne reagent (v saturated bitric acid: v 40% formaldehyde: v saturated glacial acetic acid = 15∶5∶1) at room temperature, and the volume fraction was stored in 75% ethanol for routine paraffin section preparation and HE staining. Paraffin sections of the digestive tract with a thickness of 6 μm were obtained using a pathological microtome (Leica, RM2016, Germany) and observed and photographed using a light microscope (Leica, LEICADM4B, Germany).翻译成中文
+
+用户: 17755701960
+时间: 2024-01-15T08:19:56.966Z
+消息: 2.3、Monosaccharide determination
+Firstly, after accurately weighing the standard of monosaccharide, water was added to form a single standard of 10mg/mL standard solution mother liquor, and then an appropriate amount of standard mother liquor was mixed to prepare the standard mixed standard with the highest index concentration of 60μg/mL, 50μg/mL or 40μg/mL. Solid sample extraction: Take a clean chromatography bottle, weigh an appropriate amount of polysaccharide sample, add 1ml of 2M TFA acid solution (ANPEL, China), and heat at 121 ° C for 2 hours. Pass nitrogen, blow dry. Add 99.99% methanol to clean, then blow dry, repeat methanol cleaning 2-3 times. Add sterile water to dissolve and transfer into chromatographic bottles for testing. The chromatographic system was a Thermo ICS 5000+ ion chromatographic system (ICS 5000+, Thermo Fisher Scientific, USA), and the monosaccharide components were analyzed and detected by electrochemical detectors. 
+Dionex™ CarboPac™ PA20 (150*3.0mm, 10μm)（Thermo Fisher Scientific，USA）liquid chromatography column was used. The injection volume was 5 μl. Mobile phase A (H2O), mobile phase B (0.1M NaOH), mobile phase C (0.1M NaOH, 0.2M NaAc), flow rate 0.5ml/min; The column temperature was 30℃. Elution gradient: 0min A /B /C phase (95:5:0, V/V), 26min A /B /C phase (85:5:10, V/V), 42min A /B /C phase (85:5:10, V/V), 42.1min A /B /C phase (60:0: 40, V/V), 52min A /B /C phase (60:40:0, V/V), 52.1min A /B /C phase (95:5:0, V/V), 60min A /B /C phase (95:5:0, V/V).  The content of each component in solid samples (μg/mg) =C*V*F/M 
+Where C is the concentration read by the instrument in μg/ml; V is the volume of sample extraction liquid (unit ml); F is the dilution factor; M is the total amount of sample weighed in mg.
+翻译
+
+用户: 17755701960
+时间: 2024-01-15T08:26:58.122Z
+消息: To determine the composition and absolute quantification of fatty acids, according to the procedure described in our previous study, Gonads (100 mg) from 12 sea urchines were separately analyzed using a TRACE™1310 ISQ gas chromatograph (Thermo Fisher Scientific, Waltham, MA, USA) (Wang et al., 2019). The fats and fatty acids in the samples were extracted by hydrolysis, the fats were extracted into ether, and then methylated to obtain fatty acid methyl esters (FAMEs). Quantitative determination was performed using a gas chromatograph. Hydrolysis: Samples were mixed with pyrogallic acid and 2 mL of 95% ethanol and 10 mL of hydrochloric acid were added. The mixture was hydrolyzed at 70-80◦C for 40 min, then the flask was removed from the water bath and cooled to room temperature. Extraction: After sample hydrolysis, 10 mL of 95% ethanol and 50 mL of diethyl ether were added and shaken for 5 min. The ether layer was removed into the tube, and the ether was evaporated by a water bath. For methylation, 2 mL of 2% NaoH-methanol and 3 mL of 14% BF3-methanol were extracted and heated at 85◦ for 30 min before cooling to room temperature. The hexyl hydride mixture was centrifuged and the fatty acid methyl ester was filtered through a 0.45 μm filter before gas column chromatography. In this study, 33 kinds of free fatty acids were detected and analyzed in sea urchin. The content of each fatty acid was calculated according to the formula :W = C*V*N m *k W: fatty acid content in the sample (mg/kg); C: Fatty acid methyl ester concentration (mg/L); V: equal volume (mL); k: coefficient of conversion of each fatty acid methyl ester to fatty acid; N: dilution ratio; m: Sample weight (g).翻译
+
+用户: 17755701960
+时间: 2024-01-15T08:38:15.034Z
+消息: Sample pretreatment: accurately weigh 100mg of uniform sample, put it in 25ml hydrolysis tube, and then add 10ml of hydrochloric acid with a concentration of 6mol/L; It was hydrolyzed in a 110 constant temperature drying oven for 22h. After cooling, it was quantified in a 50ml volumetric flask with deionized water. The standard solution and sample were injected with 20.0μl each and quantified by the standard area. Conditions of liquid chromatography: Column: Hypersil ODS amino acid analysis column, length 20cm, inner diameter 2.1nm; Column temperature: 40.0℃; Flow rate: 0.45ml/min. Mobile phase configuration: Accurately weigh 1.13g sodium acetate trihydrate and transfer to 800ml glass. Add 500ml pure water and stir until the crystals are completely dissolved. Add 120μl triethylamine and mix thoroughly. The pH was adjusted to 7.20±0.05 with 1%~2% sodium acetate. 1.8ml tetrahydrofuran was added, mixed and loaded into reagent bottles to obtain mobile phase A. 135g sodium acetate trihydrate was accurately weighed and transferred to a 200ml glass. Add 100ml pure water and stir until all the crystals are dissolved; The pH was adjusted to 7.20±0.05 with 1%~2% sodium acetate. This solution was mixed with 200ml acetonitrile and 200ml methanol and loaded into reagent bottles to obtain mobile phase B.翻译
+
+用户: 17755701960
+时间: 2024-01-15T09:24:22.587Z
+消息: The main process was as follows: eukaryotic mRNA was enriched by magnetic beads with Oligo (dT); Fragmentation Buffer(Thermo Fisher Scientific, USA) was added to interrupt mRNA randomly. Using mRNA as template, the first cDNA strand was synthesized with random hexamers, and then buffer, dNTPs, RNase H and DNA polymerase I were added to synthesize the second cDNA strand. AMPure XP beads(Beijing Norbolide Technology Co LTD, China) were used to purify cDNA. The purified double-stranded cDNA was subjected to end repair, A-tail addition, sequencing adaptor, and AMPure XP beads for fragment size selection. Finally, cDNA libraries were obtained by PCR enrichment. After the library was constructed, the effective concentration of the library (library effective concentration > 2nM) was accurately quantified by Q-PCR method to ensure the quality of the library. After library inspection, different libraries were pooled according to the target amount of data, and sequenced by Illumina(NovaSeq,USA) platform. Differential expression genes were screened by differential analysis software based on the Count value of genes in each sample. DESeq2[21] software was used to analyze the differences between groups with biological duplication. Fold Change≥1.5 and Pvalue<0.01 were used as screening criteria in the detection of differentially expressed genes. The Clean Data were filtered and compared with the transcriptome Data of Sea urchin medius. The Mapped Data were used to evaluate the quality of the library, such as insert length test and randomness test. Alternative splicing analysis, novel gene discovery and gene structure optimization were performed. According to the expression level of genes in different samples or different groups of samples, differential expression analysis, functional annotation and functional enrichment of differentially expressed genes were performed翻译
+
+用户: 17755701960
+时间: 2024-01-15T09:25:28.685Z
+消息: 2.7 Gene enrichment analysis: 
+The transcriptome data were referred to the genome of sea urchin intermedius measured in our laboratory, and the function of differentially expressed genes was annotated in the database. The Cluster of Orthologous Groups of proteins (COG) database is constructed based on the phylogenetic relationships of bacteria, algae and eukaryotes. The gene products can be classified by direct homology using COG database. The GO database aims to establish a standard vocabulary for knowledge of genes and their products, which is applicable to each species. The GO annotation system is a directed acyclic graph with three main branches, namely: Biological Process, Molecular Function and Cellular Component; KEGG (Kyoto Encyclopedia of Genes and Genomes) is a database for systematic analysis of gene function and genome information, which helps researchers to study gene and expression information as a whole network. As the main public database on pathways (Kanehisa,2008), the integrated pathway query provided by KEGG, including the metabolism of carbohydrates, nucleosides, amino acids, etc., and the biodegradation of organic matter, provides all possible metabolic pathways. The enzymes catalyzing each step of the reaction were also comprehensively annotated, and P < 0.05 was considered to be significantly enriched.翻译
+
+
+用户: 17755701960
+时间: 2024-01-15T09:29:29.621Z
+消息: 2.8 Real-time fluorescence quantitative RT-PCR was used to verify the results
+In order to verify the accuracy of genes related to hunger, some genes were screened for validation. For RT-qPCR validation, total RNA was extracted with Trizol (CA, USA) and then cDNA was obtained by reverse transcription using a reverse transcription kit (TAKARA, Japan). RT-Qpcr was performed using the SYBR Green dye method Mix (Shanghai Lianmai Biological Engineering Co., LTD, USA), and the primer sequences retrieved from Primer5 are shown in Table 1, with 18SrRNA as the reference gene. Reaction conditions: 60 cycles of denaturation at 95 ° C for 10s, annealing at 65 ° C for 60s, and extension at 97 ° C for 1s. Fluorescence quantitative data were calculated using the 2-ΔΔCt method.
+2.9、Statistic analysis
+The data were processed by Means±SD table, and spss25.0 was used for data calculation. One-way ANOVA was used to analyze the significance of monosaccharide, amino acid and fatty acid contents in the gonads of sea urchins intermedia before and after starvation (P<0.05).
+翻译
+
+用户: 17755701960
+时间: 2024-02-21T08:36:28.025Z
+消息: 摘要：脂肪酸结合蛋白(Fatty acid binding proteins，FABPs)是一类来自共同祖先基因的小分子蛋白，广泛存在于动物肠道、心脏、脑、脂肪和肌肉等多种组织中，能特异性结合脂肪酸并将脂肪酸输送到过氧化物酶体、线粒体和细胞核等细胞器中，进而调控脂肪酸氧化和甘油三酯及磷脂合成等脂代谢过程。翻译成英文
+
+用户: 17755701960
+时间: 2024-02-21T08:37:58.007Z
+消息: 摘要：脂肪酸结合蛋白(Fatty acid binding proteins，FABPs)是一类来自共同祖先基因的小分子蛋白，广泛存在于动物肠道、心脏、脑、脂肪和肌肉等多种组织中，能特异性结合脂肪酸并将脂肪酸输送到过氧化物酶体、线粒体和细胞核等细胞器中，进而调控脂肪酸氧化和甘油三酯及磷脂合成等脂代谢过程。文章通过综述FABPs的分类、结构特征、生物学功能及典型无脊椎动物(原生动物、节肢动物、软体动物和棘皮动物)FABPs的研究进展，发现无脊椎动物的FABPs分子结构缺少糖、水分子、氨基和巯基等官能团，其功能更具复杂性，且主要与生长发育、脂肪酸转运等相关。相对于脊椎动物，无脊椎动物的FABPs研究尚处于起步阶段，今后需要进一步探究其基因结构、蛋白构造及其生物学功能等，包括如FABPs作为脂肪酸的细胞内载体以确定无脊椎动物特定膜供体和受体位点的识别，阐明FABPs分子结构是否具有捕获或释放配体的构象能力，分析配体结合特异性应与β-桶折叠定义空腔表面涂层的理化特性关系，以及不同类型FABPs是否具有不同的特点及生物学功能等。此外，从无脊椎动物分离获得的某些FABPs对生物疫苗制备具有一定促进作用，因此可应用于水产动物育种和代谢性疾病防治等实践中，为当前集约化养殖模式下的生物营养代谢性疾病预防和治疗提供新的视角。
+关键词：无脊椎动物；脂肪酸结合蛋白(FABPs)；脂肪酸；分类；生物学功能。翻译成英文
+
+
+用户: 17755701960
+时间: 2024-02-21T08:44:36.736Z
+消息: 脂肪酸结合蛋白(Fatty acid binding proteins，FABPs)是一类来自共同祖先基因的小分子蛋白，广泛存在于动物肠道、心脏、脑、脂肪和肌肉等多种组织中，能特异性结合脂肪酸并将脂肪酸输送到过氧化物酶体、线粒体和细胞核等细胞器中，进而调控脂肪酸氧化和甘油三酯及磷脂合成等脂代谢过程。翻译成英文
+
+用户: 17755701960
+时间: 2024-02-21T08:46:07.890Z
+消息: 文章通过综述FABPs的分类、结构特征、生物学功能及典型无脊椎动物(原生动物、节肢动物、软体动物和棘皮动物)FABPs的研究进展，发现无脊椎动物的FABPs分子结构缺少糖、水分子、氨基和巯基等官能团，其功能更具复杂性，且主要与生长发育、脂肪酸转运等相关。翻译成英文
+
+用户: 17755701960
+时间: 2024-02-21T08:47:11.205Z
+消息: 相对于脊椎动物，无脊椎动物的FABPs研究尚处于起步阶段，今后需要进一步探究其基因结构、蛋白构造及其生物学功能等，包括如FABPs作为脂肪酸的细胞内载体以确定无脊椎动物特定膜供体和受体位点的识别，阐明FABPs分子结构是否具有捕获或释放配体的构象能力，分析配体结合特异性应与β-桶折叠定义空腔表面涂层的理化特性关系，以及不同类型FABPs是否具有不同的特点及生物学功能等。翻译成英文
+
+用户: 17755701960
+时间: 2024-02-21T08:47:53.809Z
+消息: 此外，从无脊椎动物分离获得的某些FABPs对生物疫苗制备具有一定促进作用，因此可应用于水产动物育种和代谢性疾病防治等实践中，为当前集约化养殖模式下的生物营养代谢性疾病预防和治疗提供新的视角。翻译成英文
+
+用户: 17755701960
+时间: 2024-02-21T08:48:36.943Z
+消息: 关键词：无脊椎动物；脂肪酸结合蛋白(FABPs)；脂肪酸；分类；生物学功能 翻译成英文
+
+
+
+用户: 17755701960
+时间: 2024-02-21T08:52:28.030Z
+消息: 无脊椎动物脂肪酸结合蛋白的研究进展 翻译
+
+用户: 17755701960
+时间: 2024-02-21T08:57:17.610Z
+消息: unnamed翻译
+
+用户: 17755701960
+时间: 2024-02-21T08:57:40.544Z
+消息: Non-mammal翻译
+
+用户: 17755701960
+时间: 2024-02-21T09:05:04.096Z
+消息: Schistosoma bovis翻译
+
+用户: 17755701960
+时间: 2024-02-21T09:05:44.615Z
+消息: Schistosoma japonicum
+
+用户: 17755701960
+时间: 2024-02-21T09:06:28.982Z
+消息: Schistosoma mansoni
+
+用户: 17755701960
+时间: 2024-02-21T09:07:08.077Z
+消息: Fasciola gigantica
+
+用户: 17755701960
+时间: 2024-02-21T09:07:45.986Z
+消息: Caenorhabditis elegans
+
+用户: 17755701960
+时间: 2024-02-21T09:09:25.325Z
+消息: Blomia tropicalis
+
+用户: 17755701960
+时间: 2024-02-21T09:09:49.719Z
+消息: Lepidoglyphus destructor
+
+用户: 17755701960
+时间: 2024-02-21T09:12:11.113Z
+消息: Tyrophagus putrescentiae
+
+用户: 17755701960
+时间: 2024-02-21T09:13:02.953Z
+消息: Drosophila melanogaster
+
+用户: 17755701960
+时间: 2024-02-21T09:13:26.844Z
+消息: Anopheles gambiae
+
+用户: 17755701960
+时间: 2024-02-21T09:14:23.167Z
+消息: Manduca sexta
+
+用户: 17755701960
+时间: 2024-02-21T09:15:13.155Z
+消息: Metapenaeus ensis
+
+用户: 17755701960
+时间: 2024-02-21T09:15:47.537Z
+消息: Locusta migratoria
+
+用户: 17755701960
+时间: 2024-02-21T09:16:35.130Z
+消息: Schistocerca gregaria
+
+用户: 17755701960
+时间: 2024-02-21T09:17:29.260Z
+消息: Apis mellifera
+
+用户: 17755701960
+时间: 2024-02-21T09:17:51.406Z
+消息: Helicoverpa zea
+
+用户: 17755701960
+时间: 2024-02-21T09:18:30.015Z
+消息: Ascaris suum
+
+用户: 17755701960
+时间: 2024-02-21T09:18:47.907Z
+消息: Brugia malayi
+
+用户: 17755701960
+时间: 2024-02-22T01:20:48.121Z
+消息: Analysis of H-FABP gene polymorphism and its association with slaughter performance and meat quality of local chickens in Jilin Province翻译
+
+用户: 17755701960
+时间: 2024-02-22T01:24:00.931Z
+消息:  Relationship between intestinal microbiota distribution and A-FABP and GLP-1 levels in patients with type 2 diabetes mellitus and obesity翻译
+
+用户: 17755701960
+时间: 2024-02-22T01:27:20.250Z
+消息: Haggartya P. 2002. Placental regulation of fatty acid deliveryand its effect on fetal growth
+
+用户: 17755701960
+时间: 2024-02-22T01:31:12.202Z
+消息: Progress in clinical application of cardiac fatty acid binding protein翻译
+
+用户: 17755701960
+时间: 2024-02-22T01:33:45.645Z
+消息: The level of adipocyte fatty acid binding protein in plasma of patients with ACS increases
+
+用户: 17755701960
+时间: 2024-02-22T01:36:19.314Z
+消息: Research progress of heart type fatty acid binding protein
+
+用户: 17755701960
+时间: 2024-02-22T01:38:08.776Z
+消息: Research progress of fatty acid binding protein and its main family genes
+
+用户: 17755701960
+时间: 2024-02-22T01:43:45.621Z
+消息: Study on the correlation of fatty acid binding protein in patients with ischemic bowel disease
+
+用户: 17755701960
+时间: 2024-02-22T01:47:34.658Z
+消息: Myocardial fatty acid binding protein and its application in the early diagnosis of acute myocardial infarction
+
+用户: 17755701960
+时间: 2024-02-22T01:50:52.863Z
+消息: Research progress of fatty acid binding protein and its main family genes
+
+用户: 17755701960
+时间: 2024-02-22T01:52:29.050Z
+消息: Expression of L-FABP in patients with type 2 diabetes mellitus and its correlation with urinary protein 4
+
+用户: 17755701960
+时间: 2024-02-22T01:54:37.136Z
+消息: Research progress of hepatic fatty acid-binding protein
+
+用户: 17755701960
+时间: 2024-02-22T01:57:19.511Z
+消息: Wang Nan-nan, Xu Li-zhi, Wang Ya-ping. 2012. Research progress of hepatic fatty acid-binding protein[J]. Life Science，24(2)：139-144
+
+用户: 17755701960
+时间: 2024-02-22T02:01:07.281Z
+消息: Research progress of hepatic fatty acid-binding protein
+
+用户: 17755701960
+时间: 2024-02-22T02:02:01.313Z
+消息: Research progress of heart type fatty acid binding protein
+
+用户: 17755701960
+时间: 2024-02-22T02:05:38.289Z
+消息: 淑华,王丽萍,侯巍. 心肌型脂肪酸结合蛋白的研究进展 [J]. 中国实验诊断学, 2005, (01): 152-154.）
+
+用户: 17755701960
+时间: 2024-02-22T02:05:52.488Z
+消息: 淑华,王丽萍,侯巍. 心肌型脂肪酸结合蛋白的研究进展 [J]. 中国实验诊断学, 2005, (01): 152-154.）翻译成英文
+
+用户: 17755701960
+时间: 2024-02-22T02:07:34.875Z
+消息: Research progress of hepatic fatty acid-binding protein
+
+用户: 17755701960
+时间: 2024-02-22T07:25:19.471Z
+消息: FABP10的研究进展
+
+用户: 17755701960
+时间: 2024-02-22T07:25:33.722Z
+消息: FABP10的研究进展 翻译
+
+用户: 17755701960
+时间: 2024-02-22T07:26:43.361Z
+消息: fabp10在哪个物种发现的
+
+用户: 17755701960
+时间: 2024-02-22T07:27:31.133Z
+消息: FABP10在哪发现的
+
+用户: 17755701960
+时间: 2024-02-22T07:39:16.579Z
+消息: 、
+
+用户: 17755701960
+时间: 2024-02-22T07:53:20.505Z
+消息: 任广明,林玉杰,徐黎明等. 虹鳟fabp10基因真核表达载体构建、生物信息学及组织表达分析 [J]. 水产学杂志, 2023, 36 (01): 1-7. 翻译
+
+用户: 17755701960
+时间: 2024-02-22T08:04:12.477Z
+消息: 鱼类脂肪酸结合蛋白研究进展 [J]. 水产科学, 2019, 38 (04): 563-574. DOI:10.16378/j.cnki.1003-1111.2019.04.019.
+
+用户: 17755701960
+时间: 2024-02-22T11:52:46.766Z
+消息: Fabp10 只存在非哺乳脊椎动物的肝脏中
+
+用户: 17755701960
+时间: 2024-02-22T11:53:02.410Z
+消息: Fabp10 只存在非哺乳脊椎动物的肝脏中，翻译
+
+用户: 17755701960
+时间: 2024-02-22T12:05:51.495Z
+消息: 肾脏 翻译
+
+用户: 17755701960
+时间: 2024-02-26T04:55:49.228Z
+消息: Formula 翻译
+
+用户: 17755701960
+时间: 2024-02-26T04:56:12.956Z
+消息: Formula
+
+用户: 17755701960
+时间: 2024-02-26T04:56:40.575Z
+消息: Formula 翻译
+
+用户: 17755701960
+时间: 2024-02-26T04:58:22.053Z
+消息: Annot. Source: Predicted Compositions翻译
+
+用户: 17755701960
+时间: 2024-02-26T04:58:49.762Z
+消息: Annot. Source: Predicted Compositions翻译
+
+用户: 17755701960
+时间: 2024-02-26T05:32:23.402Z
+消息: 二十碳五烯酸结构式
+
